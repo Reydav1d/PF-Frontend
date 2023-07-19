@@ -5,12 +5,12 @@ import Landing from "../Views/Landing/Landing";
 import Home from "../Views/Home/Home";
 
 export default function AppRouter() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" Component={Landing} />
-                <Route path="/home" Component={Home} />
-            </Routes>
-        </Router>
-    )
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" Component={Landing} />
+        <Route path="/home" Component={Home} />
+      </Routes>
+    </Router>
+  );
 }
