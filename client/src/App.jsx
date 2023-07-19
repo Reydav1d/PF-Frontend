@@ -7,7 +7,11 @@ import Home from "./Views/Home/Home.jsx";
 function App() {
   //const [count, setCount] = useState(0);
 
-  return <div>adakwjdnawjk</div>;
+  return (
+    <div>
+      <Route path="/" Component={Home} />
+    </div>
+  );
 }
 
 export default App;
