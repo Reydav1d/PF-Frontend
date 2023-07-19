@@ -1,6 +1,9 @@
 # Proyecto Final - GRUPO 19 - HENRY
 
-# NOMBRE DE LA APLICACION 
+# NOMBRE DE LA APLICACION: TechNexus
+
+# Stack:
+## PERN = Postgres, Express, React (vite), Node
 
 # Collaborators:
 ## Michelle Diaz
