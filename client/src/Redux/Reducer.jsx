@@ -1,43 +1,22 @@
+import { CLEAR_DETAIL, GET_PRODUCT } from "./Actions/constantes";
+
 const initialState = {
-  productos: [
-    {
-      nombre: "producto1",
-    },
-    {
-      nombre: "producto2",
-    },
-    {
-      nombre: "producto3",
-    },
-    {
-      nombre: "producto4",
-    },
-    {
-      nombre: "producto5",
-    },
-    {
-      nombre: "producto6",
-    },
-    {
-      nombre: "producto7",
-    },
-    {
-      nombre: "producto8",
-    },
-    {
-      nombre: "producto9",
-    },
-    {
-      nombre: "producto10",
-    },
-    {
-      nombre: "producto11",
-    },
-  ],
+  productos: [],
+  productDetail: [],
 };
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
+const rootReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case GET_PRODUCT:
+      return {
+        ...state,
+        productDetail: payload,
+      };
+    case CLEAR_DETAIL:
+      return {
+        ...state,
+        productDetail: payload,
+      };
     default:
       return { ...state };
   }
