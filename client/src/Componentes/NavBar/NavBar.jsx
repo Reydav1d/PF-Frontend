@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./NavBar.module.css";
 import logo from "../../Img/logo tech.png";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -20,9 +21,30 @@ function NavBar() {
             <p>home</p>
           </div>
           <div className={s.botones}>
-            <p>contacto</p>
-            <p>favoritos</p>
-            <p>nosotros</p>
+            <Link
+              to={"/productos"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>productos</p>
+            </Link>
+            <Link
+              to={"/contacto"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>contacto</p>
+            </Link>
+            <Link
+              to={"/favoritos"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>favoritos</p>
+            </Link>
+            <Link
+              to={"/nosotros"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>nosotros</p>
+            </Link>
           </div>
           <div className={s.cuenta}>
             <h4>mi cuenta</h4>
