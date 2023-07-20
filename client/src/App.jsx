@@ -1,5 +1,5 @@
 // import { useState } from "react";
-//import "./App.css";
+// //import "./App.css";
 // import { Route } from "react-router-dom";
 // import NavBar from "./Componentes/NavBar/NavBar.jsx";
 // import Landing from "./Views/Landing/Landing.jsx";
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <AppRouter/>
+      <AppRouter />
     </div>
   );
 }

@@ -1,0 +1,7 @@
+.fondo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 420px;
+  background-color: rgb(201, 201, 201);
+}
