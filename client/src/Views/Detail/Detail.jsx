@@ -9,12 +9,13 @@ function Detail() {
   const { id } = useParams();
   const product = useSelector((state) => state.product);
   const description = useSelector((state) => state.description);
-  // const picture = useSelector((state) => state.picture);
+  const picture = useSelector((state) => state.picture);
 
   useEffect(() => {
     dispatch(getProduct(id));
     dispatch(getDescription(id));
-    // dispatch(getPicture(id));
+    dispatch(getPicture(id));
+    console.log(getProduct, "error")
     return () => {
       dispatch(clearDetail());
     };
@@ -26,16 +27,16 @@ function Detail() {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="sm:flex sm:items-center px-6 py-4">
             <img
-              // src={picture}
-              src={product.image}
-              alt={product.title}
+              src={picture}
+              // src={product?.image}
+              alt={product?.title}
               className="h-48 w-auto sm:h-64 rounded-full mx-auto sm:mx-0"
             />
             <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
-              <h1 className="text-xl font-semibold">{product.title}</h1>
-              <p className="text-gray-600">Precio: ${product.price}</p>
-              <p className="text-gray-600">Unidades disponibles: {product.stock}</p>
-              <p className="text-gray-600">Categoría: {product.category}</p>
+              <h1 className="text-xl font-semibold">{product?.title}</h1>
+              <p className="text-gray-600">Precio: ${product?.price}</p>
+              <p className="text-gray-600">Unidades disponibles: {product?.stock}</p>
+              <p className="text-gray-600">Categoría: {product?.category}</p>
 
               <button
                 // onClick={handleAddToCart}
