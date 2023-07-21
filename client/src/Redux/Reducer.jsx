@@ -2,11 +2,15 @@ import {
   CLEAR_DETAIL,
   GET_ALL_PRODUCTOS,
   GET_PRODUCT,
+  GET_DESCRIPTION,
+  GET_PICTURE,
 } from "./Actions/constantes";
 
 const initialState = {
   productos: [],
   product: [],
+  description: [],
+  picture: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -22,12 +26,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         product: payload,
       };
-
-    case CLEAR_DETAIL:
-      return {
-        ...state,
-        productDetail: payload,
-      };
+      case CLEAR_DETAIL:
+        return {
+          ...state,
+          product: payload,
+        }
+      case GET_DESCRIPTION:
+        return {
+          ...state,
+          description: payload,
+        }
+      case GET_PICTURE:
+        return {
+          ...state,
+          picture: payload,
+        }
 
     default:
       return { ...state };

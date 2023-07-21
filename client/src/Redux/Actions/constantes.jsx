@@ -1,3 +1,6 @@
 export const GET_PRODUCT = "GET_PRODUCT";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
+export const GET_DESCRIPTION = "GET_DESCRIPTION";
+export const GET_PICTURE = "GET_PICTURE";
 export const GET_ALL_PRODUCTOS = "GET_ALL_PRODUCTOS";
+

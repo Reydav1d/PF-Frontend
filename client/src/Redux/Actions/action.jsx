@@ -1,5 +1,6 @@
 import axios from "axios";
-import { GET_PRODUCT, CLEAR_DETAIL, GET_ALL_PRODUCTOS } from "./constantes";
+import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_ALL_PRODUCTOS, GET_PICTURE } from "./constantes";
+
 
 export const getAllProductos = () => {
   return async function (dispatch) {
@@ -25,8 +26,31 @@ export const getProduct = (id) => {
 };
 
 export const clearDetail = () => {
-  return {
-    type: CLEAR_DETAIL,
-    payload: [],
-  };
-};
+    return {
+        type: CLEAR_DETAIL,
+        payload: [],
+    }
+}
+
+export const getDescription = (id) => {
+    return async function (dispatch) {
+        const apiData = await axios.get(`/products/description/${id}`);
+        const description = apiData.data;
+        dispatch({
+            type: GET_DESCRIPTION,
+            payload: description,
+        })
+    }
+}
+
+export const getPicture = (id) => {
+    return async function (dispatch) {
+        const apiData = await axios.get(`/products/pictures/${id}`);
+        const picture = apiData.data;
+        dispatch({
+            type: GET_PICTURE,
+            payload: picture,
+        })
+    }
+}
+
