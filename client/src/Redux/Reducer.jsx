@@ -2,7 +2,7 @@ import { CLEAR_DETAIL, GET_PRODUCT } from "./Actions/constantes";
 
 const initialState = {
   productos: [],
-  productDetail: [],
+  product: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -10,12 +10,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_PRODUCT:
       return {
         ...state,
-        productDetail: payload,
+        product: payload,
       };
       case CLEAR_DETAIL:
         return {
           ...state,
-          productDetail: payload,
+          product: payload,
         }
     default:
       return { ...state };
