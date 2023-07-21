@@ -2,11 +2,13 @@ import {
   CLEAR_DETAIL,
   GET_ALL_PRODUCTOS,
   GET_PRODUCT,
+  TODOS_FILTROS,
 } from "./Actions/constantes";
 
 const initialState = {
   productos: [],
   product: [],
+  productosFiltrados: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -27,6 +29,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         productDetail: payload,
+      };
+
+    case TODOS_FILTROS:
+      return {
+        ...state,
+        productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
       };
 
     default:
