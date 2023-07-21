@@ -1,4 +1,10 @@
-import { CLEAR_DETAIL, GET_PRODUCT, GET_DESCRIPTION, GET_PICTURE } from "./Actions/constantes";
+import {
+  CLEAR_DETAIL,
+  GET_ALL_PRODUCTOS,
+  GET_PRODUCT,
+  GET_DESCRIPTION,
+  GET_PICTURE,
+} from "./Actions/constantes";
 
 const initialState = {
   productos: [],
@@ -9,6 +15,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case GET_ALL_PRODUCTOS:
+      return {
+        ...state,
+        productos: payload,
+      };
+
     case GET_PRODUCT:
       return {
         ...state,
@@ -29,6 +41,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...state,
           picture: payload,
         }
+
     default:
       return { ...state };
   }

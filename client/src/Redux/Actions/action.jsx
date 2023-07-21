@@ -1,16 +1,28 @@
 import axios from "axios";
-import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_PICTURE } from "./constantes";
+import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_ALL_PRODUCTOS, GET_PICTURE } from "./constantes";
 
+
+export const getAllProductos = () => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`/products`);
+    const product = apiData.data;
+    console.log(product);
+    dispatch({
+      type: GET_ALL_PRODUCTOS,
+      payload: product,
+    });
+  };
+};
 
 export const getProduct = (id) => {
-    return async function (dispatch) {
-        const apiData = await axios.get(`/products/${id}`);
-        const product = apiData.data;
-        dispatch({
-            type: GET_PRODUCT,
-            payload: product,
-        });
-    };
+  return async function (dispatch) {
+    const apiData = await axios.get(`/products/${id}`);
+    const product = apiData.data;
+    dispatch({
+      type: GET_PRODUCT,
+      payload: product,
+    });
+  };
 };
 
 export const clearDetail = () => {
@@ -41,3 +53,4 @@ export const getPicture = (id) => {
         })
     }
 }
+
