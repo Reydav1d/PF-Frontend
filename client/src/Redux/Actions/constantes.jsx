@@ -3,4 +3,4 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const GET_DESCRIPTION = "GET_DESCRIPTION";
 export const GET_PICTURE = "GET_PICTURE";
 export const GET_ALL_PRODUCTOS = "GET_ALL_PRODUCTOS";
-
+export const GET_CATEGORIES = "GET_CATEGORIES";

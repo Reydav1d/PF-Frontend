@@ -4,6 +4,7 @@ import {
   GET_PRODUCT,
   GET_DESCRIPTION,
   GET_PICTURE,
+  GET_CATEGORIES,
 } from "./Actions/constantes";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   product: [],
   description: [],
   picture: [],
+  categories: []
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -41,6 +43,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...state,
           picture: payload,
         }
+        case GET_CATEGORIES:
+          return {
+            ...state,
+            categories: payload,
+          }
 
     default:
       return { ...state };

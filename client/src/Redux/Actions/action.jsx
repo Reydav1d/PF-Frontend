@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_ALL_PRODUCTOS, GET_PICTURE } from "./constantes";
+import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_ALL_PRODUCTOS, GET_PICTURE, GET_CATEGORIES } from "./constantes";
 
 
 export const getAllProductos = () => {
@@ -54,3 +54,13 @@ export const getPicture = (id) => {
     }
 }
 
+export const getCategories = () => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`/categories`);
+    const categories = apiData.data;
+    dispatch({
+      type: GET_CATEGORIES,
+      payload: categories,
+    })
+  }
+}
