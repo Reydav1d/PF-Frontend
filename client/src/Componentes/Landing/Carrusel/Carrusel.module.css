@@ -1,17 +1,9 @@
 .fondo {
-  height: 350px;
-  background-image: url("https://www.esneca.lat/wp-content/uploads/disen%CC%83o-interior.jpg");
-  background-position: center;
-  background-size: cover;
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.reseña1 {
-  height: 160px;
-}
 /* Estilo del contenedor principal del carrusel */
 .carouselContainer {
   width: 80%;
@@ -24,26 +16,7 @@
   height: auto;
   /* Agrega bordes, sombras u otros efectos */
 }
-.reseña1 {
-  padding: 30px;
-  background-color: #000000c2;
-}
-.reseña2 {
-  font-style: italic; /* Estilo de fuente itálica para resaltar el comentario */
 
-  /* Opcional: Agrega un poco de espacio alrededor del texto */
-  font-size: 21px;
-  color: #ffffff;
-}
-.reseña3 {
-  display: flex;
-  justify-content: start;
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
-
-  color: white;
-}
 /* Estilo de las leyendas */
 .carousel .legend {
   position: absolute;

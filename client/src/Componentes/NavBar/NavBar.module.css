@@ -70,6 +70,7 @@
 .botones {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   color: aliceblue;
   width: 60%;
 }

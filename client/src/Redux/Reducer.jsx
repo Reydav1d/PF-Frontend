@@ -6,6 +6,7 @@ import {
   GET_PICTURE,
   GET_CATEGORIES,
   GET_CATEGORY,
+  TODOS_FILTROS,
 } from "./Actions/constantes";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   picture: [],
   categories: [],
   category: [],
+  productosFiltrados: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -30,31 +32,37 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         product: payload,
       };
-      case CLEAR_DETAIL:
-        return {
-          ...state,
-          product: payload,
-        }
-      case GET_DESCRIPTION:
-        return {
-          ...state,
-          description: payload,
-        }
-      case GET_PICTURE:
-        return {
-          ...state,
-          picture: payload,
-        }
-        case GET_CATEGORIES:
-          return {
-            ...state,
-            categories: payload,
-        }
-        case GET_CATEGORY:
-          return {
-            ...state,
-            category: payload,
-          }
+    case CLEAR_DETAIL:
+      return {
+        ...state,
+        product: payload,
+      };
+    case GET_DESCRIPTION:
+      return {
+        ...state,
+        description: payload,
+      };
+    case GET_PICTURE:
+      return {
+        ...state,
+        picture: payload,
+      };
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: payload,
+      };
+    case GET_CATEGORY:
+      return {
+        ...state,
+        category: payload,
+      };
+
+    case TODOS_FILTROS:
+      return {
+        ...state,
+        productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
+      };
 
     default:
       return { ...state };
