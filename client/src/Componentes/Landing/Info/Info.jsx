@@ -21,8 +21,8 @@ export default function Informacion() {
           <div className={s.data}>
             <h3>Envío gratis desde $ 8.000</h3>
             <p>
-              Solo por estar registrado en All Market tenés envíos gratis en
-              miles de productos. Es un beneficio de All Market.
+              Solo por estar registrado en TechNexus tenés envíos gratis en
+              miles de productos. Es un beneficio de TechNexus.
             </p>
           </div>
         </div>
@@ -32,7 +32,7 @@ export default function Informacion() {
           <div className={s.data}>
             <h3>Seguridad, de principio a fin</h3>
             <p>
-              ¿No te gusta? ¡Devolvelo! En All Mrket, no hay nada que no puedas
+              ¿No te gusta? ¡Devolvelo! En TechNexus, no hay nada que no puedas
               hacer, porque estás siempre protegido.
             </p>
           </div>

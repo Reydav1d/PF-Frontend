@@ -24,10 +24,9 @@
   padding-right: 40px;
 }
 .icono1 {
-  /* background-image: url("https://us.123rf.com/450wm/asmati/asmati1610/asmati161000152/63405408-signo-de-tarjeta-de-cr%C3%A9dito-icono-blanco-en-c%C3%ADrculo-rojo.jpg");
+  background-image: url("https://us.123rf.com/450wm/asmati/asmati1610/asmati161000152/63405408-signo-de-tarjeta-de-cr%C3%A9dito-icono-blanco-en-c%C3%ADrculo-rojo.jpg");
   background-position: center;
-  background-size: cover; */
-  background-color: rgb(255, 0, 85);
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,10 +35,9 @@
   margin: 20px;
 }
 .icono2 {
-  /* background-image: url("https://icones.pro/wp-content/uploads/2021/11/icone-rouge-camion.png");
+  background-image: url("https://icones.pro/wp-content/uploads/2021/11/icone-rouge-camion.png");
   background-position: center;
-  background-size: cover; */
-  background-color: rgb(255, 0, 85);
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,10 +46,9 @@
   margin: 20px;
 }
 .icono3 {
-  /* background-image: url("https://icones.pro/wp-content/uploads/2022/08/icone-de-securite-rouge.png");
+  background-image: url("https://icones.pro/wp-content/uploads/2022/08/icone-de-securite-rouge.png");
   background-position: center;
-  background-size: cover; */
-  background-color: rgb(255, 0, 85);
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
