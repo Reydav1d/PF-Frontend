@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProduct, clearDetail, getDescription, getPicture } from "../../Redux/Actions/action"
+import { getProduct, clearDetail, getDescription, getPicture, getCategories } from "../../Redux/Actions/action"
+//IMPORT PARA CARRUSEL
 // import style from "./Detail.module.css";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 function Detail() {
   const dispatch = useDispatch();
@@ -10,17 +14,31 @@ function Detail() {
   const product = useSelector((state) => state.product);
   const description = useSelector((state) => state.description);
   const picture = useSelector((state) => state.picture);
+  const categories = useSelector((state) => state.categories)
 
   useEffect(() => {
     dispatch(getProduct(id));
     dispatch(getDescription(id));
     dispatch(getPicture(id));
-    console.log(getProduct, "error")
+    dispatch(getCategories(id))
     return () => {
       dispatch(clearDetail());
     };
   }, [dispatch, id]);
 
+  const getCategoryName = (categoryId) => {
+    const Category = categories.find((cat) => cat.id === categoryId);
+    return Category ? Category.name : "Categoria no encontrada"
+  }
+
+  // configuracion para carrusel
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  // };
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -30,27 +48,44 @@ function Detail() {
               src={picture}
               // src={product?.image}
               alt={product?.title}
-              className="h-48 w-auto sm:h-64 rounded-full mx-auto sm:mx-0"
+              className="h-48 w-auto sm:h-64  mx-auto sm:mx-0"
             />
+
+            {/* Componente de carrusel (aun no funciona)
+            <Slider {...settings}>
+              {picture((img, index) => (
+                <div key={index}>
+                  <img
+                  src={img.jpg}
+                  alt={product?.title}
+                  className="h-48 w-auto sm:h-64 rounded-full mx-auto sm:mx-0"
+                  />
+                </div>
+              ))}
+            </Slider> */}
+
             <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
               <h1 className="text-xl font-semibold">{product?.title}</h1>
               <p className="text-gray-600">Precio: ${product?.price}</p>
               <p className="text-gray-600">Unidades disponibles: {product?.stock}</p>
-              <p className="text-gray-600">Categoría: {product?.category}</p>
+              <p className="text-gray-600">Categoría: {getCategoryName(product?.category)}</p>
 
               <button
+                // boton para agregar al carrito
                 // onClick={handleAddToCart}
-                className="mt-4 bg-violet-800 text-white py-2 px-4 rounded hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="mt-4 bg-violet-800
+                text-white py-2 px-4 rounded
+                hover:bg-violet-900 focus:outline-none focus:ring-2
+                focus:ring-blue-600"
               >
                 Agregar al carrito
               </button>
+
             </div>
           </div>
           <div className="px-6 py-4 text-center sm:text-left">
             <h2 className="text-lg font-semibold mb-2">Descripción del producto</h2>
-            <p className="text-gray-600">
-              {description}
-            </p>
+            <p className="text-gray-600">{description}</p>
           </div>
         </div>
       </div>
