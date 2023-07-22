@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_ALL_PRODUCTOS, GET_PICTURE, GET_CATEGORIES } from "./constantes";
+import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_ALL_PRODUCTOS, GET_PICTURE, GET_CATEGORIES, GET_CATEGORY } from "./constantes";
 
 
 export const getAllProductos = () => {
@@ -47,6 +47,7 @@ export const getPicture = (id) => {
     return async function (dispatch) {
         const apiData = await axios.get(`/products/pictures/${id}`);
         const picture = apiData.data;
+        console.log(picture)
         dispatch({
             type: GET_PICTURE,
             payload: picture,
@@ -58,9 +59,22 @@ export const getCategories = () => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories`);
     const categories = apiData.data;
+    console.log(categories, "categorias")
     dispatch({
       type: GET_CATEGORIES,
       payload: categories,
+    })
+  }
+}
+
+export const getCategoryById = (id) => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`/categories/${id}`)
+    const category = apiData.data;
+    console.log(category, "categoria")
+    dispatch({
+      type: GET_CATEGORY,
+      payload: category,
     })
   }
 }
