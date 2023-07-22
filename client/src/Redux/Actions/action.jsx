@@ -112,3 +112,41 @@ export const getFiltros = (price, orden) => {
     }
   };
 };
+
+
+
+
+export const searchProducts = (words) => {
+  return async function (dispatch) {
+    try {
+      words = words.replace(/\s/g, "%20");
+      const search = await axios.get(`/products?name=${words}`);
+      const searchResult = search.data;
+      console.log(search);
+
+      // Si no hay resultados, disparamos la acción con el mensaje adecuado
+      if (searchResult.length === 0) {
+        dispatch({
+          type: "SEARCH_PRODUCTS_ERROR",
+          payload: ['No hay resultados para la búsqueda'],
+        });
+      } else {
+        // Si hay resultados, disparamos la acción normalmente
+        dispatch({
+          type: "SEARCH_PRODUCTS_SUCCESS",
+          payload: searchResult,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+
+      // Si hay un error en la solicitud (por ejemplo, error 404), disparamos la acción con el mensaje de error
+      dispatch({
+        type: "SEARCH_PRODUCTS_ERROR",
+        payload: ['No hay resultados para la búsqueda'],
+      });
+    }
+  };
+};
+
+////http://localhost:3001/products?name=Hub%20Usb
