@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductos, getFiltros } from "../../../Redux/Actions/action";
 import Pagination from "../../Paginado/Paginado";
+import { Link } from "react-router-dom";
+
 
 function CardsContainer() {
   const dispatch = useDispatch();
@@ -31,10 +33,13 @@ function CardsContainer() {
     ? productosFiltrados.slice(firstPostIndex, lastPostIndex)
     : losProductos.slice(firstPostIndex, lastPostIndex);
 
+
   return (
     <div className={s.fondo}>
       {currentPosts?.map((item) => (
-        <Cartas item={item} />
+        <Link key={item.id} to={`/detail/${item.id}`}>
+          <Cartas item={item} />
+        </Link>
       ))}
       <div className={s.paginado}>
         <Pagination
@@ -46,6 +51,7 @@ function CardsContainer() {
       </div>
     </div>
   );
+  
 }
 
 export default CardsContainer;

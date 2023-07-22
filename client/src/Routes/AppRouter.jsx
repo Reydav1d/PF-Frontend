@@ -8,6 +8,7 @@ import Footer from "../Componentes/Footer/Footer";
 import Contacto from "../Views/Contacto/Contacto";
 import Nosotros from "../Views/Nosotros/Nosotros";
 import Favoritos from "../Views/Favoritos/Favoritos";
+import ProductForm from "../Views/FormProductos/FormProductos";
 
 export default function AppRouter() {
   return (
@@ -20,6 +21,7 @@ export default function AppRouter() {
         <Route path="/favoritos" Component={Favoritos} />
         <Route path="/contacto" Component={Contacto} />
         <Route path="/nosotros" Component={Nosotros} />
+        <Route path="/nuevoProd" Component={ProductForm} />
       </Routes>
       <Footer />
     </Router>
