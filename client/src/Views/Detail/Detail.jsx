@@ -31,6 +31,12 @@ function Detail() {
     return Category ? Category.name : "Categoria no encontrada"
   }
 
+  const formatter = new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0
+  })
+
   // configuracion para carrusel
   // const settings = {
   //   dots: true,
@@ -66,7 +72,7 @@ function Detail() {
 
             <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
               <h1 className="text-xl font-semibold">{product?.title}</h1>
-              <p className="text-gray-600">Precio: ${product?.price}</p>
+              <p className="text-gray-600">Precio: {formatter.format(product?.price)}</p>
               <p className="text-gray-600">Unidades disponibles: {product?.stock}</p>
               <p className="text-gray-600">Categoría: {getCategoryName(product?.category)}</p>
 
