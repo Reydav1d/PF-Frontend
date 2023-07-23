@@ -18,19 +18,17 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form className="form-sb" onSubmit={handleSubmit}>
+      <input className="input-sb"
         type="text"
         placeholder="Buscar productos..."
         value={searchTerm}
         onChange={handleChange}
       />
-      <button type="submit">Buscar</button>
+      <button className="button-sb" type="submit">Buscar</button>
     </form>
   );
 };
 
 export default SearchBar;
 
-
-//http://localhost:3001/products?name=Hub%20Usb

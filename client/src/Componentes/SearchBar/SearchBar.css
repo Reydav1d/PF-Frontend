@@ -1,33 +1,30 @@
 /* SearchBar.css */
 
-form {
+.form-sb{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 40px; /* Ajusta el margen superior según tus preferencias */
   }
   
-  input {
+  .input-sb {
     padding: 12px 20px;
     font-size: 18px;
     border: 2px solid #007bff;
-    border-radius: 30px;
-    margin-right: 8px;
     width: 400px; /* Ajusta el ancho según tus preferencias */
     max-width: 100%;
   }
   
-  button {
+  .button-sb {
     padding: 12px 24px;
     font-size: 18px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #8400ff;
+    color: black;
     border: none;
-    border-radius: 30px;
     cursor: pointer;
   }
   
-  button:hover {
+  .button-sb:hover {
     background-color: #0056b3;
   }
   

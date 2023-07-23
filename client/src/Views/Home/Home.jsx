@@ -9,7 +9,7 @@ import SearchBar from "../../Componentes/SearchBar/SearchBar";
 function Home() {
   return (
     <div>
-      <SearchBar />
+        <SearchBar />
       <div className={s.fondo}>
         <Filtros />
         <ContenedorCartas />
