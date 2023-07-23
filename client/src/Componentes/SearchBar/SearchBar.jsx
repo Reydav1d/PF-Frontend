@@ -27,6 +27,8 @@ const SearchBar = () => {
       />
       <button className="button-sb" type="submit">Buscar</button>
     </form>
+
+    
   );
 };
 
