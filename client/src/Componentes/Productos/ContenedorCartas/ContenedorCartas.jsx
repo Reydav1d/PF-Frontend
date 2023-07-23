@@ -12,6 +12,9 @@ function CardsContainer() {
   const dispatch = useDispatch();
   const losProductos = useSelector((state) => state.productos);
   const productosFiltrados = useSelector((state) => state.productosFiltrados);
+  //ACÁ SE GUARDAN LOS RESULTADOS DE LA BÚSQUEDA DE LA SEARCHBAR
+  //SI NO ENCUENTRA NINGÚN RESULTADO, DEVUELVE UN [false, 'No hay resultados para la búsqueda']
+  const searchResults = useSelector((state) => state.searchResults);
 
   useEffect(() => {
     dispatch(getAllProductos());
