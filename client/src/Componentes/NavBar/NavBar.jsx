@@ -30,7 +30,7 @@ function NavBar() {
           </div>
           <div className={s.botones}>
             <Link
-              to={"/productos"}
+              to={"/productos/page/1"}
               style={{ textDecoration: "none", color: "white" }}
             >
               <p>productos</p>
