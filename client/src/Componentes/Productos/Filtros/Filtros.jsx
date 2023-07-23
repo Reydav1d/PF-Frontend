@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch} from "react-redux";
 import './Filtros.css';
-import { getCategories } from "../../../Redux/Actions/action";
+import { getCategories, getSearchAdnFilterProducts } from "../../../Redux/Actions/action";
 
 function Filtros() {
+
   //http://localhost:3001/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order=des
   const categories = useSelector((state) => state.categories);
   const [dataUrl, setDataUrl] = useState({
@@ -15,7 +16,8 @@ function Filtros() {
     order:""
   });
 
-  const history = useHistory();
+  const dispatch = useDispatch();
+/*   const history = useHistory();
 
   useEffect(() => {
     // Crea una cadena de consulta con los parámetros del estado local
@@ -23,14 +25,14 @@ function Filtros() {
     // Actualiza la URL con los parámetros del estado local
     history.push({ search: queryParams.toString() });
   }, [dataUrl, history]);
-
+ */
 
   
   useEffect(() => {
     dispatch(getCategories());
   }, []);
 
-  const dispatch = useDispatch();
+ 
   // MANEJADOR CATEGORIES:
   const handlecategories = (event) => {
     let category = event.target.value;
@@ -77,8 +79,11 @@ function Filtros() {
         document.querySelectorAll('select').forEach(select => {
           select.value = "-1";
         });
-
   }
+
+  const handleAplicarClick = () => {
+    
+  };
 
   return(
       <div className="container-filter-sorts">
@@ -129,6 +134,8 @@ function Filtros() {
 
 
           <button className="clean-button" onClick={handlerClean}>Clean</button>
+
+          <button onClick={handleAplicarClick}>Aplicar</button>
       </div>
   )
 }

@@ -149,5 +149,12 @@ export const searchProducts = (words) => {
   };
 };
 
+export const getSearchAdnFilterProducts = (urlData) => {
+ /*  try {
+    const getProducts = await axios.get(`/categories/${id}`);
+  } catch (error) {
+    
+  } */
+};
 
 ////http://localhost:3001/products?name=Hub%20Usb
