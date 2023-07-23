@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Home.module.css";
-//import Filtros from "../../Componentes/Productos/Filtros/Filtros";
+import Filtros from "../../Componentes/Productos/Filtros/Filtros";
 import ContenedorCartas from "../../Componentes/Productos/ContenedorCartas/ContenedorCartas.jsx";
 import SearchBar from "../../Componentes/SearchBar/SearchBar";
 
@@ -11,7 +11,7 @@ function Home() {
     <div>
         <SearchBar />
       <div className={s.fondo}>
-        {/* <Filtros /> */}
+        <Filtros /> 
         <ContenedorCartas />
       </div>
     </div>

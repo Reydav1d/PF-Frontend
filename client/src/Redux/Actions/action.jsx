@@ -62,14 +62,15 @@ export const getPicture = (id) => {
   };
 };
 
+
 export const getCategories = () => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories`);
     const categories = apiData.data;
-    console.log(categories, "categorias");
+    const cleanArr = categories.map(item => ({id: item.id, name:item.name}));
     dispatch({
       type: GET_CATEGORIES,
-      payload: categories,
+      payload: cleanArr,
     });
   };
 };
