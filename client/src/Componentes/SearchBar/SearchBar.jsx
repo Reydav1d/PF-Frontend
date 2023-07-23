@@ -18,19 +18,21 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="form-sb" onSubmit={handleSubmit}>
-      <input className="input-sb"
-        type="text"
-        placeholder="Buscar productos..."
-        value={searchTerm}
-        onChange={handleChange}
-      />
-      <button className="button-sb" type="submit">Buscar</button>
-    </form>
-
-    
+    <div className="sb-container">
+      <form className="form-sb" onSubmit={handleSubmit}>
+        <input
+          className="input-sb"
+          type="text"
+          placeholder="Buscar productos..."
+          value={searchTerm}
+          onChange={handleChange}
+        />
+        <button className="button-sb" type="submit">
+          <img className="img-sb" src="https://i.postimg.cc/X7QvyvYS/image.png"/>
+        </button>
+      </form>
+    </div>
   );
 };
 
 export default SearchBar;
-
