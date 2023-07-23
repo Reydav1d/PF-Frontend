@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import s from "./ContenedorCartas.module.css";
 import Cartas from "../Cartas/Cartas";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllProductos, getFiltros } from "../../../Redux/Actions/action";
-import Pagination from "../../Paginado/Paginado";
-import { Link } from "react-router-dom";
+import { getAllProductos } from "../../../Redux/Actions/action";
+import s from "./ContenedorCartas.module.css"
+import { useParams } from "react-router-dom";
+import PaginationButtons from "../../Paginado/PaginationButtons";
+
+
+function ContenedorCartas() {
+  const allProducts = useSelector((state) => state.productos);
+  const searchFiltersProd = useSelector((state) => state.searchFilterResults);
+  
+  let losProductos = allProducts;
+  if(searchFiltersProd) losProductos = searchFiltersProd;
+
+
 
 function CardsContainer() {
   const dispatch = useDispatch();
