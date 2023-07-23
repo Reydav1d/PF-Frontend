@@ -1,25 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./ContenedorCartas.module.css";
 import Cartas from "../Cartas/Cartas";
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductos, getFiltros } from "../../../Redux/Actions/action";
 import Pagination from "../../Paginado/Paginado";
 import { Link } from "react-router-dom";
 
-
 function CardsContainer() {
   const dispatch = useDispatch();
   const losProductos = useSelector((state) => state.productos);
-  const productosFiltrados = useSelector((state) => state.productosFiltrados);
-
+  const losFiltrados = useSelector((state) => state.productosFiltrados);
+  //const allProductos = losProductos.slice(0, 50);
+  console.log(losFiltrados);
   useEffect(() => {
     dispatch(getAllProductos());
   }, []);
 
-  useEffect(() => {
-    dispatch(getFiltros("price", "asc"));
-  }, [dispatch]);
   const [showFiltrados, setShowFiltrados] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(9);
@@ -30,13 +26,12 @@ function CardsContainer() {
   // const currentPosts = losProductos.slice(firstPostIndex, lastPostIndex);
 
   const currentPosts = showFiltrados
-    ? productosFiltrados.slice(firstPostIndex, lastPostIndex)
+    ? losFiltrados.slice(firstPostIndex, lastPostIndex)
     : losProductos.slice(firstPostIndex, lastPostIndex);
-
 
   return (
     <div className={s.fondo}>
-      {currentPosts?.map((item) => (
+      {losFiltrados.map((item) => (
         <Link key={item.id} to={`/detail/${item.id}`}>
           <Cartas item={item} />
         </Link>
@@ -51,7 +46,6 @@ function CardsContainer() {
       </div>
     </div>
   );
-  
 }
 
 export default CardsContainer;

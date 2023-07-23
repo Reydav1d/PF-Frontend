@@ -1,4 +1,32 @@
 .fondo {
   width: 18%;
+  padding: 30px;
   background-color: rgb(108, 129, 129);
+}
+.ordenName1 {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 0, 85);
+  height: 40px;
+  color: aliceblue;
+  font-weight: bold;
+}
+.ordenName2 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.fitradoCatego {
+  margin-top: 20px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 0, 85);
+  height: 40px;
+  color: aliceblue;
+  font-weight: bold;
+}
+.catego {
+  background-color: aqua;
 }

@@ -55,7 +55,7 @@ export const getPicture = (id) => {
   return async function (dispatch) {
     const apiData = await axios.get(`/products/pictures/${id}`);
     const picture = apiData.data;
-    console.log(picture);
+    // console.log(picture);
     dispatch({
       type: GET_PICTURE,
       payload: picture,
@@ -67,7 +67,7 @@ export const getCategories = () => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories`);
     const categories = apiData.data;
-    console.log(categories, "categorias");
+    //console.log(categories, "categorias");
     dispatch({
       type: GET_CATEGORIES,
       payload: categories,
@@ -79,7 +79,7 @@ export const getCategoryById = (id) => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories/${id}`);
     const category = apiData.data;
-    console.log(category, "categoria");
+    //console.log(category, "categoria");
     dispatch({
       type: GET_CATEGORY,
       payload: category,
@@ -87,17 +87,19 @@ export const getCategoryById = (id) => {
   };
 };
 
-export const getFiltros = (price, orden) => {
+export const getFiltros = (order) => {
   return async function (dispatch) {
     try {
+      console.log(order);
       // Rellenar los parámetros según tus necesidades
-      const category = "MLA1321622215"; // Categoría de productos que deseas filtrar
+      const category = "MLA1694"; // Categoría de productos que deseas filtrar
       const price_min = 100; // Precio mínimo de los productos
-      const price_max = 5000; // Precio máximo de los productos
+      const price_max = 50000; // Precio máximo de los productos
 
       // Realizar la solicitud GET a la API con los parámetros configurados
       const apiData = await axios.get(
-        `/filter-sorts/selection?category=${category}&price_min=${price_min}&price_max=${price_max}&sort_by=${price}&order=${orden}`
+        `/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order=asc
+        `
       );
 
       const product = apiData.data;
@@ -108,7 +110,6 @@ export const getFiltros = (price, orden) => {
       });
     } catch (error) {
       console.error("Error al obtener los productos filtrados:", error.message);
-      // Manejar cualquier error de la solicitud aquí si es necesario
     }
   };
 };
