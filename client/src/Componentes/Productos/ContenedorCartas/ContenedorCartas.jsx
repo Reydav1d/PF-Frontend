@@ -2,20 +2,30 @@ import React, { useEffect, useState } from "react";
 import s from "./ContenedorCartas.module.css";
 import Cartas from "../Cartas/Cartas";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProductos, getFiltros } from "../../../Redux/Actions/action";
+import {
+  getAllProductos,
+  getFiltros,
+  searchProducts,
+} from "../../../Redux/Actions/action";
 import Pagination from "../../Paginado/Paginado";
 import { Link } from "react-router-dom";
 
 function CardsContainer() {
   const dispatch = useDispatch();
   const losProductos = useSelector((state) => state.productos);
-  const productosFiltrados = useSelector((state) => state.productosFiltrados);
+  const losFiltrados = useSelector((state) => state.productosFiltrados);
   //ACÁ SE GUARDAN LOS RESULTADOS DE LA BÚSQUEDA DE LA SEARCHBAR
   //SI NO ENCUENTRA NINGÚN RESULTADO, DEVUELVE UN [false, 'No hay resultados para la búsqueda']
-  const searchResults = useSelector((state) => state.searchResults);
+  //const searchResults = useSelector((state) => state.searchResults);
 
   useEffect(() => {
     dispatch(getAllProductos());
+  }, []);
+  useEffect(() => {
+    dispatch(getFiltros("asc"));
+  }, []);
+  useEffect(() => {
+    dispatch(searchProducts());
   }, []);
 
   const [showFiltrados, setShowFiltrados] = useState(false);
@@ -33,7 +43,7 @@ function CardsContainer() {
 
   return (
     <div className={s.fondo}>
-      {productosFiltrados.map((item) => (
+      {losFiltrados.map((item) => (
         <Link key={item.id} to={`/detail/${item.id}`}>
           <Cartas item={item} />
         </Link>

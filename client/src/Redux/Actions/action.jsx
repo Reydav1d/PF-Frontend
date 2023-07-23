@@ -99,7 +99,7 @@ export const getFiltros = (order) => {
 
       // Realizar la solicitud GET a la API con los parámetros configurados
       const apiData = await axios.get(
-        `/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order=asc
+        `/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order="${order}"
         `
       );
 
@@ -115,22 +115,19 @@ export const getFiltros = (order) => {
   };
 };
 
-
-
-
 export const searchProducts = (words) => {
   return async function (dispatch) {
     try {
       words = words.replace(/\s/g, "%20");
       const search = await axios.get(`/products?name=${words}`);
       const searchResult = search.data;
-      console.log(search);
+      console.log(searchResult);
 
       // Si no hay resultados, disparamos la acción con el mensaje adecuado
       if (searchResult.length === 0) {
         dispatch({
           type: SEARCH_PRODUCTS,
-          payload: [false, 'No hay resultados para la búsqueda'],
+          payload: [false, "No hay resultados para la búsqueda"],
         });
       } else {
         // Si hay resultados, disparamos la acción normalmente
@@ -145,11 +142,10 @@ export const searchProducts = (words) => {
       // Si hay un error en la solicitud (por ejemplo, error 404), disparamos la acción con el mensaje de error
       dispatch({
         type: SEARCH_PRODUCTS,
-        payload: [false,'No hay resultados para la búsqueda'],
+        payload: [false, "No hay resultados para la búsqueda"],
       });
     }
   };
 };
-
 
 ////http://localhost:3001/products?name=Hub%20Usb

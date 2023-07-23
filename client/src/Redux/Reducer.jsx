@@ -66,10 +66,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
         productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
       };
     case SEARCH_PRODUCTS:
-      return{
+      return {
         ...state,
-        searchResults: payload,
-      }
+        productosFiltrados: payload,
+      };
     default:
       return { ...state };
   }
