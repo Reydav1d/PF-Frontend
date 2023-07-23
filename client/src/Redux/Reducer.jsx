@@ -7,6 +7,7 @@ import {
   GET_CATEGORIES,
   GET_CATEGORY,
   TODOS_FILTROS,
+  SEARCH_PRODUCTS,
 } from "./Actions/constantes";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   categories: [],
   category: [],
   productosFiltrados: [],
+  searchResults: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -63,7 +65,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
       };
-
+    case SEARCH_PRODUCTS:
+      return{
+        ...state,
+        searchResults: payload,
+      }
     default:
       return { ...state };
   }
