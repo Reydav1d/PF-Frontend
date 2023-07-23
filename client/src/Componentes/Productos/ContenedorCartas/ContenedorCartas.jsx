@@ -9,9 +9,11 @@ import { Link } from "react-router-dom";
 function CardsContainer() {
   const dispatch = useDispatch();
   const losProductos = useSelector((state) => state.productos);
-  const losFiltrados = useSelector((state) => state.productosFiltrados);
-  //const allProductos = losProductos.slice(0, 50);
-  console.log(losFiltrados);
+  const productosFiltrados = useSelector((state) => state.productosFiltrados);
+  //ACÁ SE GUARDAN LOS RESULTADOS DE LA BÚSQUEDA DE LA SEARCHBAR
+  //SI NO ENCUENTRA NINGÚN RESULTADO, DEVUELVE UN [false, 'No hay resultados para la búsqueda']
+  const searchResults = useSelector((state) => state.searchResults);
+
   useEffect(() => {
     dispatch(getAllProductos());
   }, []);
@@ -31,7 +33,7 @@ function CardsContainer() {
 
   return (
     <div className={s.fondo}>
-      {losFiltrados.map((item) => (
+      {productosFiltrados.map((item) => (
         <Link key={item.id} to={`/detail/${item.id}`}>
           <Cartas item={item} />
         </Link>
