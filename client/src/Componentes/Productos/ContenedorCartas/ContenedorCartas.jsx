@@ -9,8 +9,13 @@ import PaginationButtons from "../../Paginado/PaginationButtons";
 
 
 function ContenedorCartas() {
-  const losProductos = useSelector((state) => state.productos);
-  console.log(losProductos)
+  const allProducts = useSelector((state) => state.productos);
+  const searchFiltersProd = useSelector((state) => state.searchFilterResults);
+  
+  let losProductos = allProducts;
+  if(searchFiltersProd) losProductos = searchFiltersProd;
+
+
 
   const dispatch = useDispatch();
   useEffect(() => {

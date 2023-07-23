@@ -80,9 +80,9 @@ function Filtros() {
           select.value = "-1";
         });
   }
-
+  // MANEJADOR BOTÓN APLICAR
   const handleAplicarClick = () => {
-    
+    dispatch(getSearchAdnFilterProducts(dataUrl))
   };
 
   return(
