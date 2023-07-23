@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./ContenedorCartas.module.css";
 import Cartas from "../Cartas/Cartas";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getAllProductos,
-  getFiltros,
-  searchProducts,
-} from "../../../Redux/Actions/action";
+import { getAllProductos, getFiltros } from "../../../Redux/Actions/action";
 import Pagination from "../../Paginado/Paginado";
 import { Link } from "react-router-dom";
 
@@ -24,9 +20,9 @@ function CardsContainer() {
   useEffect(() => {
     dispatch(getFiltros("asc"));
   }, []);
-  useEffect(() => {
-    dispatch(searchProducts());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(searchProducts());
+  // }, []);
 
   const [showFiltrados, setShowFiltrados] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
