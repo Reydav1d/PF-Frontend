@@ -146,11 +146,13 @@ function Filtros() {
             />
           </label>
   
-          <button className="clean-button" onClick={handlerClean}>
+         <div className="bttn-container">
+         <button className="clean-button" onClick={handlerClean}>
             Clean
           </button>
   
-          <button onClick={handleAplicarClick}>Aplicar</button>
+          <button className="btn-aplicar" onClick={handleAplicarClick}>Aplicar</button>
+         </div>
         </div>
       ) : (
         <></>

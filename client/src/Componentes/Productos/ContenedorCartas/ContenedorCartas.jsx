@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cartas from "../Cartas/Cartas";
 import { getAllProductos, setLoading } from "../../../Redux/Actions/action";
-import s from "./ContenedorCartas.module.css"
+import './ContenedorCartas.css'
 import { useParams } from "react-router-dom";
 import PaginationButtons from "../../Paginado/PaginationButtons";
 
@@ -38,28 +38,7 @@ function ContenedorCartas() {
 
 
   return (
-    <div>
-      {/* {losProductos.length > 0 && losProductos[1] !== 'not found' ? (
-        <div className="cards-container">
-          {visiblePeople.map((product, index) => (
-            <Link key={product.id} to={`/detail/${product.id}`}>
-              <Cartas key={index} item={product} />
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <h2>
-          {losProductos[1] === 'not found'
-            ? 'No se encontraron resultados'
-            : 'Cargando...'}
-        </h2>
-      )}
-  
-      <PaginationButtons
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-      /> */}
+    <div className="cards-c">
       <div>
     {loading ? (
       <h1>Cargando...</h1>

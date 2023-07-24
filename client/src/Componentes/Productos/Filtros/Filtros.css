@@ -7,7 +7,6 @@
     width:fit-content;
     /* max-width: 80%; */
     margin-bottom: 2em;
-    background: gray;
 
 }
 
@@ -32,7 +31,7 @@
 }
 
 option{
-    background-color: #2d3538;
+    background-color: #dcdcdc00;
     border: 1px solid rgba(255, 255, 255, 0.262);
     outline: none;
 }
@@ -86,11 +85,40 @@ input{
 .clean-button{
     background-color: rgb(68, 135, 180);
     padding: .5em 1em;
+    width: 80px;
+    height: 17px;
+    color:white;
+    border-radius: 4px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
 }
 
 .clean-button:hover{
     background-color: rgb(92, 157, 200);
     padding: .5em 1em;
+}
+
+.btn-aplicar{
+    background-color: rgb(107, 68, 180);
+    padding: .5em 1em;
+    width: 80px;
+    height: 17px;
+    color:white;
+    border-radius: 4px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+};
+
+.bttn-container{
+    display: flex;
+    border:2px solid red;
+    background-color: black !important;
+    width: 300px;
+    height: 100px;
 }
 
 /* Elimina flecha a los input type number */
