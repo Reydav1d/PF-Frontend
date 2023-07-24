@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./SearchBar.css";
-import { searchProducts } from "../../Redux/Actions/action";
+import { getSearchAdnFilterProducts, setLoading } from "../../Redux/Actions/action";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,8 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(searchProducts(searchTerm));
+    dispatch(setLoading());
+    dispatch(getSearchAdnFilterProducts({search: searchTerm}));
     setSearchTerm(""); // Restablecer el valor del input a una cadena vacía
   };
 

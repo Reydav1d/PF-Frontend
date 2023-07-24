@@ -9,6 +9,9 @@ export const GET_CATEGORY = "GET_CATEGORY";
 export const TODOS_FILTROS = "TODOS_FILTROS";
 export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 export const SEARCH_FILTER_PRODUCTS = "SEARCH_FILTER_PRODUCTS";
+export const SET_LOADING = "SET_LOADING";
+export const CLEAN_STATE = "CLEAN_STATE";
+
 
 export const getAllProductos = () => {
   return async function (dispatch) {
@@ -129,7 +132,7 @@ export const searchProducts = (words) => {
       if (searchResult.length === 0) {
         dispatch({
           type: SEARCH_PRODUCTS,
-          payload: [null, 'No hay resultados para la búsqueda'],
+          payload: [],
         });
       } else {
         // Si hay resultados, disparamos la acción normalmente
@@ -144,20 +147,13 @@ export const searchProducts = (words) => {
       // Si hay un error en la solicitud (por ejemplo, error 404), disparamos la acción con el mensaje de error
       dispatch({
         type: SEARCH_PRODUCTS,
-        payload: [null,'No hay resultados para la búsqueda'],
+        payload: [],
       });
     }
   };
 };
 
 
-/* 
-      category:"",
-    price_min:"",
-    price_max:"",
-    sort_by:"",
-    order:""
-*/
 
 export const getSearchAdnFilterProducts = (urlData) => async (dispatch) => {
   try {
@@ -166,21 +162,30 @@ export const getSearchAdnFilterProducts = (urlData) => async (dispatch) => {
     search
     ?search = search.replace(/\s/g, "%20")
     :search = '';
+    console.log();
 
-    const getProducts = await axios.get(`/filter-sorts/selection?search=${search}&category=${category}&price_min=${price_min}&price_max=${price_max}&sort_by=${sort_by}&order=${order}`);
+     const getProducts = await axios.get(`/filter-sorts/selection?search=${search}&category=${category || ''}&price_min=${price_min || ''}&price_max=${price_max || ''}&sort_by=${sort_by || ''}&order=${order || ''}`);
+
     console.log('PRODUCTS', getProducts.data);
     dispatch({
       type: SEARCH_FILTER_PRODUCTS,
       payload: getProducts.data,
-    });
+    }); 
   } catch (error) {
     console.log('Error al filtrar los productos: ' + error);
 
     dispatch({
       type: SEARCH_FILTER_PRODUCTS,
-      payload: [null,'No hay resultados para la búsqueda'],
+      payload: ['active', 'not found'],
     });
   }
 };
 
 
+export const setLoading = () => ({
+  type: "SET_LOADING",
+});
+
+export const cleanState = () => ({
+  type: "CLEAN_STATE",
+})

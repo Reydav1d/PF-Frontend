@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch} from "react-redux";
 import './Filtros.css';
-import { getCategories, getSearchAdnFilterProducts } from "../../../Redux/Actions/action";
+import { getCategories, getSearchAdnFilterProducts, setLoading, cleanState, getAllProductos } from "../../../Redux/Actions/action";
+
+
+
+
 
 function Filtros() {
 
   //http://localhost:3001/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order=des
   const categories = useSelector((state) => state.categories);
+  const loading = useSelector((state) => state.loading);
+  const searched = useSelector((state) => state.searched);
   const [dataUrl, setDataUrl] = useState({
     category:"",
     price_min:"",
@@ -29,6 +35,7 @@ function Filtros() {
 
   
   useEffect(() => {
+    dispatch(setLoading());
     dispatch(getCategories());
   }, []);
 
@@ -66,6 +73,9 @@ function Filtros() {
 
   // MANEJADOR BOTÓN CLEAN:
   function handlerClean() {
+    dispatch(cleanState())
+    dispatch(setLoading())
+    dispatch(getAllProductos())
     // Establece el estado local en su estado inicial vacío
     setDataUrl({
       category: "",
@@ -85,59 +95,69 @@ function Filtros() {
     dispatch(getSearchAdnFilterProducts(dataUrl))
   };
 
-  return(
-      <div className="container-filter-sorts">
-
-
-        <div className="container-categories">
-              <label>Filtrar por categorias:</label>
-              <select  onChange={handlecategories} >
-                  <option id='-1' value="Todas">todas</option>
-                  {
-                      categories.map((e, index) =>  (
-                      <option key={index} value={e.id}>{e.name}</option>
-                      ))
-                  }
-              </select>
-          </div>
-
-
-
-          <div className="container-priceSorts">
-            <label>Ordenar precio por:</label>  
-            <select onChange={handlePriceSorts} >
-            <option id='-1' value="Ninguno">Ninguno</option>
-              <option id='2' value="asc">menor</option>
-              <option id='3' value="desc">mayor</option>
+  return (
+    
+    <div>
+      {!loading ? (
+        <div className="container-filter-sorts">
+          <div className="container-categories">
+            <label>Filtrar por categorías:</label>
+            <select onChange={handlecategories}>
+              <option id="-1" value="Todas">
+                todas
+              </option>
+              {categories.map((e, index) => (
+                <option key={index} value={e.id}>
+                  {e.name}
+                </option>
+              ))}
             </select>
           </div>
-
-
-
-
+  
+          <div className="container-priceSorts">
+            <label>Ordenar precio por:</label>
+            <select onChange={handlePriceSorts}>
+              <option id="-1" value="Ninguno">
+                Ninguno
+              </option>
+              <option id="2" value="asc">
+                menor
+              </option>
+              <option id="3" value="desc">
+                mayor
+              </option>
+            </select>
+          </div>
+  
           <label>
-      Filtrar por precio:
-      <br />
-      <input
-        type="number"
-        placeholder="min"
-        value={dataUrl.price_min} 
-        onChange={handleMinPriceChange}
-      />
-      <input
-        type="number"
-        placeholder="max"
-        value={dataUrl.price_max} 
-        onChange={handleMaxPriceChange}
-      />
-    </label>
-
-
-          <button className="clean-button" onClick={handlerClean}>Clean</button>
-
+            Filtrar por precio:
+            <br />
+            <input
+              type="number"
+              placeholder="min"
+              value={dataUrl.price_min}
+              onChange={handleMinPriceChange}
+            />
+            <input
+              type="number"
+              placeholder="max"
+              value={dataUrl.price_max}
+              onChange={handleMaxPriceChange}
+            />
+          </label>
+  
+          <button className="clean-button" onClick={handlerClean}>
+            Clean
+          </button>
+  
           <button onClick={handleAplicarClick}>Aplicar</button>
-      </div>
-  )
+        </div>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+  
 }
 
 export default Filtros;

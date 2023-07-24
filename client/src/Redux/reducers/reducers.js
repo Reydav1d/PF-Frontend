@@ -1,6 +1,8 @@
 import {
     CLEAR_DETAIL,
     GET_ALL_PRODUCTOS,
+    SEARCH_FILTER_PRODUCTS,
+    SET_LOADING,
     GET_PRODUCT,
     GET_DESCRIPTION,
     GET_PICTURE,
@@ -8,19 +10,19 @@ import {
     GET_CATEGORY,
     TODOS_FILTROS,
     SEARCH_PRODUCTS,
-    SEARCH_FILTER_PRODUCTS,
+    CLEAN_STATE,
   } from "../Actions/action";
   
   const initialState = {
     productos: [],
+    searchFilterResults: [],
+    loading: false,
+    searched: false,
     product: [],
     description: [],
     picture: [],
     categories: [],
     category: [],
-    productosFiltrados: [], //Eliminar!
-    searchResults: [], //eliminar si llega a no es necesaria
-    searchFilterResults: ['1'],
   };
   
   const rootReducer = (state = initialState, { type, payload }) => {
@@ -29,8 +31,9 @@ import {
         return {
           ...state,
           productos: payload,
+          loading: false,
         };
-  
+
       case GET_PRODUCT:
         return {
           ...state,
@@ -61,22 +64,35 @@ import {
           ...state,
           category: payload,
         };
-  
+
       case TODOS_FILTROS:
         return {
           ...state,
           productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
         };
       case SEARCH_PRODUCTS:
-        return{
+        return {
           ...state,
           searchResults: payload,
         };
       case SEARCH_FILTER_PRODUCTS:
-        return{
+        return {
           ...state,
           searchFilterResults: payload,
-        }
+          loading: false,
+          searched: true,
+        };
+      case "SET_LOADING":
+        return {
+          ...state,
+          loading: true,
+          searched: false,
+        };
+      case "CLEAN_STATE":
+      return {
+        ...state,
+        searchFilterResults: []
+      };
       default:
         return { ...state };
     }
