@@ -59,9 +59,12 @@ export const getCategories = () => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories`);
     const categories = apiData.data;
+  //  const cleanArr = categories.map(item => ({id: item.id, name:item.name}));
     console.log(categories, "categorias");
     dispatch({
       type: GET_CATEGORIES,
+//      payload: cleanArr,
+
       payload: categories,
     });
   };

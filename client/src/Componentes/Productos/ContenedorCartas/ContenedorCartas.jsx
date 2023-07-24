@@ -39,7 +39,7 @@ function ContenedorCartas() {
     <div>
 
     {losProductos.length > 0 ? (
-        <div className={s.cards-container}>
+        <div className={s.cardscontainer}>
 
           {visiblePeople.map((product, index) => {
             return (

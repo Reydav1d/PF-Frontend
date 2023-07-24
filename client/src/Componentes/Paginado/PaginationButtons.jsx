@@ -36,11 +36,11 @@ const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
 
 
   return (
-        <div className={style.home-btn-paginado}> 
+        <div className={style.homebtnpaginado}> 
 
              <button disabled={currentPage === 1} onClick={handlePage} name='1'>1</button>
-             <button className={style.home-btn-prev} disabled={currentPage === 1} onClick={handlePage} name='PREV'>PREV</button>
-             {!hideButtonA && <button className={style.home-btn-points}>...</button>}
+             <button className={style.homebtnprev} disabled={currentPage === 1} onClick={handlePage} name='PREV'>PREV</button>
+             {!hideButtonA && <button className={style.homebtnpoints}>...</button>}
              {pages.map((page) => (
              <button
               key={page}
@@ -51,8 +51,8 @@ const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
              </button>
              ))}
              {totalPages === 2 && <button key="2" disabled={currentPage === 2} onClick={handlePage} name='2'>2</button>}
-             {!hideButtonB && <button className={style.home-btn-points}>...</button>}
-             <button className="home-btn-next" disabled={currentPage === totalPages} onClick={handlePage} name='NEXT'>NEXT</button>
+             {!hideButtonB && <button className={style.homebtnpoints}>...</button>}
+             <button className={style.homebtnnext} disabled={currentPage === totalPages} onClick={handlePage} name='NEXT'>NEXT</button>
              <button disabled={currentPage === totalPages} onClick={handlePage} name={totalPages}>{totalPages}</button>
 
         </div>

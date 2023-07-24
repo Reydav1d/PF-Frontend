@@ -86,7 +86,7 @@ function Filtros() {
   };
 
   return(
-      <div className={style.container-filter-sorts}>
+      <div className={style.containerfiltersorts}>
 
 
         <div className={style.containercategories}>
@@ -103,7 +103,7 @@ function Filtros() {
 
 
 
-          <div className={style.container-priceSorts}>
+          <div className={style.containerpriceSorts}>
             <label>Ordenar precio por:</label>  
             <select onChange={handlePriceSorts} >
             <option id='-1' value="Ninguno">Ninguno</option>
@@ -133,7 +133,7 @@ function Filtros() {
     </label>
 
 
-          <button className={style.clean-button} onClick={handlerClean}>Clean</button>
+          <button className={style.cleanbutton} onClick={handlerClean}>Clean</button>
 
           <button onClick={handleAplicarClick}>Aplicar</button>
       </div>
