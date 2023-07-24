@@ -1,15 +1,14 @@
 import axios from "axios";
-import {
-  GET_PRODUCT,
-  CLEAR_DETAIL,
-  GET_DESCRIPTION,
-  GET_ALL_PRODUCTOS,
-  GET_PICTURE,
-  GET_CATEGORIES,
-  GET_CATEGORY,
-  TODOS_FILTROS,
-  SEARCH_PRODUCTS,
-} from "./constantes";
+export const GET_PRODUCT = "GET_PRODUCT";
+export const CLEAR_DETAIL = "CLEAR_DETAIL";
+export const GET_DESCRIPTION = "GET_DESCRIPTION";
+export const GET_PICTURE = "GET_PICTURE";
+export const GET_ALL_PRODUCTOS = "GET_ALL_PRODUCTOS";
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const GET_CATEGORY = "GET_CATEGORY";
+export const TODOS_FILTROS = "TODOS_FILTROS";
+export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
+export const SEARCH_FILTER_PRODUCTS = "SEARCH_FILTER_PRODUCTS";
 
 export const getAllProductos = () => {
   return async function (dispatch) {
@@ -129,7 +128,7 @@ export const searchProducts = (words) => {
       if (searchResult.length === 0) {
         dispatch({
           type: SEARCH_PRODUCTS,
-          payload: [false, 'No hay resultados para la búsqueda'],
+          payload: [null, 'No hay resultados para la búsqueda'],
         });
       } else {
         // Si hay resultados, disparamos la acción normalmente
@@ -144,11 +143,43 @@ export const searchProducts = (words) => {
       // Si hay un error en la solicitud (por ejemplo, error 404), disparamos la acción con el mensaje de error
       dispatch({
         type: SEARCH_PRODUCTS,
-        payload: [false,'No hay resultados para la búsqueda'],
+        payload: [null,'No hay resultados para la búsqueda'],
       });
     }
   };
 };
 
 
-////http://localhost:3001/products?name=Hub%20Usb
+/* 
+      category:"",
+    price_min:"",
+    price_max:"",
+    sort_by:"",
+    order:""
+*/
+
+export const getSearchAdnFilterProducts = (urlData) => async (dispatch) => {
+  try {
+    console.log('TEST FILTERS');
+    let { search, category, price_min, price_max, sort_by, order } = urlData;
+    search
+    ?search = search.replace(/\s/g, "%20")
+    :search = '';
+
+    const getProducts = await axios.get(`/filter-sorts/selection?search=${search}&category=${category}&price_min=${price_min}&price_max=${price_max}&sort_by=${sort_by}&order=${order}`);
+    console.log('PRODUCTS', getProducts.data);
+    dispatch({
+      type: SEARCH_FILTER_PRODUCTS,
+      payload: getProducts.data,
+    });
+  } catch (error) {
+    console.log('Error al filtrar los productos: ' + error);
+
+    dispatch({
+      type: SEARCH_FILTER_PRODUCTS,
+      payload: [null,'No hay resultados para la búsqueda'],
+    });
+  }
+};
+
+
