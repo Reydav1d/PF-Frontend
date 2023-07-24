@@ -12,14 +12,14 @@ function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const product = useSelector((state) => state.product);
-  const description = useSelector((state) => state.description);
-  const picture = useSelector((state) => state.picture);
+  // const description = useSelector((state) => state.description);
+  // const picture = useSelector((state) => state.picture);
   const categories = useSelector((state) => state.categories)
 
   useEffect(() => {
     dispatch(getProduct(id));
-    dispatch(getDescription(id));
-    dispatch(getPicture(id));
+    // dispatch(getDescription(id));
+    // dispatch(getPicture(id));
     dispatch(getCategories(id))
     return () => {
       dispatch(clearDetail());
@@ -51,8 +51,8 @@ function Detail() {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="sm:flex sm:items-center px-6 py-4">
             <img
-              src={picture}
-              // src={product?.image}
+              // src={picture}
+              src={product?.image}
               alt={product?.title}
               className="h-48 w-auto sm:h-64  mx-auto sm:mx-0"
             />
@@ -91,7 +91,7 @@ function Detail() {
           </div>
           <div className="px-6 py-4 text-center sm:text-left">
             <h2 className="text-lg font-semibold mb-2">Descripción del producto</h2>
-            <p className="text-gray-600">{description}</p>
+            <p className="text-gray-600">{product.description}</p>
           </div>
         </div>
       </div>
