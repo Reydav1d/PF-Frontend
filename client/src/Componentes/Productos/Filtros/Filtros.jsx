@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from 'react-router-dom';
+// import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch} from "react-redux";
 import style from './Filtros.module.css';
 import { getCategories, getSearchAdnFilterProducts } from "../../../Redux/Actions/action";
