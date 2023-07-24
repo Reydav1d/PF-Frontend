@@ -9,7 +9,8 @@ import {
   TODOS_FILTROS,
   SEARCH_PRODUCTS,
   ADD_PRODUCT,
-} from "./Actions/constantes";
+  SEARCH_FILTER_PRODUCTS,
+} from "../Actions/constantes";
 
 const initialState = {
   productos: [],
@@ -18,8 +19,9 @@ const initialState = {
   picture: [],
   categories: [],
   category: [],
-  productosFiltrados: [],
-  searchResults: [],
+  productosFiltrados: [], //Eliminar!
+  searchResults: [], //eliminar si llega a no es necesaria
+  searchFilterResults: ['1'],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -70,6 +72,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         searchResults: payload,
+      };
+    case SEARCH_FILTER_PRODUCTS:
+      return{
+        ...state,
+        searchFilterResults: payload,
       }
 
     case ADD_PRODUCT:

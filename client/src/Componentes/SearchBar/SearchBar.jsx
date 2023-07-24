@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./SearchBar.css";
+import style from "./SearchBar.module.css";
 import { searchProducts } from "../../Redux/Actions/action";
 
 const SearchBar = () => {
@@ -18,17 +18,17 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="sb-container">
-      <form className="form-sb" onSubmit={handleSubmit}>
+    <div className={style.sbcontainer}>
+      <form className={style.formsb} onSubmit={handleSubmit}>
         <input
-          className="input-sb"
+          className={style.inputsb}
           type="text"
           placeholder="Buscar productos..."
           value={searchTerm}
           onChange={handleChange}
         />
-        <button className="button-sb" type="submit">
-          <img className="img-sb" src="https://i.postimg.cc/X7QvyvYS/image.png"/>
+        <button className={style.buttonsb} type="submit">
+          <img className={style.imgsb} src="https://i.postimg.cc/X7QvyvYS/image.png"/>
         </button>
       </form>
     </div>
