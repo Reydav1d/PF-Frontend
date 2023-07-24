@@ -21,5 +21,13 @@ export const Validate = (data) => {
         errors.stock = "Ingresa un valor válido para los productos disponibles (número entero, no negativo)";
     }
 
+    if (isNaN(parseInt(data.sold)) || parseInt(data.sold) <= 0) {
+        errors.sold = "Ingresa un valor valido a partir de 0"
+    }
+
+    if (!data.description) {
+        errors.description = "Descripción del producto requerida"
+    }
+
     return errors;
 };

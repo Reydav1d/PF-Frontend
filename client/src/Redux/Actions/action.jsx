@@ -9,6 +9,7 @@ import {
   GET_CATEGORY,
   TODOS_FILTROS,
   SEARCH_PRODUCTS,
+  ADD_PRODUCT,
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -149,6 +150,21 @@ export const searchProducts = (words) => {
     }
   };
 };
+
+export const addProduct = (productData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('/products', productData)
+      const newProduct = response.data;
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: newProduct
+    })
+    } catch (error) {
+      console.error("Error al agregar el producto", error)
+    }
+  }
+}
 
 
 ////http://localhost:3001/products?name=Hub%20Usb
