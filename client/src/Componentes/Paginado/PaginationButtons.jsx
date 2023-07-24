@@ -1,26 +1,26 @@
 // PaginationButtons.js
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from './PaginationButtons.modules.css?inline'
 
 const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
 
   const handlePage = (e) => {
     const buttonValue = e.target.name;
     if (!isNaN(parseInt(buttonValue))) {
       setCurrentPage(parseInt(buttonValue));
-      history.push(`/productos/page/${parseInt(currentPage + 1)}`);
+      navigate(`/productos/page/${parseInt(currentPage + 1)}`);
     }
     if (e.target.name === "PREV") {
       setCurrentPage(currentPage - 1);
-      history.push(`/productos/page/${parseInt(currentPage + 1)}`);
+      navigate(`/productos/page/${parseInt(currentPage + 1)}`);
     }
     if (e.target.name === "NEXT") {
       setCurrentPage(currentPage + 1);
-      history.push(`/productos/page/${parseInt(currentPage + 1)}`);
+      navigate(`/productos/page/${parseInt(currentPage + 1)}`);
     }
   };
 
