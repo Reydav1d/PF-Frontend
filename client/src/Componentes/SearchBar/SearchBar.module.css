@@ -1,4 +1,4 @@
-.sb-container{
+.sbcontainer{
   position: absolute;
   top:-30px;
   left: 50%; 
@@ -9,14 +9,14 @@
 }
 
 
-.form-sb{
+.formsb{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 40px; /* Ajusta el margen superior según tus preferencias */
   }
   
-  .input-sb {
+  .inputsb {
     padding: 10px 20px;
     font-size: 18px;
     border: 2px solid #8400ff;
@@ -33,7 +33,7 @@
   }
   
   
-  .button-sb {
+  .buttonsb {
     padding: 12px 24px;
     font-size: 18px;
     background-color: #8400ff !important;
@@ -46,7 +46,7 @@
   
  
   
-  .img-sb{
+  .imgsb{
     width: 34px;
   }
 

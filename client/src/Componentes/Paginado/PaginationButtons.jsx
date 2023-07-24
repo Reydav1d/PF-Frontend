@@ -1,7 +1,7 @@
 // PaginationButtons.js
 import React from "react";
 import { useHistory } from "react-router-dom";
-import style from './PaginationButtons.modules.css'
+import style from './PaginationButtons.modules.css?inline'
 
 const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
 

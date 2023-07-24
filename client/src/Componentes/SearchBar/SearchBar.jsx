@@ -18,17 +18,17 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={style.sb-container}>
-      <form className={style.form-sb} onSubmit={handleSubmit}>
+    <div className={style.sbcontainer}>
+      <form className={style.formsb} onSubmit={handleSubmit}>
         <input
-          className={style.input-sb}
+          className={style.inputsb}
           type="text"
           placeholder="Buscar productos..."
           value={searchTerm}
           onChange={handleChange}
         />
-        <button className={style.button-sb} type="submit">
-          <img className={style.img-sb} src="https://i.postimg.cc/X7QvyvYS/image.png"/>
+        <button className={style.buttonsb} type="submit">
+          <img className={style.imgsb} src="https://i.postimg.cc/X7QvyvYS/image.png"/>
         </button>
       </form>
     </div>
