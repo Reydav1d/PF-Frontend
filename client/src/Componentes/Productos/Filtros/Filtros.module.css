@@ -1,4 +1,101 @@
-.fondo {
-  width: 18%;
-  background-color: rgb(108, 129, 129);
+.container-filter-sorts{
+  display: flex;
+  flex-direction: column;
+ /*  align-items: center; */
+  /* flex-wrap: wrap; */
+  /* justify-content: start; */
+  width:fit-content;
+  /* max-width: 80%; */
+  margin-bottom: 2em;
+  background: gray;
+
+}
+
+.container-priceSorts,
+.container-edad,
+.containercategories,
+.container-a-z{
+  display:flex;
+  flex-direction: column;
+  margin-right: 2.5em
+}
+
+
+input, select{
+  margin-bottom: .5em;
+  background-color: transparent;
+  border-radius: 6px;
+  outline:none;
+  border: 1px solid rgba(255, 255, 255, 0.262);
+  padding: .2em;
+  font-size: .9rem;
+}
+
+option{
+  background-color: #2d3538;
+  border: 1px solid rgba(255, 255, 255, 0.262);
+  outline: none;
+}
+
+label{
+  margin-bottom: .4em;
+}
+
+input{
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-left: .5em;
+  width: 3em;
+  padding: .2em;
+
+
+}
+
+.input-btn-age-container{
+  margin-top: 0em;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+.container-edad{
+  display:flex;
+  flex-direction: column;
+}
+
+.container-edad select{
+  width: 6em;
+}
+
+
+.btn-age{
+  font-size: .8em;
+  height: 24px;
+  border-radius: 4px;
+  border:1px solid rgba(255, 255, 255, 0.224);
+  background-color: rgba(255, 255, 255, 0.033);
+  font-weight: 100;
+  letter-spacing: 1.1px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.clean-button{
+  background-color: rgb(68, 135, 180);
+  padding: .5em 1em;
+}
+
+.clean-button:hover{
+  background-color: rgb(92, 157, 200);
+  padding: .5em 1em;
+}
+
+/* Elimina flecha a los input type number */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
 }

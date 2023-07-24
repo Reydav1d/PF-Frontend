@@ -1,14 +1,6 @@
 import axios from "axios";
-export const GET_PRODUCT = "GET_PRODUCT";
-export const CLEAR_DETAIL = "CLEAR_DETAIL";
-export const GET_DESCRIPTION = "GET_DESCRIPTION";
-export const GET_PICTURE = "GET_PICTURE";
-export const GET_ALL_PRODUCTOS = "GET_ALL_PRODUCTOS";
-export const GET_CATEGORIES = "GET_CATEGORIES";
-export const GET_CATEGORY = "GET_CATEGORY";
-export const TODOS_FILTROS = "TODOS_FILTROS";
-export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
-export const SEARCH_FILTER_PRODUCTS = "SEARCH_FILTER_PRODUCTS";
+import { GET_PRODUCT, CLEAR_DETAIL,GET_DESCRIPTION, GET_PICTURE, GET_ALL_PRODUCTOS, GET_CATEGORIES, GET_CATEGORY,
+TODOS_FILTROS, SEARCH_PRODUCTS, SEARCH_FILTER_PRODUCTS } from "./constantes";
 
 export const getAllProductos = () => {
   return async function (dispatch) {
