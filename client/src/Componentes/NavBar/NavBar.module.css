@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 70px;
 }
 .caja2 {
@@ -39,7 +38,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(134, 134, 134);
   width: 60%;
 }
 .carrito {
@@ -49,6 +47,8 @@
   color: aliceblue;
   background-color: rgb(132, 0, 255);
   width: 20%;
+  height: 50px;
+  margin-top: 12px;
 }
 .home {
   display: flex;
@@ -70,6 +70,7 @@
 .botones {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   color: aliceblue;
   width: 60%;
 }

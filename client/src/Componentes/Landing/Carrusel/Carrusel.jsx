@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import styles from "./Reseñas.module.css";
+import styles from "./carrusel.module.css";
 
-const Reseñas = () => {
+const Carrusel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -18,6 +18,13 @@ const Reseñas = () => {
 
   const totalSlides = 3;
 
+  const imagen1 =
+    "https://img.global.news.samsung.com/ar/wp-content/uploads/2022/06/4693_VD_DIGITAL_Banner-DDP_TV-Monitores-1000x383.png";
+  const imagen2 =
+    "https://img.global.news.samsung.com/ar/wp-content/uploads/2022/10/BANNER-Gen%C3%A9rico_1280x490px.jpg";
+  const imagen3 =
+    "https://img.pccomponentes.com/pcblog/2937/275707319-10160277142034345-651651715846927330-n-1.png";
+
   return (
     <div className={styles.fondo}>
       <div className={styles.carouselContainer}>
@@ -31,30 +38,14 @@ const Reseñas = () => {
           // O ajusta el tiempo que desees en milisegundos
         >
           <div>
-            <div className={styles.reseña1}>
-              <div className={styles.reseña2}>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit ."
-              </div>
-              <div className={styles.reseña3}>Nombre comprador/a</div>
-            </div>
+            <img src={imagen1} alt="Imagen 1" />
           </div>
           <div>
-            <div className={styles.reseña1}>
-              <div className={styles.reseña2}>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit ."
-              </div>
-              <div className={styles.reseña3}>Nombre comprador/a</div>
-            </div>
+            <img src={imagen2} alt="Imagen 2" />
           </div>
-
+          <div>
+            <img src={imagen3} alt="Imagen 3" />
+          </div>
           {/* Agrega más diapositivas según tus necesidades */}
         </Carousel>
       </div>
@@ -62,4 +53,4 @@ const Reseñas = () => {
   );
 };
 
-export default Reseñas;
+export default Carrusel;
