@@ -1,6 +1,17 @@
 import axios from "axios";
-import { GET_PRODUCT, CLEAR_DETAIL, GET_DESCRIPTION, GET_PICTURE, GET_ALL_PRODUCTOS, GET_CATEGORIES, GET_CATEGORY,
-TODOS_FILTROS, SEARCH_PRODUCTS, SEARCH_FILTER_PRODUCTS } from "./constantes";
+import {
+  GET_PRODUCT,
+  CLEAR_DETAIL,
+  GET_DESCRIPTION,
+  GET_ALL_PRODUCTOS,
+  GET_PICTURE,
+  GET_CATEGORIES,
+  GET_CATEGORY,
+  TODOS_FILTROS,
+  SEARCH_PRODUCTS,
+  ADD_PRODUCT,
+  SEARCH_FILTER_PRODUCTS
+} from "./constantes";
 
 export const getAllProductos = () => {
   return async function (dispatch) {
@@ -143,6 +154,21 @@ export const searchProducts = (words) => {
     }
   };
 };
+
+export const addProduct = (productData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('/products', productData)
+      const newProduct = response.data;
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: newProduct
+    })
+    } catch (error) {
+      console.error("Error al agregar el producto", error)
+    }
+  }
+}
 
 
 /* 

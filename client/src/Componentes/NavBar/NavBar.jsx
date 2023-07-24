@@ -58,7 +58,12 @@ function NavBar() {
           </div>
           <div className={s.cuenta}>
             <h4>mi cuenta</h4>
-            <p>vender</p>
+            <Link
+              to={"/nuevoProd"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>vender</p>
+            </Link>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import {
   GET_CATEGORY,
   TODOS_FILTROS,
   SEARCH_PRODUCTS,
+  ADD_PRODUCT,
   SEARCH_FILTER_PRODUCTS,
 } from "../Actions/constantes";
 
@@ -68,7 +69,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
       };
     case SEARCH_PRODUCTS:
-      return{
+      return {
         ...state,
         searchResults: payload,
       };
@@ -76,6 +77,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return{
         ...state,
         searchFilterResults: payload,
+      }
+
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.productos, payload],
       }
     default:
       return { ...state };
