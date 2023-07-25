@@ -122,11 +122,11 @@ export const getFiltros = (price, orden) => {
 
 
 
-export const searchProducts = (words) => {
+export const searchProducts = (title) => {
   return async function (dispatch) {
     try {
-      words = words.replace(/\s/g, "%20");
-      const search = await axios.get(`/products?name=${words}`);
+      title = title.replace(/\s/g, "%20");
+      const search = await axios.get(`/products?title=${title}`);
       const searchResult = search.data;
       console.log(search);
 

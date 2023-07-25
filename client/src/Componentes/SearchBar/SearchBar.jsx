@@ -5,16 +5,17 @@ import { searchProducts } from "../../Redux/Actions/action";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    event.preventDefault();
+    setTitle(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(searchProducts(searchTerm));
-    setSearchTerm(""); // Restablecer el valor del input a una cadena vacía
+    dispatch(searchProducts(title));
+    setTitle(""); // Restablecer el valor del input a una cadena vacía
   };
 
   return (
@@ -22,12 +23,12 @@ const SearchBar = () => {
       <form className={style.formsb} onSubmit={handleSubmit}>
         <input
           className={style.inputsb}
-          type="text"
+          type="search"
           placeholder="Buscar productos..."
-          value={searchTerm}
-          onChange={handleChange}
+          value={title}
+          onChange={(event) => handleChange(event)}
         />
-        <button className={style.buttonsb} type="submit">
+        <button className={style.buttonsb} type="submit" onClick={(event)=> handleSubmit(event)}>
           <img className={style.imgsb} src="https://i.postimg.cc/X7QvyvYS/image.png"/>
         </button>
       </form>

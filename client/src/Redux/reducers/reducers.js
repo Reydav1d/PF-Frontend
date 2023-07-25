@@ -72,6 +72,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         searchResults: payload,
+        product: payload,
       };
     case SEARCH_FILTER_PRODUCTS:
       return{
