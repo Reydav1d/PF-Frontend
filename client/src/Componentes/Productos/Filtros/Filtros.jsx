@@ -81,11 +81,11 @@ function Filtros() {
 
   };
 
-  return (<div className="custom-container">
-  <div className="custom-grid">
-    <div className="custom-column">
-      <label className="custom-label">Filtrar por categorias:</label>
-      <select className="custom-input" onChange={handlecategories}>
+  return (<div class="space-y-2">
+  <div class="mt-4 mr-4 h-100 w-80 overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
+    <div class="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
+      <label  class="text-sm font-medium">Filtrar por categorias:</label>
+      <select class="transition group-open:-rotate-180" onChange={handlecategories}>
         <option value="Todas">Todas</option>
         {categories.map((e, index) => (
           <option key={index} value={e.id}>
@@ -95,39 +95,39 @@ function Filtros() {
       </select>
     </div>
 
-    <div className="custom-column">
-      <label className="custom-label">Ordenar precio por:</label>
-      <select className="custom-input" onChange={handlePriceSorts}>
+    <div class="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
+      <label class="text-sm font-medium">Ordenar precio por:</label>
+      <select class="transition group-open:-rotate-180" onChange={handlePriceSorts}>
         <option value="Ninguno">Ninguno</option>
         <option value="asc">Menor</option>
         <option value="desc">Mayor</option>
       </select>
     </div>
 
-    <div className="custom-column">
-      <label className="custom-label">Filtrar por precio:</label>
+    <div class="mt-4 mr-4 ml-4 mb-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
+      <label class="text-sm font-medium">Filtrar por precio:</label>
       <input
         type="number"
         placeholder="min"
         value={price.min}
         onChange={handleMinPriceChange}
-        className="custom-input custom-input-p"
+        class="peer h-8 w-full border-none bg-transparent p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
       />
       <input
         type="number"
         placeholder="max"
         value={price.max}
         onChange={handleMaxPriceChange}
-        className="custom-input custom-input-p"
+        class="peer h-8 w-full border-none bg-transparent p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
       />
     </div>
   </div>
 
-  <div className="mt-4">
-    <button className="custom-button ml-4" onClick={handlerClean}>
+  <div class="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
+    <button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative" onClick={handlerClean}>
       Clean
     </button>
-    <button className="custom-button" onClick={handleAplicarClick}>
+    <button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative" onClick={handleAplicarClick}>
       Aplicar
     </button>
   </div>
