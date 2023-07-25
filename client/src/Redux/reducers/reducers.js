@@ -93,7 +93,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
         
       return {
         ...state,
-        
       };
 
     case ADD_PRODUCT:
