@@ -1,34 +1,47 @@
 import React, { useState } from "react";
+import { useNavigate  } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import "./SearchBar.css";
-import { searchProducts } from "../../Redux/Actions/action";
+import style from "./SearchBar.module.css";
+import { getSearchAdnFilterProducts } from "../../Redux/Actions/action";
 
 const SearchBar = () => {
+
+  const [searchTerm, setSearchTerm] = useState({term:''});
+
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    const { value } = event.target;
+    setSearchTerm({ ...searchTerm, term: value });
+    dispatch(getSearchAdnFilterProducts({ search: value }));
+
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(searchProducts(searchTerm));
-    setSearchTerm(""); // Restablecer el valor del input a una cadena vacía
+
+    dispatch(getSearchAdnFilterProducts({ aplicar: true, search: searchTerm }));
+    setSearchTerm({term:''}); // Restablecer el valor del input a una cadena vacía
+    navigate(`/productos/page/${1}`);
+
   };
 
   return (
-    <div className="sb-container">
-      <form className="form-sb" onSubmit={handleSubmit}>
+    <div className={style.sbcontainer}>
+      <form className={style.formsb} onSubmit={handleSubmit}>
         <input
-          className="input-sb"
-          type="text"
+          className={style.inputsb}
+          type="search"
           placeholder="Buscar productos..."
-          value={searchTerm}
+
+          value={searchTerm.term}
           onChange={handleChange}
+
         />
-        <button className="button-sb" type="submit">
-          <img className="img-sb" src="https://i.postimg.cc/X7QvyvYS/image.png"/>
+        <button className={style.buttonsb} type="submit" onClick={(event)=> handleSubmit(event)}>
+          <img className={style.imgsb} src="https://i.postimg.cc/X7QvyvYS/image.png"/>
         </button>
       </form>
     </div>

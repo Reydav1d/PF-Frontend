@@ -6,4 +6,10 @@ export const GET_ALL_PRODUCTOS = "GET_ALL_PRODUCTOS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const TODOS_FILTROS = "TODOS_FILTROS";
-export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const SEARCH_FILTER_PRODUCTS = "SEARCH_FILTER_PRODUCTS";
+export const SET_LOADING = "SET_LOADING";
+export const CLEAN_STATE = "CLEAN_STATE";
+export const LOAD_DATA = "LOAD_DATA";
+
+  

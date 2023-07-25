@@ -4,10 +4,12 @@ import logo from "../../Img/logo tech.png";
 import { Link } from "react-router-dom";
 import Casa from "../../Img/home.png";
 import Carrito from "../../Img/carrito.png";
+import SearchBar from "../../Componentes/SearchBar/SearchBar";
 
 function NavBar() {
   return (
     <div className={s.fondo}>
+    <SearchBar />
       <div className={s.caja1}>
         <div className={s.search}>
           <div className={s.logo}>
@@ -30,7 +32,7 @@ function NavBar() {
           </div>
           <div className={s.botones}>
             <Link
-              to={"/productos"}
+              to={"/Productos/page/1"}
               style={{ textDecoration: "none", color: "white" }}
             >
               <p>productos</p>
@@ -56,7 +58,12 @@ function NavBar() {
           </div>
           <div className={s.cuenta}>
             <h4>mi cuenta</h4>
-            <p>vender</p>
+            <Link
+              to={"/nuevoProd"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>vender</p>
+            </Link>
           </div>
         </div>
       </div>

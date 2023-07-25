@@ -1,51 +1,43 @@
-/*       PAGINADO        */
-.home-btn-paginado {
-  text-align: center;
-  margin: 3em 0 3em 3em;
+/* Estilos para el contenedor de los botones de paginado */
+.homebtnpaginado {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 0.5rem;
+  margin: 2em;
 }
 
-.home-btn-paginado button {
-  background-color: transparent;
-  border: none;
-  color: #919ea4;
-  outline: 1px solid #696e71;
-  width: 35px;
-  height: 35px;
-  font-size: 1rem;
-  box-sizing: border-box;
-  margin: 0.2em;
+/* Estilos para los botones de paginado */
+.homebtnpaginado button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px !important;
+  border-radius: 0.25rem;
 }
 
-.home-btn-paginado button:disabled {
-  background-color: #343b3e;
-  opacity: 0.4;
+/* Estilos para el botón de página actual */
+.homebtnpaginado button.current-page {
+  background-color: #3490dc;
+  color: white;
+}
+
+/* Estilos para los botones de puntos suspensivos (elipsis) */
+.homebtnpoints {
+  border: none;
+  background-color: transparent;
   cursor: default;
 }
 
-.home-btn-next,
-.home-btn-prev {
-  width: auto !important;
+/* Estilos para el botón de "PREV" */
+.homebtnprev {
+  background-color: #3490dc;
+  color: white;
 }
 
-.home-btn-points {
-  outline: none !important;
-  font-size: 1.3rem !important;
-  margin-left: -12px !important;
-  margin-right: -12px !important;
-}
-
-.current-page {
-  background-color: #4487b4 !important;
-  color: white !important;
-}
-
-.home-btn-paginado button:focus {
-  outline: 1px solid #b7c0c6;
+/* Estilos para el botón de "NEXT" */
+.homebtnnext {
+  background-color: #3490dc;
+  color: white;
 }

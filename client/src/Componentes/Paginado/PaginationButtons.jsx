@@ -1,24 +1,29 @@
 // PaginationButtons.js
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./PaginationButtons.css";
 
 const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
+
+  // Controlar que currentPage siempre esté dentro del rango válido
+  useEffect(() => {
+    setCurrentPage((prevPage) => Math.min(Math.max(prevPage, 1), totalPages));
+  }, [setCurrentPage, totalPages]);
 
   const handlePage = (e) => {
     const buttonValue = e.target.name;
     if (!isNaN(parseInt(buttonValue))) {
       setCurrentPage(parseInt(buttonValue));
-      history.push(`/productos/page/${parseInt(currentPage + 1)}`);
+      navigate(`/productos/page/${parseInt(buttonValue)}`);
     }
     if (e.target.name === "PREV") {
-      setCurrentPage(currentPage - 1);
-      history.push(`/productos/page/${parseInt(currentPage + 1)}`);
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+      navigate(`/productos/page/${parseInt(currentPage - 1)}`);
     }
     if (e.target.name === "NEXT") {
-      setCurrentPage(currentPage + 1);
-      history.push(`/productos/page/${parseInt(currentPage + 1)}`);
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+      navigate(`/productos/page/${parseInt(currentPage + 1)}`);
     }
   };
 
@@ -32,19 +37,19 @@ const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
   const hideButtonB = currentPage >= totalPages - 1;
 
   return (
-    <div className="home-btn-paginado">
+    <div className="homebtnpaginado">
       <button disabled={currentPage === 1} onClick={handlePage} name="1">
         1
       </button>
       <button
-        className="home-btn-prev"
+        className="homebtnprev"
         disabled={currentPage === 1}
         onClick={handlePage}
         name="PREV"
       >
         PREV
       </button>
-      {!hideButtonA && <button className="home-btn-points">...</button>}
+      {!hideButtonA && <button className="homebtnpoints">...</button>}
       {pages.map((page) => (
         <button
           key={page}
@@ -65,9 +70,9 @@ const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
           2
         </button>
       )}
-      {!hideButtonB && <button className="home-btn-points">...</button>}
+      {!hideButtonB && <button className="homebtnpoints">...</button>}
       <button
-        className="home-btn-next"
+        className="homebtnnext"
         disabled={currentPage === totalPages}
         onClick={handlePage}
         name="NEXT"
