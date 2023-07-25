@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 // import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate  } from "react-router-dom";
 import { useSelector, useDispatch} from "react-redux";
-import style from './Filtros.module.css';
-import { getCategories, getSearchAdnFilterProducts } from "../../../Redux/Actions/action";
+import './Filtros.css';
+import { getCategories, getSearchAdnFilterProducts, cleanState, getAllProductos, setLoading  } from "../../../Redux/Actions/action";
+
+
+
 
 function Filtros() {
-
-  //http://localhost:3001/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order=des
   const categories = useSelector((state) => state.categories);
-  const [dataUrl, setDataUrl] = useState({
-    category:"",
-    price_min:"",
-    price_max:"",
-    sort_by:"",
-    order:""
-  });
+  const [price, setPrice] = useState({ min: "", max: "" });
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-/*   const history = useHistory();
+
+
+  /*   const history = useHistory();
 
   useEffect(() => {
     // Crea una cadena de consulta con los parámetros del estado local
@@ -27,117 +26,113 @@ function Filtros() {
   }, [dataUrl, history]);
  */
 
-  
   useEffect(() => {
     dispatch(getCategories());
   }, []);
 
- 
   // MANEJADOR CATEGORIES:
   const handlecategories = (event) => {
-    let category = event.target.value;
-    if(category === 'Todas') category = "";
-    setDataUrl({ ...dataUrl, category }); // Actualiza el estado con el nuevo valor de 'category'
+    const { value } = event.target;
+    const categoryVal = value === "Todas" ? "" : value;
+    dispatch(getSearchAdnFilterProducts({ category: categoryVal }));
   };
- 
-  
 
   // MANEJADOR ORDEN PRECIO MAYOR/MENOR
-  const handlePriceSorts = (event) =>{
-    const sort_by = 'price';
-    let order = event.target.value;
-    if(order === 'Ninguno') order = "";
-    setDataUrl({ ...dataUrl, sort_by, order});
+  const handlePriceSorts = (event) => {
+    const { value } = event.target;
+    const sortOrder = value === "Ninguno" ? "" : value;
+    dispatch(
+      getSearchAdnFilterProducts({ sort_by: "price", order: sortOrder })
+    );
   };
 
   // MANEJADORES PRECIO MAYOR A Y MENOR A:
   const handleMinPriceChange = (event) => {
-    const price_min = event.target.value;
-    setDataUrl({ ...dataUrl, price_min});
+    const { value } = event.target;
+    setPrice({ ...price, min: value });
+    dispatch(getSearchAdnFilterProducts({ price_min: value }));
   };
 
   const handleMaxPriceChange = (event) => {
-    const price_max = event.target.value;
-    setDataUrl({ ...dataUrl, price_max});
+    const { value } = event.target;
+    setPrice({ ...price, max: value });
+    dispatch(getSearchAdnFilterProducts({ price_max: value }));
   };
 
 
-  console.log(dataUrl)
-
   // MANEJADOR BOTÓN CLEAN:
   function handlerClean() {
-    // Establece el estado local en su estado inicial vacío
-    setDataUrl({
-      category: "",
-      price_min: "",
-      price_max: "",
-      sort_by: "",
-      order: ""
+    dispatch(cleanState());
+    // Restablece los valores por defecto de los selects
+    document.querySelectorAll("select").forEach((select) => {
+      select.value = "-1";
     });
-  
-      // Restablece los valores por defecto de los selects
-        document.querySelectorAll('select').forEach(select => {
-          select.value = "-1";
-        });
+    //reset valores price
+    setPrice({ min: "", max: "" })
+    dispatch(setLoading());
+    dispatch(getAllProductos());
   }
+
   // MANEJADOR BOTÓN APLICAR
   const handleAplicarClick = () => {
-    dispatch(getSearchAdnFilterProducts(dataUrl))
+    dispatch(getSearchAdnFilterProducts({ aplicar: true }));
+    setPrice({ min: "", max: "" })
+    navigate(`/productos/page/${1}`);
+
   };
 
-  return(
-      <div className={style.containerfiltersorts}>
+  return (<div className="custom-container">
+  <div className="custom-grid">
+    <div className="custom-column">
+      <label className="custom-label">Filtrar por categorias:</label>
+      <select className="custom-input" onChange={handlecategories}>
+        <option value="Todas">Todas</option>
+        {categories.map((e, index) => (
+          <option key={index} value={e.id}>
+            {e.name}
+          </option>
+        ))}
+      </select>
+    </div>
 
+    <div className="custom-column">
+      <label className="custom-label">Ordenar precio por:</label>
+      <select className="custom-input" onChange={handlePriceSorts}>
+        <option value="Ninguno">Ninguno</option>
+        <option value="asc">Menor</option>
+        <option value="desc">Mayor</option>
+      </select>
+    </div>
 
-        <div className={style.containercategories}>
-              <label>Filtrar por categorias:</label>
-              <select  onChange={handlecategories} >
-                  <option id='-1' value="Todas">todas</option>
-                  {
-                      categories.map((e, index) =>  (
-                      <option key={index} value={e.id}>{e.name}</option>
-                      ))
-                  }
-              </select>
-          </div>
-
-
-
-          <div className={style.containerpriceSorts}>
-            <label>Ordenar precio por:</label>  
-            <select onChange={handlePriceSorts} >
-            <option id='-1' value="Ninguno">Ninguno</option>
-              <option id='2' value="asc">menor</option>
-              <option id='3' value="desc">mayor</option>
-            </select>
-          </div>
-
-
-
-
-          <label>
-      Filtrar por precio:
-      <br />
+    <div className="custom-column">
+      <label className="custom-label">Filtrar por precio:</label>
       <input
         type="number"
         placeholder="min"
-        value={dataUrl.price_min} 
+        value={price.min}
         onChange={handleMinPriceChange}
+        className="custom-input custom-input-p"
       />
       <input
         type="number"
         placeholder="max"
-        value={dataUrl.price_max} 
+        value={price.max}
         onChange={handleMaxPriceChange}
+        className="custom-input custom-input-p"
       />
-    </label>
+    </div>
+  </div>
 
-
-          <button className={style.cleanbutton} onClick={handlerClean}>Clean</button>
-
-          <button onClick={handleAplicarClick}>Aplicar</button>
-      </div>
-  )
+  <div className="mt-4">
+    <button className="custom-button ml-4" onClick={handlerClean}>
+      Clean
+    </button>
+    <button className="custom-button" onClick={handleAplicarClick}>
+      Aplicar
+    </button>
+  </div>
+</div>
+);
 }
 
 export default Filtros;
@@ -146,133 +141,3 @@ export default Filtros;
 
 
 
-/* 
-
-
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch} from "react-redux";
-import './Filtros.css';
-import { getCategories } from "../../../Redux/Actions/action";
-
-function Filtros() {
-  //http://localhost:3001/filter-sorts/selection?category=MLA1694&price_min=100&price_max=50000&sort_by=price&order=des
-  const categories = useSelector((state) => state.categories);
-  const [dataUrl, setDataUrl] = useState({
-    category:"",
-    price_min:"",
-    price_max:"",
-    sort_by:"",
-    order:""
-  });
-  
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
-
-  const dispatch = useDispatch();
-  // MANEJADOR CATEGORIES:
-  const handlecategories = (event) => {
-    let category = event.target.value;
-    if(category === 'Todas') category = "";
-    setDataUrl({ ...dataUrl, category }); // Actualiza el estado con el nuevo valor de 'category'
-  };
- 
-
-  // MANEJADOR ORDEN PRECIO MAYOR/MENOR
-  const handlePriceSorts = (event) =>{
-    const sort_by = 'price';
-    let order = event.target.value;
-    if(order === 'Ninguno') order = "";
-    setDataUrl({ ...dataUrl, sort_by, order});
-  };
-
-  // MANEJADORES PRECIO MAYOR A Y MENOR A:
-  const handleMinPriceChange = (event) => {
-    const price_min = event.target.value;
-    setDataUrl({ ...dataUrl, price_min});
-  };
-
-  const handleMaxPriceChange = (event) => {
-    const price_max = event.target.value;
-    setDataUrl({ ...dataUrl, price_max});
-  };
-
-
-  console.log(dataUrl)
-
-  // MANEJADOR BOTÓN CLEAN:
-  function handlerClean() {
-    // Establece el estado local en su estado inicial vacío
-    setDataUrl({
-      category: "",
-      price_min: "",
-      price_max: "",
-      sort_by: "",
-      order: ""
-    });
-  
-      // Restablece los valores por defecto de los selects
-        document.querySelectorAll('select').forEach(select => {
-          select.value = "-1";
-        });
-
-  }
-
-  return(
-      <div className="container-filter-sorts">
-
-
-        <div className="container-categories">
-              <label>Filtrar por categorias:</label>
-              <select  onChange={handlecategories} >
-                  <option id='-1' value="Todas">todas</option>
-                  {
-                      categories.map((e, index) =>  (
-                      <option key={index} value={e.id}>{e.name}</option>
-                      ))
-                  }
-              </select>
-          </div>
-
-
-
-          <div className="container-priceSorts">
-            <label>Ordenar precio por:</label>  
-            <select onChange={handlePriceSorts} >
-            <option id='-1' value="Ninguno">Ninguno</option>
-              <option id='2' value="asc">menor</option>
-              <option id='3' value="desc">mayor</option>
-            </select>
-          </div>
-
-
-
-
-          <label>
-      Filtrar por precio:
-      <br />
-      <input
-        type="number"
-        placeholder="min"
-        value={dataUrl.price_min} 
-        onChange={handleMinPriceChange}
-      />
-      <input
-        type="number"
-        placeholder="max"
-        value={dataUrl.price_max} 
-        onChange={handleMaxPriceChange}
-      />
-    </label>
-
-
-          <button className="clean-button" onClick={handlerClean}>Clean</button>
-      </div>
-  )
-}
-
-export default Filtros;
-
-
-
-*/
