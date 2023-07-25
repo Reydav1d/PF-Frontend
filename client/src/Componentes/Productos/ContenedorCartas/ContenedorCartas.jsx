@@ -33,6 +33,10 @@ function ContenedorCartas() {
   const itemsPerPage = 9;
   const totalPages = Math.ceil(losProductos.length / itemsPerPage);
 
+  useEffect(() => {
+    setCurrentPage(pageNumber);
+  }, [pageNumber]);
+
   console.log(losProductos)
   const visiblePeople = losProductos ? losProductos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) : null;
 
