@@ -6,22 +6,32 @@ import {
   GET_PICTURE,
   GET_CATEGORIES,
   GET_CATEGORY,
-  TODOS_FILTROS,
-  SEARCH_PRODUCTS,
   ADD_PRODUCT,
   SEARCH_FILTER_PRODUCTS,
+  SET_LOADING,
+  CLEAN_STATE,
+  LOAD_DATA,
+
 } from "../Actions/constantes";
 
 const initialState = {
   productos: [],
+  searchFilterResults: [],
+  loading: false,
+  searched: false,
   product: [],
   description: [],
   picture: [],
   categories: [],
   category: [],
-  productosFiltrados: [], //Eliminar!
-  searchResults: [], //eliminar si llega a no es necesaria
-  searchFilterResults: ['1'],
+  filters: {
+    search: "",
+    category: "",
+    price_min: "",
+    price_max: "",
+    sort_by: "",
+    order: "",
+  },
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -30,6 +40,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         productos: payload,
+        loading: false,
       };
 
     case GET_PRODUCT:
@@ -62,27 +73,41 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
-
-    case TODOS_FILTROS:
+      case SEARCH_FILTER_PRODUCTS:
+        return {
+          ...state,
+          searchFilterResults: payload,
+          loading: false,
+          searched: true,
+        };
+      case SET_LOADING:
+        return {
+          ...state,
+          loading: true,
+          searched: false,
+        };
+      case CLEAN_STATE:
+        for (const key in state.filters) {
+          state.filters[key] = '';
+        }
+        
       return {
         ...state,
-        productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
+        
       };
-    case SEARCH_PRODUCTS:
-      return {
-        ...state,
-        searchResults: payload,
-      };
-    case SEARCH_FILTER_PRODUCTS:
-      return{
-        ...state,
-        searchFilterResults: payload,
-      }
 
     case ADD_PRODUCT:
       return {
         ...state,
         products: [...state.productos, payload],
+      }
+    case LOAD_DATA:
+      return{
+        ...state,
+        filters: {
+          ...state.filters,
+          ...payload, 
+        },
       }
     default:
       return { ...state };

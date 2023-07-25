@@ -1,7 +1,7 @@
 // PaginationButtons.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import style from './PaginationButtons.modules.css?inline'
+import './PaginationButtons.css'
 
 const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
 
@@ -36,26 +36,25 @@ const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
 
 
   return (
-        <div className={style.homebtnpaginado}> 
+      <div className="homebtnpaginado"> 
+        <button disabled={currentPage === 1} onClick={handlePage} name='1'>1</button>
+        <button className="homebtnprev" disabled={currentPage === 1} onClick={handlePage} name='PREV'>PREV</button>
+        {!hideButtonA && <button className="homebtnpoints">...</button>}
+        {pages.map((page) => (
+          <button
+            key={page}
+            className={currentPage === page ? 'current-page' : ''}
+            onClick={handlePage} name={page}
+          >
+            {page}
+          </button>
+        ))}
+        {totalPages === 2 && <button key="2" disabled={currentPage === 2} onClick={handlePage} name='2'>2</button>}
+        {!hideButtonB && <button className="homebtnpoints">...</button>}
+        <button className="homebtnnext" disabled={currentPage === totalPages} onClick={handlePage} name='NEXT'>NEXT</button>
+        <button disabled={currentPage === totalPages} onClick={handlePage} name={totalPages}>{totalPages}</button>
+      </div>
 
-             <button disabled={currentPage === 1} onClick={handlePage} name='1'>1</button>
-             <button className={style.homebtnprev} disabled={currentPage === 1} onClick={handlePage} name='PREV'>PREV</button>
-             {!hideButtonA && <button className={style.homebtnpoints}>...</button>}
-             {pages.map((page) => (
-             <button
-              key={page}
-              className={currentPage === page ? 'current-page' : ''}
-              onClick={handlePage} name={page}
-              >
-             {page}
-             </button>
-             ))}
-             {totalPages === 2 && <button key="2" disabled={currentPage === 2} onClick={handlePage} name='2'>2</button>}
-             {!hideButtonB && <button className={style.homebtnpoints}>...</button>}
-             <button className={style.homebtnnext} disabled={currentPage === totalPages} onClick={handlePage} name='NEXT'>NEXT</button>
-             <button disabled={currentPage === totalPages} onClick={handlePage} name={totalPages}>{totalPages}</button>
-
-        </div>
   );
 };
 

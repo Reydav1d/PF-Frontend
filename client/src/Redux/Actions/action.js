@@ -7,11 +7,11 @@ import {
   GET_PICTURE,
   GET_CATEGORIES,
   GET_CATEGORY,
-  TODOS_FILTROS,
-  SEARCH_PRODUCTS,
   ADD_PRODUCT,
-  SEARCH_FILTER_PRODUCTS
+  SEARCH_FILTER_PRODUCTS,
+  LOAD_DATA,
 } from "./constantes";
+
 
 export const getAllProductos = () => {
   return async function (dispatch) {
@@ -93,67 +93,7 @@ export const getCategoryById = (id) => {
   };
 };
 
-export const getFiltros = (price, orden) => {
-  return async function (dispatch) {
-    try {
-      // Rellenar los parámetros según tus necesidades
-      const category = "MLA1321622215"; // Categoría de productos que deseas filtrar
-      const price_min = 100; // Precio mínimo de los productos
-      const price_max = 5000; // Precio máximo de los productos
 
-      // Realizar la solicitud GET a la API con los parámetros configurados
-      const apiData = await axios.get(
-        `/filter-sorts/selection?category=${category}&price_min=${price_min}&price_max=${price_max}&sort_by=${price}&order=${orden}`
-      );
-
-      const product = apiData.data;
-      console.log(product);
-      dispatch({
-        type: TODOS_FILTROS,
-        payload: product,
-      });
-    } catch (error) {
-      console.error("Error al obtener los productos filtrados:", error.message);
-      // Manejar cualquier error de la solicitud aquí si es necesario
-    }
-  };
-};
-
-
-
-
-export const searchProducts = (words) => {
-  return async function (dispatch) {
-    try {
-      words = words.replace(/\s/g, "%20");
-      const search = await axios.get(`/products?name=${words}`);
-      const searchResult = search.data;
-      console.log(search);
-
-      // Si no hay resultados, disparamos la acción con el mensaje adecuado
-      if (searchResult.length === 0) {
-        dispatch({
-          type: SEARCH_PRODUCTS,
-          payload: [null, 'No hay resultados para la búsqueda'],
-        });
-      } else {
-        // Si hay resultados, disparamos la acción normalmente
-        dispatch({
-          type: SEARCH_PRODUCTS,
-          payload: searchResult,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-
-      // Si hay un error en la solicitud (por ejemplo, error 404), disparamos la acción con el mensaje de error
-      dispatch({
-        type: SEARCH_PRODUCTS,
-        payload: [null,'No hay resultados para la búsqueda'],
-      });
-    }
-  };
-};
 
 export const addProduct = (productData) => {
   return async (dispatch) => {
@@ -171,36 +111,58 @@ export const addProduct = (productData) => {
 }
 
 
-/* 
-      category:"",
-    price_min:"",
-    price_max:"",
-    sort_by:"",
-    order:""
-*/
 
-export const getSearchAdnFilterProducts = (urlData) => async (dispatch) => {
+export const getSearchAdnFilterProducts = (urlData) => async (dispatch, getState) => {
   try {
-    console.log('TEST FILTERS');
-    let { search, category, price_min, price_max, sort_by, order } = urlData;
-    search
+    let { search, category, price_min, price_max, sort_by, order, aplicar } = urlData;
+    typeof search === 'string'
     ?search = search.replace(/\s/g, "%20")
     :search = '';
+    
+    console.log('TEST FILTERS', search);
 
-    const getProducts = await axios.get(`/filter-sorts/selection?search=${search}&category=${category}&price_min=${price_min}&price_max=${price_max}&sort_by=${sort_by}&order=${order}`);
-    console.log('PRODUCTS', getProducts.data);
-    dispatch({
-      type: SEARCH_FILTER_PRODUCTS,
-      payload: getProducts.data,
-    });
+    
+    
+    
+    if(aplicar === true){
+      const state = getState();
+      let {search, category, price_min, price_max, sort_by, order} = state.filters;
+      typeof search === 'string'
+      ?search = search.replace(/\s/g, "%20")
+      :search = ''; 
+      console.log(state.filters);
+
+      const getProducts = await axios.get(`/filter-sorts/selection?search=${search}&category=${category || ''}&price_min=${price_min || ''}&price_max=${price_max || ''}&sort_by=${sort_by || ''}&order=${order || ''}`);
+
+       dispatch({
+        type: SEARCH_FILTER_PRODUCTS,
+        payload: getProducts.data,
+      });   
+      aplicar = false;
+    }else{
+      dispatch({
+        type: LOAD_DATA,
+        payload: urlData,
+      }); 
+
+    } 
+    
   } catch (error) {
     console.log('Error al filtrar los productos: ' + error);
 
     dispatch({
       type: SEARCH_FILTER_PRODUCTS,
-      payload: [null,'No hay resultados para la búsqueda'],
+      payload: [],
     });
   }
 };
 
+
+export const setLoading = () => ({
+  type: "SET_LOADING",
+});
+
+export const cleanState = () => ({
+  type: "CLEAN_STATE",
+})
 

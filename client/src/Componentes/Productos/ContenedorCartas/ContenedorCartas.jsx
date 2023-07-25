@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cartas from "../Cartas/Cartas";
-import { getAllProductos } from "../../../Redux/Actions/action";
-import s from "./ContenedorCartas.module.css"
+import { getAllProductos, setLoading } from "../../../Redux/Actions/action";
+import './ContenedorCartas.css'
 import { useParams } from "react-router-dom";
 import PaginationButtons from "../../Paginado/PaginationButtons";
 
@@ -11,14 +11,17 @@ import PaginationButtons from "../../Paginado/PaginationButtons";
 function ContenedorCartas() {
   const allProducts = useSelector((state) => state.productos);
   const searchFiltersProd = useSelector((state) => state.searchFilterResults);
+  const loading = useSelector((state) => state.loading);
+  const searched = useSelector((state) => state.searched);
   
   let losProductos = allProducts;
-  if(searchFiltersProd) losProductos = searchFiltersProd;
+  if(searched === true && loading === false) losProductos = searchFiltersProd;
 
 
 
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(setLoading());
     dispatch(getAllProductos());
   }, []);
 
@@ -27,41 +30,42 @@ function ContenedorCartas() {
   const { page } = useParams();
   const pageNumber = page ? parseInt(page) : 1;
   const [currentPage, setCurrentPage] = useState(pageNumber);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
   const totalPages = Math.ceil(losProductos.length / itemsPerPage);
 
-  const visiblePeople = losProductos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
-
+  console.log(losProductos)
+  const visiblePeople = losProductos ? losProductos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) : null;
 
 
   return (
-    <div>
-
-    {losProductos.length > 0 ? (
-        <div className={s.cardscontainer}>
-
-          {visiblePeople.map((product, index) => {
-            return (
+    <div className="fondo">
+      <div>
+    {loading ? (
+      <h1>Cargando...</h1>
+    ) : (
+      <div>
+        {searched && losProductos.length === 0 ? (
+          <h2>No se encontraron resultados...</h2>
+        ) : (
+          <div>
+            {visiblePeople.map((product, index) => (
               <Link key={product.id} to={`/detail/${product.id}`}>
                 <Cartas key={index} item={product} />
               </Link>
-            );
-          })}
-          
-        </div>
-      ) : (
-        <h2>No hay resultados para la búsqueda</h2>
-      )}
-
-      <PaginationButtons
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-      /> 
-
+            ))}
+          </div>
+        )}
+        <PaginationButtons
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
+    )}
+  </div>
     </div>
   );
+  
   
 }
 
