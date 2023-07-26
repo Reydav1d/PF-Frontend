@@ -8,7 +8,7 @@ import axios from "axios";
 
 import { BrowserRouter } from "react-router-dom";
 
-axios.defaults.baseURL = "http://localhost:3001"
+axios.defaults.baseURL = " https://deploy-backpf.onrender.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
