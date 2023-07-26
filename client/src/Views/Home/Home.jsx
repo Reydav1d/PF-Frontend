@@ -9,7 +9,7 @@ function Home() {
   return (
     <div>
       <div className={s.fondo}>
-        <Filtros />
+        <Filtros  />
         <ContenedorCartas />
       </div>
     </div>
