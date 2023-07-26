@@ -8,7 +8,7 @@ function Cartas({ item }) {
     minimumFractionDigits: 0
   })
   return (
-    <div class="mt-4 h-80 w-60 border border-blue-500 " >
+    <div class="mt-4 h-80 w-60 border-2 border-purple-600 " >
       <div class="h-48 w-62 flex items-center justify-center">
         <img src={item.image} alt="" class="h-full object-cover max-w-[115%] transition duration-500 group-hover:scale-105 sm:h-[56%]" />
       </div>
