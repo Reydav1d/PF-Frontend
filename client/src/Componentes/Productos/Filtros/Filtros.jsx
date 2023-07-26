@@ -124,10 +124,10 @@ function Filtros() {
   </div>
 
   <div class="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
-    <button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative" onClick={handlerClean}>
+    <button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-teal-400 text-white font-bold" onClick={handlerClean}>
       Clean
     </button>
-    <button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative" onClick={handleAplicarClick}>
+    <button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-blue-400 text-white font-bold" onClick={handleAplicarClick}>
       Aplicar
     </button>
   </div>
