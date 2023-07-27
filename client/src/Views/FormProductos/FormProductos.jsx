@@ -112,20 +112,459 @@
 // }
 // export default ProductForm;
 
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { getCategories, addProduct } from '../../Redux/Actions/action';
+// import { Validate } from './Validation'
+// import Swal from 'sweetalert2';
+// import { useNavigate } from 'react-router-dom';
+// import UploadWidget from '../../Componentes/CrearProductos/uploadWidget';
+
+// const url = 'https://api.cloudinary.com/v1_1/dhucdz03p/image/upload/';
+// const UPLOAD_PRESET = 'products';
+
+// const ProductForm = () => {
+//     const dispatch = useDispatch();
+//     const categories = useSelector((state) => state.categories);
+//     const navigate = useNavigate();
+//     const [formData, setFormData] = useState({
+//         title: '',
+//         image: '',
+//         price: 0,
+//         stock: 0,
+//         sold: 0,
+//         description: '',
+//         category: '',
+//     });
+
+//     const [errors, setErrors] = useState({})
+
+//     useEffect(() => {
+//         dispatch(getCategories());
+//     }, [dispatch]);
+
+//     const handleInputChange = (e) => {
+//         const { name, value } = e.target;
+//         setFormData({
+//             ...formData,
+//             [name]: value,
+//         });
+//     };
+//     const handleImageUpload = async (e) => {
+//         const file = e.target.files[0];
+
+//         const formData = new FormData();
+//         formData.append('file', file);
+//         formData.append('upload_preset', UPLOAD_PRESET);
+//         try {
+//             const response = await axios.post(url, formData, {
+//                 headers: {
+//                     'Content-Type': 'multipart/form-data'
+//                 }
+//             })
+//             setFormData({
+//                 ...formData,
+//                 image: response.data.secure_url
+//             })
+//             console.log('imagen subida:', response.data.secure_url);
+//         } catch (error) {
+//             console.error('Error al subir la imagen:', error)
+//         }
+//     }
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         const validationErrors = Validate(formData);
+//         setErrors(validationErrors)
+
+//         if (Object.keys(validationErrors).length > 0) {
+//             return;
+//         }
+//         try {
+//             const response = await axios.post('/products', formData);
+//             console.log('Producto creado', response.data);
+//             // setCreatedProduct(response.data);
+//             dispatch(addProduct(response.data));
+//             Swal.fire({
+//                 title: `Producto creado correctamente ${response.data.title}`,
+//                 icon: 'success',
+//                 confirmButtonText: 'Ok',
+//             }).then(() => {
+//                 navigate(`/Productos/page/1`);
+//             });
+
+//             console.log(formData);
+//         } catch (error) {
+//             console.error('Error al crear producto', error);
+//             Swal.fire({
+//                 title: 'Error',
+//                 text: 'Ocurrió un erorr al crear el producto. Intentalo de nuevo',
+//                 icon: 'error',
+//                 confirmButtonText: 'Ok',
+//             })
+//         }
+//     };
+
+//     return (
+//         <div className="w-full max-w-md mx-auto p-4 border rounded-lg shadow-lg">
+//             <form onSubmit={handleSubmit}>
+//                 <div className="mb-4">
+//                     <label htmlFor="title" className="block font-semibold mb-1 text-gray-700">
+//                         Nombre del producto:
+//                     </label>
+//                     <input
+//                         type="text"
+//                         id="title"
+//                         name="title"
+//                         value={formData.title}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.title && <div className="text-red-500">{errors.title}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="image" className="block font-semibold mb-1 text-gray-700">
+//                         Imagen:
+//                     </label>
+//                     {/* <input
+//                         type="file"
+//                         id="image"
+//                         name="image"
+//                         onChange={handleImageUpload}
+//                         className="w-full p-2 border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     /> */}
+//                     <UploadWidget />
+//                     {errors.image && <div className="text-red-500">{errors.image}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="price" className="block font-semibold mb-1 text-gray-700">
+//                         Precio:
+//                     </label>
+//                     <input
+//                         type="number"
+//                         id="price"
+//                         name="price"
+//                         value={formData.price}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.price && <div className="text-red-500">{errors.price}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="stock" className="block font-semibold mb-1 text-gray-700">
+//                         Unidades disponibles:
+//                     </label>
+//                     <input
+//                         type="number"
+//                         id="stock"
+//                         name="stock"
+//                         value={formData.stock}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.stock && <div className="text-red-500">{errors.stock}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="sold" className="block font-semibold mb-1 text-gray-700">
+//                         Unidades vendidas:
+//                     </label>
+//                     <input
+//                         type="number"
+//                         id="sold"
+//                         name="sold"
+//                         value={formData.sold}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.sold && <div className="text-red-500">{errors.sold}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="category" className="block font-semibold mb-1 text-gray-700">
+//                         Categoría:
+//                     </label>
+//                     <select
+//                         id="category"
+//                         name="category"
+//                         value={formData.category}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     >
+//                         <option value="">Seleccionar categoría</option>
+//                         {categories.map((category) => (
+//                             <option key={category.id} value={category.name}>
+//                                 {category.name}
+//                             </option>
+//                         ))}
+//                     </select>
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="description" className="block font-semibold mb-1 text-gray-700">
+//                         Descripción del producto:
+//                     </label>
+//                     <textarea
+//                         id="description"
+//                         name="description"
+//                         value={formData.description}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.description && <div className="text-red-500">{errors.description}</div>}
+//                 </div>
+
+//                 <button
+//                     type="submit"
+//                     className="mt-4 bg-violet-800
+//                     text-white py-2 px-4 rounded
+//                     hover:bg-violet-900 focus:outline-none focus:ring-2
+//                     focus:ring-blue-600"
+//                 // disabled={isSubmitting}
+//                 >
+//                     Guardar Producto
+//                 </button>
+//             </form>
+//         </div>
+//     );
+// };
+// export default ProductForm;
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { getCategories, addProduct } from '../../Redux/Actions/action';
+// import { Validate } from './Validation'
+// import UploadWidget from '../../Componentes/CrearProductos/uploadWidget';
+// // import { useNavigate } from 'react-router-dom';
+
+// const ProductForm = () => {
+//     const dispatch = useDispatch();
+//     const categories = useSelector((state) => state.categories);
+//     // const [createdProduct, setCreatedProduct] = useState(null);
+//     // const navigate = useNavigate();
+
+//     const [succesMessage, setSuccesMessage] = useState('');
+//     const [formData, setFormData] = useState({
+//         title: '',
+//         image: '',
+//         price: 0,
+//         stock: 0,
+//         sold: 0,
+//         description: '',
+//         category: '',
+//     });
+
+//     const [errors, setErrors] = useState({})
+
+//     useEffect(() => {
+//         dispatch(getCategories());
+//     }, [dispatch]);
+
+//     const [imageUrl, setImageUrl] = useState('');
+
+//     const handleInputChange = (e) => {
+//         const { name, value } = e.target;
+//         setFormData({
+//             ...formData,
+//             [name]: value,
+//         });
+//     };
+
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         const validationErrors = Validate(formData);
+//         setErrors(validationErrors)
+
+//         if (Object.keys(validationErrors).length > 0) {
+//             return;
+//         }
+
+//         const formDataWithImage = {
+//             ...formData,
+//             image: imageUrl,
+//         }
+
+//         try {
+//             const response = await axios.post('/products', formData);
+//             console.log('Producto creado', response.data);
+//             // setCreatedProduct(response.data);
+//             setSuccesMessage('Producto creado correctamente');
+//             dispatch(addProduct(response.data))
+//             setFormData({
+//                 title: '',
+//                 image: '',
+//                 price: '',
+//                 sold: 0,
+//                 description: '',
+//                 category: '',
+//             });
+//             setImageUrl('');
+
+//             //Configuracion para redireccion
+//             // setTimeout(() => {
+//             //     if (createdProduct) {
+//             //         navigate.push(`/detail/${createdProduct.id}`)
+//             //     }
+//             // }, 3000)
+
+//             console.log(formDataWithImage);
+//         } catch (error) {
+//             console.error('Error al crear producto', error);
+//         }
+//     };
+
+//     return (
+//         <div className="w-full max-w-md mx-auto p-4 border rounded-lg shadow-lg">
+//             <form onSubmit={handleSubmit}>
+//                 <div className="mb-4">
+//                     <label htmlFor="title" className="block font-semibold mb-1 text-gray-700">
+//                         Nombre del producto:
+//                     </label>
+//                     <input
+//                         type="text"
+//                         id="title"
+//                         name="title"
+//                         value={formData.title}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.title && <div className="text-red-500">{errors.title}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="image" className="block font-semibold mb-1 text-gray-700">
+//                         Imagen:
+//                     </label>
+//                     {/* <input
+//                         type="text"
+//                         id="image"
+//                         name="image"
+//                         value={formData.image}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     /> */}
+//                     <div>
+//                         <UploadWidget setImageUrl={setImageUrl} />
+//                     </div>
+//                     {/* {errors.image && <div className="text-red-500">{errors.image}</div>} */}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="price" className="block font-semibold mb-1 text-gray-700">
+//                         Precio:
+//                     </label>
+//                     <input
+//                         type="number"
+//                         id="price"
+//                         name="price"
+//                         value={formData.price}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.price && <div className="text-red-500">{errors.price}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="stock" className="block font-semibold mb-1 text-gray-700">
+//                         Unidades disponibles:
+//                     </label>
+//                     <input
+//                         type="number"
+//                         id="stock"
+//                         name="stock"
+//                         value={formData.stock}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.stock && <div className="text-red-500">{errors.stock}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="sold" className="block font-semibold mb-1 text-gray-700">
+//                         Unidades vendidas:
+//                     </label>
+//                     <input
+//                         type="number"
+//                         id="sold"
+//                         name="sold"
+//                         value={formData.sold}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.sold && <div className="text-red-500">{errors.sold}</div>}
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="category" className="block font-semibold mb-1 text-gray-700">
+//                         Categoría:
+//                     </label>
+//                     <select
+//                         id="category"
+//                         name="category"
+//                         value={formData.category}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     >
+//                         <option value="">Seleccionar categoría</option>
+//                         {categories.map((category) => (
+//                             <option key={category.id} value={category.name}>
+//                                 {category.name}
+//                             </option>
+//                         ))}
+//                     </select>
+//                 </div>
+
+//                 <div className="mb-4">
+//                     <label htmlFor="description" className="block font-semibold mb-1 text-gray-700">
+//                         Descripción del producto:
+//                     </label>
+//                     <textarea
+//                         id="description"
+//                         name="description"
+//                         value={formData.description}
+//                         onChange={handleInputChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+//                     />
+//                     {errors.description && <div className="text-red-500">{errors.description}</div>}
+//                 </div>
+
+//                 <button
+//                     type="submit"
+//                     className="mt-4 bg-violet-800
+//                     text-white py-2 px-4 rounded
+//                     hover:bg-violet-900 focus:outline-none focus:ring-2
+//                     focus:ring-blue-600"
+//                 // disabled={isSubmitting}
+//                 >
+//                     Guardar Producto
+//                 </button>
+
+//                 {succesMessage && (
+//                     <div className='mt-4 p-2 text-green-600 bg-green-200 rounded'>
+//                         {succesMessage}
+//                     </div>
+//                 )}
+//             </form>
+//         </div>
+//     );
+// };
+
+// export default ProductForm;
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategories, addProduct } from '../../Redux/Actions/action';
-import { Validate } from './Validation'
-// import { useNavigate } from 'react-router-dom';
+import UploadWidget from '../../Componentes/CrearProductos/uploadWidget';
 
 const ProductForm = () => {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories);
-    // const [createdProduct, setCreatedProduct] = useState(null);
-    // const navigate = useNavigate();
 
-    const [succesMessage, setSuccesMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [formData, setFormData] = useState({
         title: '',
         image: '',
@@ -136,46 +575,43 @@ const ProductForm = () => {
         category: '',
     });
 
-    const [errors, setErrors] = useState({})
-
     useEffect(() => {
         dispatch(getCategories());
     }, [dispatch]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData((prevFormData) => ({
+            ...prevFormData,
             [name]: value,
-        });
+        }));
+    };
+
+    const handleImageUpload = (url) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            image: url,
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationErrors = Validate(formData);
-        setErrors(validationErrors)
-
-        if(Object.keys(validationErrors).length > 0){
-            return;
-        }
-
         try {
-            const selectedCategoryId=categories.find((category) => category.name === formData.category)?.id;
-            const dataToSend = {...formData, categoryId: selectedCategoryId};
+            const selectedCategoryId = categories.find((category) => category.name === formData.category)?.id;
+            const dataToSend = { ...formData, categoryId: selectedCategoryId };
             const response = await axios.post('/products', dataToSend);
             console.log('Producto creado', response.data);
-           // setCreatedProduct(response.data);
-            setSuccesMessage('Producto creado correctamente');
-            dispatch(addProduct(response.data))
-
-            //Configuracion para redireccion
-            // setTimeout(() => {
-            //     if (createdProduct) {
-            //         navigate.push(`/detail/${createdProduct.id}`)
-            //     }
-            // }, 3000)
-
-            console.log(formData);
+            setSuccessMessage('Producto creado correctamente');
+            dispatch(addProduct(response.data));
+            setFormData({
+                title: '',
+                image: '',
+                price: 0,
+                stock: 0,
+                sold: 0,
+                description: '',
+                category: '',
+            });
         } catch (error) {
             console.error('Error al crear producto', error);
         }
@@ -196,22 +632,16 @@ const ProductForm = () => {
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                     />
-                    {errors.title && <div className="text-red-500">{errors.title}</div>}
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="image" className="block font-semibold mb-1 text-gray-700">
-                        URL de la imagen:
+                        Imagen:
                     </label>
-                    <input
-                        type="text"
-                        id="image"
-                        name="image"
-                        value={formData.image}
-                        onChange={handleInputChange}
-                        className="w-full p-2 border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
-                    />
-                    {errors.image && <div className="text-red-500">{errors.image}</div>}
+                    <div>
+                        {formData.image && <img src={formData.image} alt="Preview" className="mb-2 max-h-40" />}
+                        <UploadWidget setImageUrl={handleImageUpload} />
+                    </div>
                 </div>
 
                 <div className="mb-4">
@@ -226,7 +656,6 @@ const ProductForm = () => {
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                     />
-                    {errors.price && <div className="text-red-500">{errors.price}</div>}
                 </div>
 
                 <div className="mb-4">
@@ -241,7 +670,6 @@ const ProductForm = () => {
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                     />
-                    {errors.stock && <div className="text-red-500">{errors.stock}</div>}
                 </div>
 
                 <div className="mb-4">
@@ -256,7 +684,6 @@ const ProductForm = () => {
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                     />
-                    {errors.sold && <div className="text-red-500">{errors.sold}</div>}
                 </div>
 
                 <div className="mb-4">
@@ -272,7 +699,7 @@ const ProductForm = () => {
                     >
                         <option value="">Seleccionar categoría</option>
                         {categories.map((category) => (
-                            <option key={category.id} value={category.name}>
+                            <option key={category.id} value={category.id}>
                                 {category.name}
                             </option>
                         ))}
@@ -290,24 +717,17 @@ const ProductForm = () => {
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                     />
-                    {errors.description && <div className="text-red-500">{errors.description}</div>}
                 </div>
 
                 <button
                     type="submit"
-                    className="mt-4 bg-violet-800
-                    text-white py-2 px-4 rounded
-                    hover:bg-violet-900 focus:outline-none focus:ring-2
-                    focus:ring-blue-600"
-                // disabled={isSubmitting}
+                    className="mt-4 bg-violet-800 text-white py-2 px-4 rounded hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                 >
                     Guardar Producto
                 </button>
 
-                {succesMessage && (
-                    <div className='mt-4 p-2 text-green-600 bg-green-200 rounded'>
-                        {succesMessage}
-                    </div>
+                {successMessage && (
+                    <div className="mt-4 p-2 text-green-600 bg-green-200 rounded">{successMessage}</div>
                 )}
             </form>
         </div>
