@@ -6,31 +6,23 @@ import {
   GET_PICTURE,
   GET_CATEGORIES,
   GET_CATEGORY,
-  ADD_PRODUCT,
+  TODOS_FILTROS,
+  SEARCH_PRODUCTS,
   SEARCH_FILTER_PRODUCTS,
-  SET_LOADING,
-  CLEAN_STATE,
-  LOAD_DATA,
-} from "../Actions/constantes";
+} from "./Actions/constantes";
 
 const initialState = {
   productos: [],
-  searchFilterResults: [],
-  loading: false,
-  searched: false,
   product: [],
   description: [],
   picture: [],
   categories: [],
   category: [],
-  filters: {
-    search: "",
-    category: "",
-    price_min: "",
-    price_max: "",
-    sort_by: "",
-    order: "",
-  },
+  productosFiltrados: [],
+  searchResults: [],
+  productosFiltrados: [], //Eliminar!
+  searchResults: [], //eliminar si llega a no es necesaria
+  searchFilterResults: ["1"],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -39,7 +31,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         productos: payload,
-        loading: false,
       };
 
     case GET_PRODUCT:
@@ -72,40 +63,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
+
+    case TODOS_FILTROS:
+      return {
+        ...state,
+        productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
+      };
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        productosFiltrados: payload,
+      };
     case SEARCH_FILTER_PRODUCTS:
       return {
         ...state,
         searchFilterResults: payload,
-        loading: false,
-        searched: true,
-      };
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true,
-        searched: false,
-      };
-    case CLEAN_STATE:
-      for (const key in state.filters) {
-        state.filters[key] = "";
-      }
-
-      return {
-        ...state,
-      };
-
-    case ADD_PRODUCT:
-      return {
-        ...state,
-        products: [...state.productos, payload],
-      };
-    case LOAD_DATA:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          ...payload,
-        },
       };
     default:
       return { ...state };
