@@ -32,7 +32,8 @@
 
 //     const handleSubmit = async (values, {setSubmitting}) => {
 //         try {
-//             const dataToSend = { ...values, category: selectedCategory };
+//       selectedCategoryId= categories.find((category) => category.name === selectedCategory)?.id;
+//             const dataToSend = { ...values, category: selectedCategoryId};
 //             const response = await axios.post('/products', dataToSend);
 //             console.log('Producto creado', response.data);
 //             console.log(dataToSend)

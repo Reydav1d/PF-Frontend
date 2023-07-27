@@ -11,5 +11,4 @@ export const SEARCH_FILTER_PRODUCTS = "SEARCH_FILTER_PRODUCTS";
 export const SET_LOADING = "SET_LOADING";
 export const CLEAN_STATE = "CLEAN_STATE";
 export const LOAD_DATA = "LOAD_DATA";
-
-  
+export const CREATE_USER = "CREATE_USER";

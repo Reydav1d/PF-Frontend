@@ -9,7 +9,7 @@ import SearchBar from "../../Componentes/SearchBar/SearchBar";
 function NavBar() {
   return (
     <div className={s.fondo}>
-    <SearchBar />
+      <SearchBar />
       <div className={s.caja1}>
         <div className={s.search}>
           <div className={s.logo}>
@@ -54,6 +54,12 @@ function NavBar() {
               style={{ textDecoration: "none", color: "white" }}
             >
               <p>nosotros</p>
+            </Link>
+            <Link
+              to={"/formUsuario"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p className={s.registrar}>Registrarse</p>
             </Link>
           </div>
           <div className={s.cuenta}>
