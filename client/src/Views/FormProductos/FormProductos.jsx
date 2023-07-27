@@ -553,7 +553,7 @@
 
 // export default ProductForm;
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategories, addProduct } from '../../Redux/Actions/action';
@@ -596,7 +596,9 @@ const ProductForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/products', formData);
+            const selectedCategoryId = categories.find((category) => category.name === formData.category)?.id;
+            const dataToSend = { ...formData, categoryId: selectedCategoryId };
+            const response = await axios.post('/products', dataToSend);
             console.log('Producto creado', response.data);
             setSuccessMessage('Producto creado correctamente');
             dispatch(addProduct(response.data));
