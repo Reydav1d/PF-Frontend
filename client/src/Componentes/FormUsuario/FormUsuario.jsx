@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//import { validarUser } from "../../Redux/Actions/action";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -7,11 +8,8 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Aquí puedes realizar la lógica de envío al backend con los datos ingresados
     console.log("Email:", email);
     console.log("Password:", password);
-
-    // También puedes realizar las validaciones aquí antes de enviar los datos al backend
   };
 
   return (
