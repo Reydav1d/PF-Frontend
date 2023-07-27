@@ -100,7 +100,6 @@ export const getCategoryById = (id) => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories/${id}`);
     const category = apiData.data;
-    console.log(category, "categoria");
     dispatch({
       type: GET_CATEGORY,
       payload: category,
