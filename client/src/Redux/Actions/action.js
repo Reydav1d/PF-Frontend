@@ -43,7 +43,9 @@ export const clearDetail = () => {
   };
 };
 
-export const createUser = (input) => {
+//#######  LOGIN USUARIO #######
+
+export const loginUser = (input) => {
   return async (dispatch) => {
     try {
       const response = await axios.post("/customer", input);
@@ -57,6 +59,8 @@ export const createUser = (input) => {
     }
   };
 };
+
+//#######  LOGIN USUARIO #######
 
 export const getDescription = (id) => {
   return async function (dispatch) {

@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-//import { validarUser } from "../../Redux/Actions/action";
+import { validarUser } from "../../Redux/Actions/action";
+import { useDispatch } from "react-redux";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("Email:", email);
-    console.log("Password:", password);
+    dispatch(validarUser(input));
   };
 
   return (
     <div className="h-700 flex items-center justify-center h-screen">
       <div className="w-1/4 bg-gray-100 border border-gray-300 rounded-lg p-8 flex items-center justify-center">
-        <form className="w-full">
+        <form className="w-full" action="" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="email"
