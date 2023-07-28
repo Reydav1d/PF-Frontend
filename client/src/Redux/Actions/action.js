@@ -17,7 +17,7 @@ export const getAllProductos = () => {
   return async function (dispatch) {
     const apiData = await axios.get(`/products`);
     const product = apiData.data;
-    //console.log(product);
+    console.log(product);
     dispatch({
       type: GET_ALL_PRODUCTOS,
       payload: product,
@@ -45,10 +45,11 @@ export const clearDetail = () => {
 
 //#######  LOGIN USUARIO #######
 
-export const loginUser = (input) => {
+export const validarUser = (input) => {
+  console.log(input);
   return async (dispatch) => {
     try {
-      const response = await axios.post("/customer", input);
+      const response = await axios.post("/login", input);
       const result = response.data;
       console.log(result);
       dispatch({

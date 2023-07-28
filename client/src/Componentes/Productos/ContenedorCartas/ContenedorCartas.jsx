@@ -32,7 +32,8 @@ function ContenedorCartas() {
     setCurrentPage(pageNumber);
   }, [pageNumber]);
 
-  console.log(losProductos);
+  //console.log(losProductos);
+
   const visiblePeople = losProductos
     ? losProductos.slice(
         (currentPage - 1) * itemsPerPage,

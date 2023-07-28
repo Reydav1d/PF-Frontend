@@ -4,9 +4,25 @@ import { useDispatch } from "react-redux";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
 
+  function handleEmail(e) {
+    setInput({
+      ...input,
+      email: e.target.value,
+    });
+  }
+  function handlePassword(e) {
+    setInput({
+      ...input,
+      password: e.target.value,
+    });
+  }
+
+  //console.log(input);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(validarUser(input));
@@ -27,8 +43,8 @@ const RegisterForm = () => {
               type="email"
               id="email"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={input.email}
+              onChange={handleEmail}
               required
             />
           </div>
@@ -44,8 +60,8 @@ const RegisterForm = () => {
               type="password"
               id="password"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={input.password}
+              onChange={handlePassword}
               required
             />
           </div>
