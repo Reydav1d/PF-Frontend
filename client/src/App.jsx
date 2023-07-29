@@ -10,6 +10,7 @@ import Nosotros from "./Views/Nosotros/Nosotros.jsx";
 import Favoritos from "./Views/Favoritos/Favoritos.jsx";
 import ProductForm from "./Views/FormProductos/FormProductos.jsx";
 import FormUsuario from "./Componentes/FormUsuario/FormUsuario";
+import Carrito from "./Views/Carrito/Carrito"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/nuevoProd" element={<ProductForm />} />
+        <Route path="/carrito" element={<Carrito/>} />
       </Routes>
       <Footer />
     </div>

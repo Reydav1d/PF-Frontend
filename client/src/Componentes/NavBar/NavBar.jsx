@@ -19,7 +19,9 @@ function NavBar() {
           </div>
           <div className={s.buscador}>buscador</div>
           <div className={s.carrito}>
-            <img src={Carrito} alt="" style={{ width: "60px" }} />
+            <Link to={"/carrito"}>
+              <img src={Carrito} alt="" style={{ width: "60px" }} />
+            </Link>
           </div>
         </div>
       </div>
