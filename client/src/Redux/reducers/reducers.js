@@ -11,6 +11,9 @@ import {
   SET_LOADING,
   CLEAN_STATE,
   LOAD_DATA,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  REFRESH_CART,
 } from "../Actions/constantes";
 
 const initialState = {
@@ -31,6 +34,7 @@ const initialState = {
     sort_by: "",
     order: "",
   },
+  cart: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -107,6 +111,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...payload,
         },
       };
+      case ADD_TO_CART:
+        return {
+          ...state,
+          cart: [...state.cart, payload]
+        }
+      case REMOVE_FROM_CART:
+        const updatedItems = state.cart.filter((item) => item.id !== payload)
+        return {
+          ...state,
+          cart: updatedItems,
+        };
+      case REFRESH_CART:
+        return {
+          ...state,
+          cart: payload,
+        }
     default:
       return { ...state };
   }

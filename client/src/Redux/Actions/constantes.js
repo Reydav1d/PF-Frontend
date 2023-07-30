@@ -12,3 +12,6 @@ export const SET_LOADING = "SET_LOADING";
 export const CLEAN_STATE = "CLEAN_STATE";
 export const LOAD_DATA = "LOAD_DATA";
 export const CREATE_USER = "CREATE_USER";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const REFRESH_CART = "REFRESH_CART";

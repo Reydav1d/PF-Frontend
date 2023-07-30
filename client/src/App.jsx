@@ -14,6 +14,7 @@ import PayMercadoPago from "./Componentes/Payment/integrerMP";
 import Confirmacion from "./Componentes/Payment/confirmacion"; // Página de confirmación
 
 
+import Carrito from "./Views/Carrito/Carrito"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/nuevoProd" element={<ProductForm />} />
         <Route path="/pay" element={<PayMercadoPago />} />
         <Route path="/confirmacion/:preferenceId" element={<Confirmacion />} />
+        <Route path="/carrito" element={<Carrito/>} />
       </Routes>
       <Footer />
     </div>
