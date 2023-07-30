@@ -10,6 +10,10 @@ import Nosotros from "./Views/Nosotros/Nosotros.jsx";
 import Favoritos from "./Views/Favoritos/Favoritos.jsx";
 import ProductForm from "./Views/FormProductos/FormProductos.jsx";
 import FormUsuario from "./Componentes/FormUsuario/FormUsuario";
+import PayMercadoPago from "./Componentes/Payment/integrerMP";
+import Confirmacion from "./Componentes/Payment/confirmacion"; // Página de confirmación
+
+
 
 function App() {
   return (
@@ -24,6 +28,8 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/nuevoProd" element={<ProductForm />} />
+        <Route path="/pay" element={<PayMercadoPago />} />
+        <Route path="/confirmacion/:preferenceId" element={<Confirmacion />} />
       </Routes>
       <Footer />
     </div>
