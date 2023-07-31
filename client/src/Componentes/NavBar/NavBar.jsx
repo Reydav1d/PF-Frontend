@@ -72,13 +72,7 @@ function NavBar() {
             >
               <p>vender</p>
             </Link>
-            <Link
-              to={"/pay"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <p>mercadopago</p>
-            </Link>
-          </div>
+              </div>
         </div>
       </div>
     </div>
