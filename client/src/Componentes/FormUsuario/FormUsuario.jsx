@@ -31,44 +31,44 @@ const RegisterForm = () => {
 
   // #############  AUTH GOOGLE #################
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  function handleEmail(e) {
-    setInput({
-      ...input,
-      email: e.target.value,
-    });
-  }
-  function handlePassword(e) {
-    setInput({
-      ...input,
-      password: e.target.value,
-    });
-  }
+  // const [input, setInput] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // function handleEmail(e) {
+  //   setInput({
+  //     ...input,
+  //     email: e.target.value,
+  //   });
+  // }
+  // function handlePassword(e) {
+  //   setInput({
+  //     ...input,
+  //     password: e.target.value,
+  //   });
+  // }
 
-  //console.log(input);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      dispatch(validarUser(input));
-      // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Error al Ingresar", error);
-    }
-  };
+  // //console.log(input);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(validarUser(input));
+  //     // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
+  //     window.location.href = "/";
+  //   } catch (error) {
+  //     console.error("Error al Ingresar", error);
+  //   }
+  // };
 
   return (
     <div className="h-700 flex items-center justify-center h-screen">
       <div className="w-1/4 bg-gray-100 border border-gray-300 rounded-lg p-8 flex items-center justify-center">
-        <form className="w-full" action="" onSubmit={handleSubmit}>
-          <h1 className="pl-20 pb-10">iniciar sesión con Google 🚀</h1>
-          {/* <div className="mb-4">
+        {/* <form className="w-full" action="" onSubmit={handleSubmit}>
+          <h1>iniciar sesión con </h1>
+          <div className="mb-4">
             <label
               htmlFor="email"
               className="block text-gray-700 font-semibold mb-2"
@@ -84,6 +84,7 @@ const RegisterForm = () => {
               required
             />
           </div>
+
           <div className="mb-4">
             <label
               htmlFor="password"
@@ -100,20 +101,21 @@ const RegisterForm = () => {
               required
             />
           </div>
+
           <button
             type="submit"
             className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200"
           >
             Enviar
-          </button> */}
-          <button
-            onClick={signIn}
-            className="bg-cover bg-center text-white duration-200 ml-10 w-300 h-100"
-            style={{
-              backgroundImage: `url('https://i.blogs.es/6f44dd/google-2015-1/1366_2000.jpg')`,
-            }}
-          ></button>
-        </form>
+          </button>
+        </form> */}
+        <h1>iniciar sesión con </h1>
+        <button
+          onClick={signIn}
+          className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200 ml-10"
+        >
+          Google 🚀{" "}
+        </button>
       </div>
     </div>
   );
