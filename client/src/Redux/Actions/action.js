@@ -11,6 +11,9 @@ import {
   SEARCH_FILTER_PRODUCTS,
   LOAD_DATA,
   CREATE_USER,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  REFRESH_CART,
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -178,3 +181,22 @@ export const setLoading = () => ({
 export const cleanState = () => ({
   type: "CLEAN_STATE",
 });
+
+export const addToCart = (data) => ({
+  type: ADD_TO_CART,
+  payload: data,
+});
+
+export const removeFromCart = (itemId) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: itemId
+  }
+}
+
+export const refreshCart = (cart) => {
+  return {
+    type: REFRESH_CART,
+    payload: cart
+  }
+}
