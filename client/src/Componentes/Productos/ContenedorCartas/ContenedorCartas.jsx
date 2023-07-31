@@ -42,7 +42,7 @@ function ContenedorCartas() {
     : null;
 
   return (
-    <div class="lg:col-span-3">
+    <div className="lg:col-span-3">
       <div>
         {loading ? (
           <h1>Cargando...</h1>
@@ -52,7 +52,7 @@ function ContenedorCartas() {
               <h2>No se encontraron resultados...</h2>
             ) : (
               <div>
-                <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {visiblePeople.map((product, index) => (
                     <Link key={product.id} to={`/detail/${product.id}`}>
                       <Cartas key={index} item={product} />

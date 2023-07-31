@@ -13,7 +13,9 @@ import {
   LOAD_DATA,
   CREATE_USER,
   DATA_USUARIO,
-  LOGOUT_USER,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  REFRESH_CART,
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -148,7 +150,6 @@ export const getCategoryById = (id) => {
   return async function (dispatch) {
     const apiData = await axios.get(`/categories/${id}`);
     const category = apiData.data;
-    //console.log(category, "categoria");
     dispatch({
       type: GET_CATEGORY,
       payload: category,
@@ -227,3 +228,22 @@ export const setLoading = () => ({
 export const cleanState = () => ({
   type: "CLEAN_STATE",
 });
+
+export const addToCart = (data) => ({
+  type: ADD_TO_CART,
+  payload: data,
+});
+
+export const removeFromCart = (itemId) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: itemId,
+  };
+};
+
+export const refreshCart = (cart) => {
+  return {
+    type: REFRESH_CART,
+    payload: cart,
+  };
+};

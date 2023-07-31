@@ -26,7 +26,9 @@ function NavBar() {
           </div>
           <div className={s.buscador}>buscador</div>
           <div className={s.carrito}>
-            <img src={Carrito} alt="" style={{ width: "60px" }} />
+            <Link to={"/carrito"}>
+              <img src={Carrito} alt="" style={{ width: "60px" }} />
+            </Link>
           </div>
         </div>
       </div>
@@ -95,6 +97,19 @@ function NavBar() {
             ) : (
               <button onClick={handleLogout}>Cerrar Sesión</button>
             )}
+            <h4>mi cuenta</h4>
+            <Link
+              to={"/nuevoProd"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>vender</p>
+            </Link>
+            <Link
+              to={"/pay"}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <p>mercadopago</p>
+            </Link>
           </div>
         </div>
       </div>
