@@ -9,10 +9,12 @@ import {
   TODOS_FILTROS,
   SEARCH_PRODUCTS,
   SEARCH_FILTER_PRODUCTS,
+  DATA_USUARIO,
 } from "./Actions/constantes";
 
 const initialState = {
   productos: [],
+  datosDelUsuario: [],
   product: [],
   description: [],
   picture: [],
@@ -37,6 +39,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         product: payload,
+      };
+    case DATA_USUARIO:
+      return {
+        ...state,
+        datosDelUsuario: payload,
       };
     case CLEAR_DETAIL:
       return {

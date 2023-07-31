@@ -10,12 +10,15 @@ import Nosotros from "./Views/Nosotros/Nosotros.jsx";
 import Favoritos from "./Views/Favoritos/Favoritos.jsx";
 import ProductForm from "./Views/FormProductos/FormProductos.jsx";
 import FormUsuario from "./Componentes/FormUsuario/FormUsuario";
+import DashboardUsuario from "./Views/DashboardUsuario/DashUsuario";
+import Misdatos from "./Componentes/MisDatos/MisDatos";
+import Compras from "./Componentes/Compras/Compras";
 import PayMercadoPago from "./Componentes/Payment/integrerMP";
 // import Confirmacion from "./Componentes/Payment/confirmacion"; // Página de confirmación
 
-import Carrito from "./Views/Carrito/Carrito"
+import Carrito from "./Views/Carrito/Carrito";
 
-import PreOrden from "./Componentes/Payment/integrerMP"
+import PreOrden from "./Componentes/Payment/integrerMP";
 
 function App() {
   return (
@@ -24,6 +27,10 @@ function App() {
       <Routes>
         <Route path="/Productos/page/:page" element={<Home />} />
         <Route path="/formUsuario" element={<FormUsuario />} />
+        <Route path="/dashboardUsuario" element={<DashboardUsuario />}>
+          <Route path="compras" element={<Compras />} />
+          <Route path="misdatos" element={<Misdatos />} />
+        </Route>
         <Route path="/" element={<Landing />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favoritos" element={<Favoritos />} />
@@ -33,7 +40,7 @@ function App() {
         <Route path="/pay" element={<PayMercadoPago />} />
         {/* <Route path="/confirmacion/:preferenceId" element={<Confirmacion />} /> */}
         {/* <Route path="/ordencompra" element={<PreOrden/>} /> */}
-        <Route path="/carrito" element={<Carrito/>} />
+        <Route path="/carrito" element={<Carrito />} />
       </Routes>
       <Footer />
     </div>
