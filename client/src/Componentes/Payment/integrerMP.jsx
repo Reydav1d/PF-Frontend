@@ -9,7 +9,7 @@ import queryString from "query-string"; // Importa la librería queryString
 function PaymentButton({cartItems, selectedQuantities}) {
     const [preferenceId, setPreferenceId] = useState("")
     const [paidFor, setPaidFor] = useState(false); // Nuevo estado para verificar si se realizó el pago
-    initMercadoPago('TEST-07205817-cac3-46b7-a783-0ad47045be05')
+    initMercadoPago('TEST-15ab3fde-45a9-47cd-9c2e-0ff7a08fc472')
     const location = useLocation(); // Utiliza useLocation para obtener la URL actual
     const navigate = useNavigate();
   
@@ -34,7 +34,7 @@ function PaymentButton({cartItems, selectedQuantities}) {
           id: item.id,
           title: item.title,
           unit_price: item.price,
-          quantity: item.title.length,
+          quantity: 1
         }));
         
         const response = await axios.post("http://localhost:3001/payment", {
