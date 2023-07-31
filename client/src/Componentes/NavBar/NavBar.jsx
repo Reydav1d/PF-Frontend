@@ -98,12 +98,6 @@ function NavBar() {
               <button onClick={handleLogout}>Cerrar Sesión</button>
             )}
 
-            <Link
-              to={"/pay"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <p>mercadopago</p>
-            </Link>
           </div>
         </div>
       </div>
