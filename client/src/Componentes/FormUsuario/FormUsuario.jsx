@@ -1,14 +1,43 @@
 import React, { useState } from "react";
+import { useGoogleLogin } from "@react-oauth/google";
 import { validarUser } from "../../Redux/Actions/action";
 import { useDispatch } from "react-redux";
+//import { redireccion } from "../../config";
+import axios from "axios";
 
 const RegisterForm = () => {
+  // #############  AUTH GOOGLE #################
+
+  const handleGoogleResponse = async (googleData) => {
+    //console.log(googleData, "data de google en caso de exito");
+    const reponse = await axios.post(`/auth/google/login`, null, {
+      headers: {
+        Authorization: `Bearer ${googleData.access_token}`,
+      },
+    });
+    console.log(reponse.data.result);
+    localStorage.setItem("token", reponse.data.result);
+    window.location.href = "/";
+  };
+
+  const handleGoogleResponseError = (errorFromGoogle) => {
+    console.log(errorFromGoogle, "este es el de fallo de login autentication");
+  };
+
+  const signIn = useGoogleLogin({
+    onSuccess: handleGoogleResponse,
+    onError: handleGoogleResponseError,
+  });
+
+  // #############  AUTH GOOGLE #################
+
   const dispatch = useDispatch();
+
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   function handleEmail(e) {
     setInput({
       ...input,
@@ -25,14 +54,21 @@ const RegisterForm = () => {
   //console.log(input);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(validarUser(input));
+    try {
+      dispatch(validarUser(input));
+      // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error al Ingresar", error);
+    }
   };
 
   return (
     <div className="h-700 flex items-center justify-center h-screen">
       <div className="w-1/4 bg-gray-100 border border-gray-300 rounded-lg p-8 flex items-center justify-center">
         <form className="w-full" action="" onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <h1 className="pl-20 pb-10">iniciar sesión con Google 🚀</h1>
+          {/* <div className="mb-4">
             <label
               htmlFor="email"
               className="block text-gray-700 font-semibold mb-2"
@@ -48,7 +84,6 @@ const RegisterForm = () => {
               required
             />
           </div>
-
           <div className="mb-4">
             <label
               htmlFor="password"
@@ -65,13 +100,19 @@ const RegisterForm = () => {
               required
             />
           </div>
-
           <button
             type="submit"
             className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200"
           >
             Enviar
-          </button>
+          </button> */}
+          <button
+            onClick={signIn}
+            className="bg-cover bg-center text-white duration-200 ml-10 w-300 h-100"
+            style={{
+              backgroundImage: `url('https://i.blogs.es/6f44dd/google-2015-1/1366_2000.jpg')`,
+            }}
+          ></button>
         </form>
       </div>
     </div>

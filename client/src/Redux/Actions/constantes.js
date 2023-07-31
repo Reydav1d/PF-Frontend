@@ -12,3 +12,5 @@ export const SET_LOADING = "SET_LOADING";
 export const CLEAN_STATE = "CLEAN_STATE";
 export const LOAD_DATA = "LOAD_DATA";
 export const CREATE_USER = "CREATE_USER";
+export const DATA_USUARIO = "DATA_USUARIO";
+export const LOGOUT_USER = "LOGOUT_USER";

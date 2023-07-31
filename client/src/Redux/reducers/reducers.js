@@ -11,6 +11,7 @@ import {
   SET_LOADING,
   CLEAN_STATE,
   LOAD_DATA,
+  DATA_USUARIO,
 } from "../Actions/constantes";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   picture: [],
   categories: [],
   category: [],
+  datosDelUsuario: [],
   filters: {
     search: "",
     category: "",
@@ -46,6 +48,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         product: payload,
+      };
+    case DATA_USUARIO:
+      return {
+        ...state,
+        datosDelUsuario: payload,
+      };
+    case "LA_DATA_USUARIO":
+      return {
+        ...state,
+        datosDelUsuario: payload,
       };
     case CLEAR_DETAIL:
       return {
