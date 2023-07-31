@@ -7,6 +7,13 @@ import Carrito from "../../Img/carrito.png";
 import SearchBar from "../../Componentes/SearchBar/SearchBar";
 
 function NavBar() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
+  const elToken = localStorage.getItem("token");
+
   return (
     <div className={s.fondo}>
       <SearchBar />
@@ -57,22 +64,47 @@ function NavBar() {
             >
               <p>nosotros</p>
             </Link>
-            <Link
-              to={"/formUsuario"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <p className={s.registrar}>Registrarse</p>
-            </Link>
+            {elToken === null ? (
+              ""
+            ) : (
+              <Link
+                to={"/nuevoProd"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p className={s.registrar}>Vender</p>
+              </Link>
+            )}
           </div>
           <div className={s.cuenta}>
-            <h4>mi cuenta</h4>
+            {elToken === null ? (
+              ""
+            ) : (
+              <Link
+                to={"/dashboardUsuario"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Mi Cuenta
+              </Link>
+            )}
+
+            {elToken === null ? (
+              <Link
+                to={"/formUsuario"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p>Iniciar Sesión</p>
+              </Link>
+            ) : (
+              <button onClick={handleLogout}>Cerrar Sesión</button>
+            )}
+
             <Link
-              to={"/nuevoProd"}
+              to={"/pay"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>vender</p>
+              <p>mercadopago</p>
             </Link>
-              </div>
+          </div>
         </div>
       </div>
     </div>

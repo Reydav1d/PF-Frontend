@@ -11,6 +11,7 @@ import {
   SET_LOADING,
   CLEAN_STATE,
   LOAD_DATA,
+  DATA_USUARIO,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
@@ -26,6 +27,7 @@ const initialState = {
   picture: [],
   categories: [],
   category: [],
+  datosDelUsuario: [],
   filters: {
     search: "",
     category: "",
@@ -50,6 +52,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         product: payload,
+      };
+    case DATA_USUARIO:
+      return {
+        ...state,
+        datosDelUsuario: payload,
+      };
+    case "LA_DATA_USUARIO":
+      return {
+        ...state,
+        datosDelUsuario: payload,
       };
     case CLEAR_DETAIL:
       return {
@@ -111,22 +123,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...payload,
         },
       };
-      case ADD_TO_CART:
-        return {
-          ...state,
-          cart: [...state.cart, payload]
-        }
-      case REMOVE_FROM_CART:
-        const updatedItems = state.cart.filter((item) => item.id !== payload)
-        return {
-          ...state,
-          cart: updatedItems,
-        };
-      case REFRESH_CART:
-        return {
-          ...state,
-          cart: payload,
-        }
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cart: [...state.cart, payload],
+      };
+    case REMOVE_FROM_CART:
+      const updatedItems = state.cart.filter((item) => item.id !== payload);
+      return {
+        ...state,
+        cart: updatedItems,
+      };
+    case REFRESH_CART:
+      return {
+        ...state,
+        cart: payload,
+      };
     default:
       return { ...state };
   }
