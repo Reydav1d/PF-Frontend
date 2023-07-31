@@ -1,52 +1,46 @@
 import { useEffect, useState } from "react"
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
 import axios from 'axios';
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
+import queryString from "query-string"; // Importa la librería queryString
 
 
-function PaymentButton() {
+
+function PaymentButton({cartItems, selectedQuantities}) {
     const [preferenceId, setPreferenceId] = useState("")
     const [paidFor, setPaidFor] = useState(false); // Nuevo estado para verificar si se realizó el pago
     initMercadoPago('TEST-07205817-cac3-46b7-a783-0ad47045be05')
-
+    const location = useLocation(); // Utiliza useLocation para obtener la URL actual
     const navigate = useNavigate();
+  
+ // Obtiene el ID de la preferencia de pago desde la URL al cargar el componente
+ useEffect(() => {
+  // const { preferenceId } = queryString.parse(location.search);
+  //   setPreferenceId(preferenceId);
+    handleClick();
+  
+}, [location]);
 
-    useEffect(() => {
-        if (!preferenceId) {
-            handleClick()
-        }
-    }, [preferenceId])
+    // useEffect(() => {
+    //     if (!preferenceId) {
+    //         handleClick()
+    //     }
+    // }, [preferenceId])
 
    
-
     const createPreference = async () => {
       try{
-      const response = await axios.post("http://localhost:3001/payment", {
+        const items = cartItems.map((item) => ({
+          id: item.id,
+          title: item.title,
+          unit_price: item.price,
+          quantity: item.title.length,
+        }));
         
-          "CustomerUser": "userprueba",
-          "email": "testeando@testeando.com",
-          "items": [
-            {
-              "id": "MLA1102136009",
-              "title": "Botella De Tinta Hp Gt52 - Amarillo",
-              "image": "http://http2.mlstatic.com/D_946962-MLA47396593375_092021-O.jpg",
-              "unit_price": 10299,
-              "category": "MLA3561",
-              "stock": 1,
-              "sold": 500,
-              "quantity":2
-              },
-            {
-              "id": "MLA1372536879",
-              "title": "Notebook Hp 14-dq0515la Negra 14  Intel Celeron N4120  4gb De Ram 256gb Ssd Intel Uhd Graphics 600 1366x768px Windows 11 Home",
-              "image": "http://http2.mlstatic.com/D_846400-MLA69387258943_052023-O.jpg",
-              "unit_price": 229999,
-              "category": "MLA1652",
-              "stock": 50,
-              "sold": 25,
-              "quantity":2
-            }
-          ]
+        const response = await axios.post("http://localhost:3001/payment", {
+          CustomerUser: "userprueba",
+          email: "testeando@testeando.com",
+          items: items,
         })
             const {id} = response.data;
             console.log(response)
