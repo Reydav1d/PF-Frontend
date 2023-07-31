@@ -6,7 +6,7 @@ import queryString from "query-string"; // Importa la librería queryString
 
 
 
-function PaymentButton({cartItems, selectedQuantities}) {
+function PaymentButton({cartItems, selectedQuantities, handleCheckout}) {
     const [preferenceId, setPreferenceId] = useState("")
     const [paidFor, setPaidFor] = useState(false); // Nuevo estado para verificar si se realizó el pago
     initMercadoPago('TEST-15ab3fde-45a9-47cd-9c2e-0ff7a08fc472')
@@ -17,9 +17,12 @@ function PaymentButton({cartItems, selectedQuantities}) {
  useEffect(() => {
   // const { preferenceId } = queryString.parse(location.search);
   //   setPreferenceId(preferenceId);
+  if(Object.keys(selectedQuantities).length > 0) {
     handleClick();
+
+  }  
   
-}, [location]);
+}, [selectedQuantities]);
 
     // useEffect(() => {
     //     if (!preferenceId) {
@@ -34,7 +37,7 @@ function PaymentButton({cartItems, selectedQuantities}) {
           id: item.id,
           title: item.title,
           unit_price: item.price,
-          quantity: 1
+          quantity: selectedQuantities[item.id]
         }));
         
         const response = await axios.post("http://localhost:3001/payment", {
@@ -71,7 +74,7 @@ function PaymentButton({cartItems, selectedQuantities}) {
 
     return (
         <div className="max-w-md mx-auto">
-             {!paidFor && preferenceId && (<Wallet initialization={{ preferenceId: preferenceId }} onApprove={handleApprove}/>)}
+             {!paidFor && preferenceId && (<Wallet initialization={{ preferenceId: preferenceId }} onApprove={handleApprove} />)}
             {/* {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />} */}
             
         </div>
