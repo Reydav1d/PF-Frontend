@@ -15,6 +15,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
+  GET_ORDER,
 } from "../Actions/constantes";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
     order: "",
   },
   cart: [],
+  orderProduct: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -141,6 +143,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
     default:
       return { ...state };
+   case GET_ORDER: 
+      {
+        const order = Object.values(payload).filter((e) => e.order_email === action.correo)
+        return { orderProduct: order, };
+      }
   }
 };
 
