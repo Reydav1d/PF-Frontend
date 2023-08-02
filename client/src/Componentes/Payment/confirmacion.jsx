@@ -1,47 +1,81 @@
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-// const ConfirmationPage = () => {
-//   const { preferenceId } = useParams();
-//   const [orderInfo, setOrderInfo] = useState(null);
 
-//   useEffect(() => {
-//     // Obtener información adicional de la orden desde el backend
-//     const fetchOrderInfo = async () => {
-//       try {
-//         const response = await axios.get(`http://localhost:3001/order/${preferenceId}`);
-//         setOrderInfo(response.data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
+const OrderDetailsPage = () => {
+    const { id } = useParams();
+    const {state} = useLocation();  
+    const [orderData, setOrderData] = useState(null);
+    const selectedQuantities = state || {};
+    
 
-//     fetchOrderInfo();
-//   }, [preferenceId]);
+    const getOrderDetail = async (id) => {
+        try {
+          const response = await axios.get(`http://localhost:3001/order/${id}`);
+          console.log(response)
+          setOrderData(response.data); // Set the order details in the state
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      useEffect(() => {
+        if (id) {
+          getOrderDetail(id);
+        }
+      }, [id]);
+    
+      const formatter = new Intl.NumberFormat("es-AR", {
+          style: "currency",
+          currency: "ARS",
+          minimumFractionDigits: 0,
+        });
 
-//   if (!orderInfo) {
-//     return <div>Cargando...</div>;
-//   }
+    // Determine the appropriate text based on the order status
+    
+    if (!orderData) {
+        return <div>Cargando...</div>;
+    }
+    
+    let statusText = "";
+    if (orderData.order_status === "realizada") {
+      statusText = "¡Gracias por tu compra!";
+    } else if (orderData.order_status === "pendiente") {
+      statusText = "Casi lista tu compra!";
+    } else if (orderData.order_status === "cancelada") {
+      statusText = "Sentimos que cancelaste tu compra!";
+    }
 
-//   return (
-//     <div>
-//       <h1>¡Gracias por tu compra!</h1>
-//       <p>ID de preferencia de pago: {preferenceId}</p>
-//       <p>Monto pagado: {orderInfo.amount}</p>
-//       <p>Fecha de la orden: {orderInfo.order_date}</p>
-//       {/* Mostrar otros detalles de la orden si es necesario */}
-//       {/* <h2>Productos:</h2>
-//       <ul>
-//         {order.Products.map((product) => (
-//           <li key={product.id}>
-//             {product.title} - Cantidad: {product.Order_Product.quantity} - Precio Unitario: ${product.Order_Product.unit_price}
-//           </li>
-//         ))}
-//       </ul> */}
-//     </div>
-//   );
-// };
+return (
+  <div  className="bg-gray-50 min-h-screen">
+ <div className="container_payment mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+ <div className="block-heading text-center">
+ <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Estatus del pedido</h2>
 
-// export default ConfirmationPage;
+    <img src={orderData.Customer.image} alt="foto.cliente" className="mt-4 h-24 w-24 rounded-full mx-auto" />
+    <p>Email: {orderData.order_email}</p>
+    <p>Estatus de Orden: {orderData.order_status}</p>
+      <h1>{statusText}</h1>
+    <p>Fecha de la orden: {orderData.order_date}</p>
+    <p>ID de preferencia de pago: {orderData.id}</p>
+    <p className="mt-4  text-xl">Monto pagado: {formatter.format(orderData.amount)}</p>
+   
+              <div className="flex justify-end">
+              <Link to="/Productos/page/">
+              <button 
+        href="#"
+        className=" mt-4 inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+      >
+        Volver a casa
+      </button>
+      </Link>
+      </div>
+      </div> 
+    </div>
+  </div>
+);
+};
+
+export default OrderDetailsPage;
   

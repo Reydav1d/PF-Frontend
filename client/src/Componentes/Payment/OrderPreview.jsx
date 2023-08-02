@@ -76,6 +76,7 @@ const OrderPreview = () => {
                 <p id="summary-price" className="text-gray-600 mt-4">Email: {orderData.Customer.email}</p>
                 <p id="summary-price" className="text-gray-600">Dirección: {orderData.Customer.default_shipping_address}</p>
                 <p id="summary-price" className="text-gray-600">Teléfono: {orderData.Customer.phone}</p>
+                <p id="summary-price" className="text-gray-600">Estatus de Orden: {orderData.order_status}</p>
               </div>
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mt-8">Productos</h2>
@@ -154,7 +155,6 @@ const OrderPreview = () => {
           )}
           <div className="payment-details">
             <div className="form-group col-sm-12">
-              {/* {renderCheckoutButton(id)} */}
             </div>
           </div>
         </div>
