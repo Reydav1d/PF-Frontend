@@ -44,25 +44,25 @@ function NavBar() {
               to={"/Productos/page/1"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>productos</p>
+              <p>Productos</p>
             </Link>
             <Link
               to={"/contacto"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>contacto</p>
+              <p>Contacto</p>
             </Link>
             <Link
               to={"/favoritos"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>favoritos</p>
+              <p>Favoritos</p>
             </Link>
             <Link
               to={"/nosotros"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>nosotros</p>
+              <p>Nosotros</p>
             </Link>
             {elToken === null ? (
               ""
