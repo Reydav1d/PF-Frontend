@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 
 const OrderDetailsPage = () => {
     const { id } = useParams();
-    const {state} = useLocation();  
     const [orderData, setOrderData] = useState(null);
-    const selectedQuantities = state || {};
     
 
     const getOrderDetail = async (id) => {
@@ -62,7 +60,7 @@ return (
     <p className="mt-4  text-xl">Monto pagado: {formatter.format(orderData.amount)}</p>
    
               <div className="flex justify-end">
-              <Link to="/Productos/page/">
+              <Link to="/Productos/page/1">
               <button 
         href="#"
         className=" mt-4 inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
