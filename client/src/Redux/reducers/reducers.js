@@ -15,6 +15,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
+  CUSTOMER_REGISTER,
   GET_ORDER,
 } from "../Actions/constantes";
 
@@ -38,6 +39,7 @@ const initialState = {
     order: "",
   },
   cart: [],
+  registro: 1,
   orderProduct: [],
 };
 
@@ -141,6 +143,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         cart: payload,
       };
+    case CUSTOMER_REGISTER:
+      return {
+        ...state,
+        registro: payload
+      }
     default:
       return { ...state };
    case GET_ORDER: 

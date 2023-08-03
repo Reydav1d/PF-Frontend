@@ -17,7 +17,7 @@ import PayMercadoPago from "./Componentes/Payment/PaymentButton";
 import SuccessPayment from "./Componentes/Payment/confirmacion";
 import OrderPreview from "./Componentes/Payment/OrderPreview";
 import Carrito from "./Views/Carrito/Carrito";
-
+import Registro from "./Views/CustomerRegistro/Registro";
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/Productos/page/:page" element={<Home />} />
         <Route path="/formUsuario" element={<FormUsuario />} />
+        <Route path="/nuevaCuenta" element={<Registro />} />
         <Route path="/dashboardUsuario" element={<DashboardUsuario />}>
           <Route path="compras" element={<Compras />} />
           <Route path="misdatos" element={<Misdatos />} />
