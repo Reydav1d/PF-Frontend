@@ -7,16 +7,24 @@ import {
   GET_CATEGORIES,
   GET_CATEGORY,
   TODOS_FILTROS,
+  SEARCH_PRODUCTS,
+  SEARCH_FILTER_PRODUCTS,
+  DATA_USUARIO,
 } from "./Actions/constantes";
 
 const initialState = {
   productos: [],
+  datosDelUsuario: [],
   product: [],
   description: [],
   picture: [],
   categories: [],
   category: [],
   productosFiltrados: [],
+  searchResults: [],
+  productosFiltrados: [], //Eliminar!
+  searchResults: [], //eliminar si llega a no es necesaria
+  searchFilterResults: ["1"],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -31,6 +39,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         product: payload,
+      };
+    case DATA_USUARIO:
+      return {
+        ...state,
+        datosDelUsuario: payload,
       };
     case CLEAR_DETAIL:
       return {
@@ -63,7 +76,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         productosFiltrados: payload, // Guardar los productos filtrados en el estado productosFiltrados
       };
-
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        productosFiltrados: payload,
+      };
+    case SEARCH_FILTER_PRODUCTS:
+      return {
+        ...state,
+        searchFilterResults: payload,
+      };
     default:
       return { ...state };
   }

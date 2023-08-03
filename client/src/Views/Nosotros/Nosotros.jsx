@@ -7,40 +7,232 @@ function Nosotros() {
 
   return (
     <div className={s.fondo}>
-      <h1 style={{ fontSize: "25px" }}>Nosotros</h1>
-      <div className={s.cartasContainer}>
-        {/* Primera carta */}
-        <div className={s.carta}>
-          <img src="/ruta/imagen1.jpg" alt="Imagen 1" className={s.imagen} />
-          <p className={s.nombre}>David Perez Tiburcio</p>
-          <p className={s.tipo}>Full Stack</p>
-          <div className={s.iconos}></div>
-        </div>
+      <h1 style={{ fontSize: "30px" }}>Nosotros</h1>
+      <div className="flex justify-between w-2/3 h-1/2">
+        <div class="border border-2 flex items-center justify-center bg-white w-1/5 ">
+          {/* Primera carta */}
+          <div>
+            <img
+              src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
+              class="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
+              alt="title image"
+            ></img>
+            <div class="pt-6 text-center">
+              <p>David Perez Tiburcio</p>
+              <p>Full Stack</p>
+              <div class="mt-2 mb-5 space-x-2">
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Twitter link"
+                  href="#"
+                >
+                  <i class="fab fa-twitter text-twitter"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
+                    ></path>
+                  </svg>
+                </a>
 
-        {/* Segunda carta */}
-        <div className={s.carta}>
-          <img src="/ruta/imagen2.jpg" alt="Imagen 2" className={s.imagen} />
-          <p className={s.nombre}>Maximiliano Fonseca</p>
-          <p className={s.tipo}>Full Stack</p>
-          <div className={s.iconos}></div>
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Linkedin link"
+                  href="#"
+                >
+                  <i class="fab fa-linkedin text-linkedin"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div></div>
+          </div>
         </div>
-        {/* Segunda carta */}
-        <div className={s.carta}>
-          <img src="/ruta/imagen2.jpg" alt="Imagen 2" className={s.imagen} />
-          <p className={s.nombre}>Michelle Diaz Garduño</p>
-          <p className={s.tipo}>Full Stack</p>
-          <div className={s.iconos}></div>
-        </div>
-        {/* Segunda carta */}
-        <div className={s.carta}>
-          <img src="/ruta/imagen2.jpg" alt="Imagen 2" className={s.imagen} />
-          <p className={s.nombre}>Gaston David Nieto</p>
-          <p className={s.tipo}>Full Stack</p>
-          <div className={s.iconos}></div>
-        </div>
+        <div class="border border-2 flex items-center justify-center bg-white w-1/5  ">
+          {/* Primera carta */}
+          <div>
+            <img
+              src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png"
+              class="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
+              alt="title image"
+            ></img>
+            <div class="pt-6 text-center">
+              <p>Miguel Maximiliano Fonseca</p>
+              <p>Full Stack</p>
+              <div class="mt-2 mb-5 space-x-2">
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Twitter link"
+                  href="#"
+                >
+                  <i class="fab fa-twitter text-twitter"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
+                    ></path>
+                  </svg>
+                </a>
 
-        {/* Tercera carta */}
-        {/* ... Repite la estructura para las cartas restantes */}
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Linkedin link"
+                  href="#"
+                >
+                  <i class="fab fa-linkedin text-linkedin"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+        <div class="border border-2 flex items-center justify-center bg-white w-1/5 ">
+          {/* Primera carta */}
+          <div>
+            <img
+              src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
+              class="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
+              alt="title image"
+            ></img>
+            <div class="pt-6 text-center">
+              <p>Michelle Diaz Garduño</p>
+              <p>Full Stack</p>
+              <div class="mt-2 mb-5 space-x-2">
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Twitter link"
+                  href="#"
+                >
+                  <i class="fab fa-twitter text-twitter"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
+                    ></path>
+                  </svg>
+                </a>
+
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Linkedin link"
+                  href="#"
+                >
+                  <i class="fab fa-linkedin text-linkedin"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+        <div class="border border-2 flex items-center justify-center bg-white w-1/5   ">
+          {/* Primera carta */}
+          <div>
+            <img
+              src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
+              class="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
+              alt="title image"
+            ></img>
+            <div class="pt-6 text-center">
+              <p>Gaston David Nieto</p>
+              <p>Full Stack</p>
+              <div class="mt-2 mb-5 space-x-2">
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Twitter link"
+                  href="#"
+                >
+                  <i class="fab fa-twitter text-twitter"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
+                    ></path>
+                  </svg>
+                </a>
+
+                <a
+                  class="hover:text-blue-700"
+                  aria-label="Linkedin link"
+                  href="#"
+                >
+                  <i class="fab fa-linkedin text-linkedin"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline-block"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="red"
+                      d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
       </div>
     </div>
   );

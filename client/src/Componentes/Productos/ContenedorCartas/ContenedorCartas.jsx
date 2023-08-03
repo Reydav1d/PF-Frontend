@@ -1,57 +1,76 @@
-import React, { useEffect } from "react";
-import s from "./ContenedorCartas.module.css";
-import Cartas from "../Cartas/Cartas";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllProductos, getFiltros } from "../../../Redux/Actions/action";
-import Pagination from "../../Paginado/Paginado";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Cartas from "../Cartas/Cartas";
+import { getAllProductos, setLoading } from "../../../Redux/Actions/action";
+// import './ContenedorCartas.css'
+import { useParams } from "react-router-dom";
+import PaginationButtons from "../../Paginado/PaginationButtons";
 
+function ContenedorCartas() {
+  const allProducts = useSelector((state) => state.productos);
+  const searchFiltersProd = useSelector((state) => state.searchFilterResults);
+  const loading = useSelector((state) => state.loading);
+  const searched = useSelector((state) => state.searched);
 
-function CardsContainer() {
+  let losProductos = allProducts;
+  if (searched === true && loading === false) losProductos = searchFiltersProd;
+
   const dispatch = useDispatch();
-  const losProductos = useSelector((state) => state.productos);
-  const productosFiltrados = useSelector((state) => state.productosFiltrados);
-
   useEffect(() => {
+    dispatch(setLoading());
     dispatch(getAllProductos());
   }, []);
 
+  const { page } = useParams();
+  const pageNumber = page ? parseInt(page) : 1;
+  const [currentPage, setCurrentPage] = useState(pageNumber);
+  const itemsPerPage = 9;
+  const totalPages = Math.ceil(losProductos.length / itemsPerPage);
+
   useEffect(() => {
-    dispatch(getFiltros("price", "asc"));
-  }, [dispatch]);
-  const [showFiltrados, setShowFiltrados] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(9);
+    setCurrentPage(pageNumber);
+  }, [pageNumber]);
 
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
+  //console.log(losProductos);
 
-  // const currentPosts = losProductos.slice(firstPostIndex, lastPostIndex);
-
-  const currentPosts = showFiltrados
-    ? productosFiltrados.slice(firstPostIndex, lastPostIndex)
-    : losProductos.slice(firstPostIndex, lastPostIndex);
-
+  const visiblePeople = losProductos
+    ? losProductos.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
+    : null;
 
   return (
-    <div className={s.fondo}>
-      {currentPosts?.map((item) => (
-        <Link key={item.id} to={`/detail/${item.id}`}>
-          <Cartas item={item} />
-        </Link>
-      ))}
-      <div className={s.paginado}>
-        <Pagination
-          totalPost={losProductos.length}
-          postsPerPage={postsPerPage}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />
+    <div className="lg:col-span-3">
+      <div>
+        {loading ? (
+          <h1>Cargando...</h1>
+        ) : (
+          <div>
+            {searched && losProductos.length === 0 ? (
+              <h2>No se encontraron resultados...</h2>
+            ) : (
+              <div>
+                <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {visiblePeople.map((product, index) => (
+                    <Link key={product.id} to={`/detail/${product.id}`}>
+                      <Cartas key={index} item={product} />
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <PaginationButtons
+              currentPage={currentPage}
+              totalPages={totalPages}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
-  
 }
 
-export default CardsContainer;
+export default ContenedorCartas;

@@ -4,10 +4,19 @@ import logo from "../../Img/logo tech.png";
 import { Link } from "react-router-dom";
 import Casa from "../../Img/home.png";
 import Carrito from "../../Img/carrito.png";
+import SearchBar from "../../Componentes/SearchBar/SearchBar";
 
 function NavBar() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
+  const elToken = localStorage.getItem("token");
+
   return (
     <div className={s.fondo}>
+      <SearchBar />
       <div className={s.caja1}>
         <div className={s.search}>
           <div className={s.logo}>
@@ -17,7 +26,9 @@ function NavBar() {
           </div>
           <div className={s.buscador}>buscador</div>
           <div className={s.carrito}>
-            <img src={Carrito} alt="" style={{ width: "60px" }} />
+            <Link to={"/carrito"}>
+              <img src={Carrito} alt="" style={{ width: "60px" }} />
+            </Link>
           </div>
         </div>
       </div>
@@ -30,33 +41,63 @@ function NavBar() {
           </div>
           <div className={s.botones}>
             <Link
-              to={"/productos"}
+              to={"/Productos/page/1"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>productos</p>
+              <p>Productos</p>
             </Link>
             <Link
               to={"/contacto"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>contacto</p>
+              <p>Contacto</p>
             </Link>
             <Link
               to={"/favoritos"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>favoritos</p>
+              <p>Favoritos</p>
             </Link>
             <Link
               to={"/nosotros"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>nosotros</p>
+              <p>Nosotros</p>
             </Link>
+            {elToken === null ? (
+              ""
+            ) : (
+              <Link
+                to={"/nuevoProd"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p className={s.registrar}>Vender</p>
+              </Link>
+            )}
           </div>
           <div className={s.cuenta}>
-            <h4>mi cuenta</h4>
-            <p>vender</p>
+            {elToken === null ? (
+              ""
+            ) : (
+              <Link
+                to={"/dashboardUsuario"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Mi Cuenta
+              </Link>
+            )}
+
+            {elToken === null ? (
+              <Link
+                to={"/formUsuario"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p>Iniciar Sesión</p>
+              </Link>
+            ) : (
+              <button onClick={handleLogout}>Cerrar Sesión</button>
+            )}
+
           </div>
         </div>
       </div>
