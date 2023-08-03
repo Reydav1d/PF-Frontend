@@ -31,42 +31,42 @@ const RegisterForm = () => {
 
   // #############  AUTH GOOGLE #################
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const [input, setInput] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // function handleEmail(e) {
-  //   setInput({
-  //     ...input,
-  //     email: e.target.value,
-  //   });
-  // }
-  // function handlePassword(e) {
-  //   setInput({
-  //     ...input,
-  //     password: e.target.value,
-  //   });
-  // }
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  function handleEmail(e) {
+    setInput({
+      ...input,
+      email: e.target.value,
+    });
+  }
+  function handlePassword(e) {
+    setInput({
+      ...input,
+      password: e.target.value,
+    });
+  }
 
-  // //console.log(input);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     dispatch(validarUser(input));
-  //     // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
-  //     window.location.href = "/";
-  //   } catch (error) {
-  //     console.error("Error al Ingresar", error);
-  //   }
-  // };
+  //console.log(input);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(validarUser(input));
+      // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error al Ingresar", error);
+    }
+  };
 
   return (
     <div className="h-700 flex items-center justify-center h-screen">
       <div className="w-1/4 bg-gray-100 border border-gray-300 rounded-lg p-8 flex items-center justify-center">
-        {/* <form className="w-full" action="" onSubmit={handleSubmit}>
+        <form className="w-full" action="" onSubmit={handleSubmit}>
           <h1>iniciar sesión con </h1>
           <div className="mb-4">
             <label
@@ -108,14 +108,14 @@ const RegisterForm = () => {
           >
             Enviar
           </button>
-        </form> */}
-        <h1>iniciar sesión con </h1>
-        <button
-          onClick={signIn}
-          className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200 ml-10"
-        >
-          Google 🚀{" "}
-        </button>
+          <h1>iniciar sesión con </h1>
+          <button
+            onClick={signIn}
+            className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200 ml-10"
+          >
+            Google 🚀{" "}
+          </button>
+        </form>
       </div>
     </div>
   );

@@ -64,6 +64,7 @@ export const validarUser = (input) => {
         type: CREATE_USER,
       });
     } catch (error) {
+      alert("Email o Contraseña Incorrecta!");
       console.error("Error al Igresar", error);
     }
   };
