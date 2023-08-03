@@ -19,6 +19,7 @@ import PayMercadoPago from "./Componentes/Payment/integrerMP";
 import Carrito from "./Views/Carrito/Carrito";
 
 import PreOrden from "./Componentes/Payment/integrerMP";
+import Registro from "./Views/CustomerRegistro/Registro";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/Productos/page/:page" element={<Home />} />
         <Route path="/formUsuario" element={<FormUsuario />} />
+        <Route path="/nuevaCuenta" element={<Registro />} />
         <Route path="/dashboardUsuario" element={<DashboardUsuario />}>
           <Route path="compras" element={<Compras />} />
           <Route path="misdatos" element={<Misdatos />} />

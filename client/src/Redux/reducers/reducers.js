@@ -15,6 +15,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
+  CUSTOMER_REGISTER,
 } from "../Actions/constantes";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
     order: "",
   },
   cart: [],
+  registro: 1,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -139,6 +141,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         cart: payload,
       };
+    case CUSTOMER_REGISTER:
+      return {
+        ...state,
+        registro: payload
+      }
     default:
       return { ...state };
   }
