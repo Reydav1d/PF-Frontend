@@ -88,9 +88,9 @@ const Carrito = () => {
       }));
 
        // Envía la información del carrito al servidor para crear la orden de compra
-       const response = await axios.post("http://localhost:3001/order", {
-        CustomerUser: "userprueba",
-        email: "testeando@testeando.com",
+       const response = await axios.post("/order", {
+        CustomerUser: "userpruebapf",
+        email: "md9543473@gmail.com",
         items: items,
       });
 
