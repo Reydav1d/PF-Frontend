@@ -28,9 +28,9 @@ function PaymentButton({cartItems, selectedQuantities}) {
           quantity: selectedQuantities[item.id]
         }));
         
-        const response = await axios.post("http://localhost:3001/payment", {
-          CustomerUser: "userprueba",
-          email: "testeando@testeando.com",
+        const response = await axios.post("/payment", {
+          CustomerUser: "userpruebapf",
+          email: "md9543473@gmail.com",
           items: items,
         })
             const {id} = response.data;

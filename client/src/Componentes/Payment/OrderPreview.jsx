@@ -18,7 +18,7 @@ const OrderPreview = () => {
     // Realiza la solicitud al servidor para obtener los detalles de la orden
     const getOrderData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/order/${id}`);
+        const response = await axios.get(`/order/${id}`);
         console.log("Order Data:", response.data);
         setOrderData(response.data); // Almacena los detalles de la orden en el estado
         setLoading(false); // Marcar que los datos se han cargado
