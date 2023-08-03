@@ -1,32 +1,23 @@
 import { useEffect, useState } from "react"
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
 import axios from 'axios';
-import { useLocation, useNavigate } from "react-router-dom";
-import queryString from "query-string"; // Importa la librería queryString
-
-
+import {useNavigate, useLocation } from "react-router-dom";
 
 function PaymentButton({cartItems, selectedQuantities}) {
     const [preferenceId, setPreferenceId] = useState("")
     const [paidFor, setPaidFor] = useState(false); // Nuevo estado para verificar si se realizó el pago
-    initMercadoPago('TEST-07205817-cac3-46b7-a783-0ad47045be05')
-    const location = useLocation(); // Utiliza useLocation para obtener la URL actual
+    const [error, setError] = useState(null);
+    const [paymentResponse, setPaymentResponse] = useState(null); // Estado para almacenar la respuesta del backend
     const navigate = useNavigate();
+
+    initMercadoPago('TEST-15ab3fde-45a9-47cd-9c2e-0ff7a08fc472')
   
- // Obtiene el ID de la preferencia de pago desde la URL al cargar el componente
  useEffect(() => {
-  // const { preferenceId } = queryString.parse(location.search);
-  //   setPreferenceId(preferenceId);
+  if(Object.keys(selectedQuantities).length > 0) {
     handleClick();
+  }  
   
-}, [location]);
-
-    // useEffect(() => {
-    //     if (!preferenceId) {
-    //         handleClick()
-    //     }
-    // }, [preferenceId])
-
+}, [selectedQuantities]);
    
     const createPreference = async () => {
       try{
@@ -34,7 +25,7 @@ function PaymentButton({cartItems, selectedQuantities}) {
           id: item.id,
           title: item.title,
           unit_price: item.price,
-          quantity: item.title.length,
+          quantity: selectedQuantities[item.id]
         }));
         
         const response = await axios.post("http://localhost:3001/payment", {
@@ -44,7 +35,10 @@ function PaymentButton({cartItems, selectedQuantities}) {
         })
             const {id} = response.data;
             console.log(response)
-                return id;
+            setPaymentResponse(response.data);
+
+            console.log(id)
+            return id;
              }catch(error) {
                 console.log(error) 
              } 
@@ -62,8 +56,7 @@ function PaymentButton({cartItems, selectedQuantities}) {
           const order = await actions.order.capture();
           const orderId = order.id;
           setPaidFor(true);
-          // ... Lógica adicional para actualizar el estado de la orden en el backend si es necesario ...
-          navigate(`/confirmacion/${orderId}`); // Redirigir a la página de confirmación con el ID de la orden
+          navigate(`/confirmacion/${orderId}`,{ state: paymentResponse }); // Redirigir a la página de confirmación con el ID de la orden
         } catch (error) {
           console.error("Error al capturar el pago:", error);
         }
@@ -71,8 +64,13 @@ function PaymentButton({cartItems, selectedQuantities}) {
 
     return (
         <div className="max-w-md mx-auto">
-             {!paidFor && preferenceId && (<Wallet initialization={{ preferenceId: preferenceId }} onApprove={handleApprove}/>)}
-            {/* {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />} */}
+             {!paidFor && preferenceId && (<Wallet initialization={{ preferenceId: preferenceId }} onApprove={handleApprove} onError={(err) => {
+        setError(err);
+        console.error("Mercadopago Checkout onError", err);
+      }}
+      onCancel={() => {
+        swal('Compra cancelada')
+      }}/>)}
             
         </div>
     )
