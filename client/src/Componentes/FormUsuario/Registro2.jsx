@@ -83,7 +83,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
                     }
                     placeholder="Nombre completo"
                   />
-                  <ErrorMessage name="name" component={() => <p>{errors.name}</p>} />
+                  <ErrorMessage name="name" component={() => <p className="text-red-500 text-xm italic">{errors.name}</p>} />
                 </div>
                 <div className="flex flex-col my-2">
                   <label htmlFor="user" className="block my-1 font-semibold">Nombre de usuario:</label>
@@ -99,7 +99,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
                     }
                     placeholder="usuarioEjemplo"
                   />
-                  <ErrorMessage name="user" component={() => <p>{errors.user}</p>} />
+                  <ErrorMessage name="user" component={() => <p className="text-red-500 text-xm italic">{errors.user}</p>} />
                 </div>
                 <div className="flex flex-col my-2">
                   <label htmlFor="phone" className="block my-1 font-semibold">Teléfono:</label>
@@ -115,7 +115,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
                     }
                     placeholder="0230019050"
                   />
-                  <ErrorMessage name="phone" component={() => <p>{errors.phone}</p>} />
+                  <ErrorMessage name="phone" component={() => <p className="text-red-500 text-xm italic">{errors.phone}</p>} />
                 </div>
                 <div className="flex flex-col my-2">
                   <label htmlFor="address" className="block my-1 font-semibold">Dirección:</label>
@@ -131,7 +131,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
                     }
                     placeholder="Dirección..."
                   />
-                  <ErrorMessage name="address" component={() => <p>{errors.address}</p>} />
+                  <ErrorMessage name="address" component={() => <p className="text-red-500 text-xm italic">{errors.address}</p>} />
                 </div>
                 {/* <div>
             <label htmlFor="image">Agrega una imagen de perfil</label>
