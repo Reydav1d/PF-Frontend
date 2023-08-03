@@ -44,25 +44,25 @@ function NavBar() {
               to={"/Productos/page/1"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>productos</p>
+              <p>Productos</p>
             </Link>
             <Link
-              to={"/contacto"}
+              to={"/nuevaCuenta"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>contacto</p>
+              <p>Registrate</p>
             </Link>
             <Link
               to={"/favoritos"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>favoritos</p>
+              <p>Favoritos</p>
             </Link>
             <Link
               to={"/nosotros"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>nosotros</p>
+              <p>Nosotros</p>
             </Link>
             {elToken === null ? (
               ""
@@ -98,12 +98,6 @@ function NavBar() {
               <button onClick={handleLogout}>Cerrar Sesión</button>
             )}
 
-            <Link
-              to={"/pay"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <p>mercadopago</p>
-            </Link>
           </div>
         </div>
       </div>

@@ -16,6 +16,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
+  CUSTOMER_REGISTER,
+  GET_ORDER
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -246,5 +248,20 @@ export const refreshCart = (cart) => {
   return {
     type: REFRESH_CART,
     payload: cart,
+  };
+};
+
+export const registerCustomer = (step) => {
+  return {
+    type: CUSTOMER_REGISTER,
+    payload: step,
+  };
+};
+
+export const getOrderProducts = (payload) => {
+  return async (dispatch) => {
+    const json = await axios.get(`/order/`, payload);
+    dispatch({ type: GET_ORDER, payload: json.data, correo: payload });
+
   };
 };
