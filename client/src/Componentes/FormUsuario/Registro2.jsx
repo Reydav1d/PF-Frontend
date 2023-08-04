@@ -6,6 +6,7 @@ import { registerCustomer } from "../../Redux/Actions/action";
 import { connect } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cloudinary from "./photoWidget";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Este campo es obligatorio"),
@@ -14,7 +15,7 @@ const validationSchema = Yup.object().shape({
     .matches(/^[0-9]{10,15}$/, "El número de teléfono no es válido")
     .required("Este campo es requerido"),
   address: Yup.string().required("Este campo es obligatorio"),
-  // image: Yup.string().notRequired,
+  image: Yup.mixed().required("Agrega una foto de perfil"),
 });
 
 const Register2 = ({ customerData, registerCustomer }) => {
@@ -26,7 +27,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
         name: "",
         user: "",
         phone: "",
-        // image: "",
+        image: null,
         address: "",
       }}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
@@ -35,7 +36,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
           name: values.name,
           user: values.user,
           phone: values.phone,
-          // image: values.image,
+          image: values.image,
           address: values.address,
         };
         try {
@@ -52,7 +53,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
       }}
       validationSchema={validationSchema}
     >
-      {({ errors, touched, isSubmitting }) => (
+      {({ errors, setFieldValue, touched, isSubmitting }) => (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
           <div className="flex flex-col
                 bg-white
@@ -69,6 +70,20 @@ const Register2 = ({ customerData, registerCustomer }) => {
             <div className="mt-4 self-center text-sm sm:text-sm text-gray-800">Ingresa tus datos</div>
             <div className="mt-10">
               <Form>
+                <div>
+                  <label htmlFor="image" >selecciona una foto de perfil</label>
+                  <input
+                  type="file"
+                  accept="image/*"
+                  // className="opacity-0 absolute top-0 left-0 cursor-pointer"
+                  onChange={async (event) => {
+                    const file = event.currentTarget.files[0];
+                    const response = await Cloudinary(file);
+                    setFieldValue("image", response);
+                  }}
+                  />
+                  <ErrorMessage name="image" component={() => <p className="text-red-500 text-xm italic">{errors.image}</p>} />
+                </div>
                 <div className="flex flex-col my-2">
                   <label htmlFor="name" className="block my-1 font-semibold">Nombre:</label>
                   <Field

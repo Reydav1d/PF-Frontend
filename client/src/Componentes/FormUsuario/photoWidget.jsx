@@ -1,34 +1,16 @@
-import { useEffect, useRef } from "react";
-
-const PhotoWidget = ({setImageLink}) => {
-    const photoRef = useRef();
-    const widgetPhoto = useRef(); 
-
-    useEffect(() => {
-        photoRef.current = window.cloudinary;
-        widgetPhoto.current = photoRef.current.createUploadWidget(
-            {
-                cloudName: 'dhucdz03p',
-                uploadPreset: 'profilePhotos',
-            },
-            function (error, result) {
-                if (!error && result && result.event === 'succes') {
-                    setImageLink(result.info.url);
-                }
-            }
-        )
-    }, [setImageLink]);
-
-    const handleButton = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        widgetPhoto.current.open();
-    };
-
-    return (
-        <button
-        className="mt-4 bg-violet-800 text-white py-2 px-4 rounded hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
-        onClick={handleButton}>Agregar foto de perfil</button>
+//Se recibe el archivo a cloudinary y se guarda
+const Cloudinary = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "profilePhotos")
+    const res = await fetch(
+        `https://api.cloudinary.com/v1_1/dhucdz03p/image/upload`,
+        {
+            method: "POST",
+            body: data,
+        }
     )
+    const files = await res.json();
+    return files.secure_url
 }
-export default PhotoWidget;
+export default Cloudinary;
