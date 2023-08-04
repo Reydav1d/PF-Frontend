@@ -62,17 +62,17 @@ return (
 
     <img src={orderData.Customer.image} alt="foto.cliente" className="mt-4 h-24 w-24 rounded-full mx-auto" />
     <p>Email: {orderData.order_email}</p>
-    <p>Estatus de Orden: {orderData.order_status}</p>
+    <p className="text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData.order_status}</p>
       <h1>{statusText}</h1>
     <p>Fecha de la orden: {orderData.order_date}</p>
     <p>ID de preferencia de pago: {orderData.id}</p>
-    <p className="mt-4  text-xl">{statusAmount} {formatter.format(orderData.amount)}</p>
+    <p className="mt-4 text-xl text-gray-700">{statusAmount} {formatter.format(orderData.amount)}</p>
    
-              <div className="flex justify-end">
+              <div className="flex justify-end mt-6">
               <Link to="/Productos/page/1">
               <button 
         href="#"
-        className=" mt-4 inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+        className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
       >
         Volver a casa
       </button>
