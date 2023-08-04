@@ -19,16 +19,16 @@ function misDatos() {
       {LosDatos?.user && (
         <div className="bg-blue-400 w-900">
           <div>
-            <img src={LosDatos.user.picture} alt="" />
+            <img src={LosDatos.user.imagen} alt="Imagen" />
           </div>
           <div>email:{LosDatos.user.email} </div>
+          <div>contraseña:{LosDatos.user.contraseña} </div>
           <div>nombre: {LosDatos.user.nombre}</div>
-          <div>usuario: {LosDatos.user.usuario}</div>
+          <div>usuario: {LosDatos.user.user}</div>
+          <div>telefono: {LosDatos.user.telefono}</div>
           <div>
             estado:{" "}
-            {LosDatos.user.user_banned === false
-              ? "Habilidato"
-              : "Deshabilitado"}
+            {LosDatos.user.estado === false ? "Habilidato" : "Deshabilitado"}
           </div>
         </div>
       )}
