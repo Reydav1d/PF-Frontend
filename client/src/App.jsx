@@ -18,7 +18,7 @@ import SuccessPayment from "./Componentes/Payment/confirmacion";
 import OrderPreview from "./Componentes/Payment/OrderPreview";
 import Carrito from "./Views/Carrito/Carrito";
 import Registro from "./Views/CustomerRegistro/Registro";
-
+import EditarUsuario from "./Componentes/EditarUsuario/EsitarUsuario";
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
         <Route path="/dashboardUsuario" element={<DashboardUsuario />}>
           <Route path="compras" element={<Compras />} />
           <Route path="misdatos" element={<Misdatos />} />
+          <Route path="editUser" element={<EditarUsuario />} />
         </Route>
         <Route path="/" element={<Landing />} />
         <Route path="/detail/:id" element={<Detail />} />
@@ -39,7 +40,7 @@ function App() {
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/nuevoProd" element={<ProductForm />} />
         <Route path="/pay" element={<PayMercadoPago />} />
-        <Route path="/ordencompra/:id" element={<OrderPreview/>} />
+        <Route path="/ordencompra/:id" element={<OrderPreview />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/confirmacion/:id" element={<SuccessPayment />} />
       </Routes>
