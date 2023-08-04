@@ -82,6 +82,7 @@ const Register2 = ({ customerData, registerCustomer }) => {
                     setFieldValue("image", response);
                   }}
                   />
+                  <ErrorMessage name="image" component={() => <p className="text-red-500 text-xm italic">{errors.image}</p>} />
                 </div>
                 <div className="flex flex-col my-2">
                   <label htmlFor="name" className="block my-1 font-semibold">Nombre:</label>
