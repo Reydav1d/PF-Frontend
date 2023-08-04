@@ -148,8 +148,8 @@ function Filtros() {
   // );
   return (
     <div className="space-y-2">
-      <div className="mt-4 w-80 overflow-hidden rounded border border-gray-300">
-        <div className="flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
+      <div className="mt-4 mr-4 ml-4 w-80 overflow-hidden rounded border border-gray-300">
+        <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
           <label className="text-sm font-medium">Filtrar por categorias:</label>
           <select
             className="transition group-open:-rotate-180"
@@ -164,7 +164,7 @@ function Filtros() {
           </select>
         </div>
 
-        <div className="flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
+        <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
           <label className="text-sm font-medium">Ordenar precio por:</label>
           <select
             className="transition group-open:-rotate-180"
@@ -176,7 +176,7 @@ function Filtros() {
           </select>
         </div>
 
-        <div className="flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
+        <div className="mt-4 mr-4 ml-4 mb-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
           <label className="text-sm font-medium">Filtrar por precio:</label>
           <input
             type="number"
@@ -195,7 +195,7 @@ function Filtros() {
         </div>
       </div>
 
-      <div className="flex overflow-hidden rounded-md border bg-white shadow-sm">
+      <div className="mt-4 mr-4 ml-20 flex overflow-hidden">
         <button
           className="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-teal-400 text-white font-bold"
           onClick={handlerClean}
