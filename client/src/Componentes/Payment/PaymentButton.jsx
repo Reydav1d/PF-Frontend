@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
 import axios from 'axios';
-import {useNavigate, useLocation } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 function PaymentButton({cartItems, selectedQuantities}) {
     const [preferenceId, setPreferenceId] = useState("")
@@ -15,8 +15,7 @@ function PaymentButton({cartItems, selectedQuantities}) {
  useEffect(() => {
   if(Object.keys(selectedQuantities).length > 0) {
     handleClick();
-  }  
-  
+  }    
 }, [selectedQuantities]);
    
     const createPreference = async () => {
@@ -51,12 +50,12 @@ function PaymentButton({cartItems, selectedQuantities}) {
         }
     }
 
-    const handleApprove = async (data, actions) => {
+    const handleApprove = async (id) => {
         try {
-          const order = await actions.order.capture();
-          const orderId = order.id;
+          const order = await axios.get(`/order/${id}`);
+          const response = order.id;
           setPaidFor(true);
-          navigate(`/confirmacion/${orderId}`,{ state: paymentResponse }); // Redirigir a la página de confirmación con el ID de la orden
+          navigate(`/confirmacion/${response}`,{ state: paymentResponse }); // Redirigir a la página de confirmación con el ID de la orden
         } catch (error) {
           console.error("Error al capturar el pago:", error);
         }
