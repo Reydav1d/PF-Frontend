@@ -52,7 +52,7 @@ const OrderPreview = () => {
 
   const handleDeleteOrder = async () => {
     try {
-      await axios.delete(`http://localhost:3001/order/${orderData.id}`);
+      await axios.delete(`/order/${orderData.id}`);
     } catch (error) {
       console.log(error);
     }

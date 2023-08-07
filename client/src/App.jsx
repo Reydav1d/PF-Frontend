@@ -19,6 +19,9 @@ import OrderPreview from "./Componentes/Payment/OrderPreview";
 import Carrito from "./Views/Carrito/Carrito";
 import Registro from "./Views/CustomerRegistro/Registro";
 
+import Reviews from "./Componentes/Reviews/Reviews";
+
+
 
 function App() {
   return (
@@ -42,6 +45,8 @@ function App() {
         <Route path="/ordencompra/:id" element={<OrderPreview/>} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/confirmacion/:id" element={<SuccessPayment />} />
+        <Route path="/review/:id" element={<Reviews />} />
+
       </Routes>
       <Footer />
     </div>
