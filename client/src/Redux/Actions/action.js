@@ -60,6 +60,7 @@ export const validarUser = (input) => {
       const result = response.data;
       localStorage.setItem("token", result.token);
       console.log(result.token);
+      localStorage.setItem("user", JSON.stringify(result.user))
       dispatch({
         type: CREATE_USER,
       });
