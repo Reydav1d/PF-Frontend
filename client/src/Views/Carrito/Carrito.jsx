@@ -61,13 +61,7 @@ const Carrito = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const itemsMapped = cart.map((item) => ({
-    item_id: item.id,
-    title: item.title,
-    quantity: selectedQuantities[item.id],
-    totalAmount: totalPrice,
-  }));
-
+  
   const formatter = new Intl.NumberFormat('es-AR', {
     style: 'currency',
     currency: 'ARS',
