@@ -71,8 +71,12 @@ const Carrito = () => {
   // const handleToShop = () => {
 
   // }
-  const handleCheckout = async () => {
+  const customerData = useSelector((state) => state.datosDelUsuario)
+  const handleCheckout = async (customerData) => {
     try {
+      //destructura los datos del usuario
+      const {user, email} = customerData
+
       // Crea un array con la información de los productos del carrito
       const items = cart.map((product) => ({
         id: product.id,
@@ -83,8 +87,8 @@ const Carrito = () => {
 
        // Envía la información del carrito al servidor para crear la orden de compra
        const response = await axios.post("/order", {
-        CustomerUser: "userpruebapf",
-        email: "md9543473@gmail.com",
+        CustomerUser: user,
+        email: email,
         items: items,
       });
 
@@ -138,7 +142,7 @@ const Carrito = () => {
 
             <div className="flex items-center justify-end gap-2">
               <form className="flex items-center justify-end gap-2 " >
-                <label for="Line1Qty" className="sr-only"> Quantity </label>
+                <label htmlFor="Line1Qty" className="sr-only"> Quantity </label>
                 <div className="flex items-center justify-end gap-2 border-2 border-purple-600">
     <button
       type="button"
@@ -201,7 +205,7 @@ const Carrito = () => {
             </dl>
 
             <div className="flex justify-end">
-              <button className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"  onClick={handleCheckout}>Ir a Pago</button>
+              <button className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"  onClick={()=> handleCheckout(customerData)}>Ir a Pago</button>
               {/* <div className="mr-20 flex justify-center items-center">
                 <PaymentButton cartItems={cart} selectedQuantities={selectedQuantities} onClick={handleCheckout}/>
               </div> */}

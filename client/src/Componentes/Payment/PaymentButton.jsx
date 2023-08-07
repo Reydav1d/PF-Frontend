@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
 import axios from 'axios';
+import Swal from "sweetalert2";
 import {useNavigate } from "react-router-dom";
 
-function PaymentButton({cartItems, selectedQuantities}) {
+function PaymentButton({cartItems, selectedQuantities, datos}) {
+  console.log(datos.email, "no pasan")
     const [preferenceId, setPreferenceId] = useState("")
     const [paidFor, setPaidFor] = useState(false); // Nuevo estado para verificar si se realizó el pago
     const [error, setError] = useState(null);
     const [paymentResponse, setPaymentResponse] = useState(null); // Estado para almacenar la respuesta del backend
     const navigate = useNavigate();
+    // const datos = useSelector((state) => state.datosDelUsuario());
 
     initMercadoPago('TEST-15ab3fde-45a9-47cd-9c2e-0ff7a08fc472')
   
@@ -26,10 +29,10 @@ function PaymentButton({cartItems, selectedQuantities}) {
           unit_price: item.price,
           quantity: selectedQuantities[item.id]
         }));
-        
+        console.log("aun no", datos.email)
         const response = await axios.post("/payment", {
-          CustomerUser: "userpruebapf",
-          email: "md9543473@gmail.com",
+          CustomerUser: datos?.usuario,
+          email: datos?.email,
           items: items,
         })
             const {id} = response.data;
@@ -68,7 +71,10 @@ function PaymentButton({cartItems, selectedQuantities}) {
         console.error("Mercadopago Checkout onError", err);
       }}
       onCancel={() => {
-        swal('Compra cancelada')
+        Swal.fire({
+          title: "Compra cancelada",
+          icon: "warning",
+        })
       }}/>)}
             
         </div>
