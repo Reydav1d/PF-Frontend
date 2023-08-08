@@ -220,7 +220,7 @@ const Register2 = ({ customerData }) => {
                   />
                 </div>
                 <div className="flex justify-end">
-                  <Link to="/dashboardUsuario/misdatos">
+                  <Link to="/dashboardAdmin/misdatosAdmin">
                     <button className="bg-rojo-pf pl-6 pr-6 pt-2.5 pb-2.5 text-white mt-4 mr-5">
                       Volver
                     </button>
