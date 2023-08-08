@@ -25,6 +25,7 @@ import EditarAdmin from "./Componentes/EditarAdmin/EsitarUsuario.jsx";
 import Usuarios from "./Componentes/Usuarios/Usuarios";
 import Ventas from "./Componentes/Ventas/Ventas";
 import Publicaciones from "./Componentes/Publicaciones/Publicaciones";
+import Reviews from "./Componentes/Reviews/Reviews";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/ordencompra/:id" element={<OrderPreview />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/confirmacion/:id" element={<SuccessPayment />} />
+        <Route path="/review/:id" element={<Reviews />} />
       </Routes>
       <Footer />
     </div>
