@@ -14,6 +14,7 @@ function Compras() {
   const LosDatos = useSelector((state) => state.datosDelUsuario);
   const ordersProducts = useSelector((state) => state.orderProduct);
   const [productVisibility, setProductVisibility] = useState({});
+  const [showDetailHeader, setShowDetailHeader] = useState(false);
 
   useEffect(() => {
     dispatch(datosDelUsuario()).catch((error) => {
@@ -40,14 +41,14 @@ function Compras() {
     minimumFractionDigits: 0,
   });
 
-  const toggleProductVisibility = (orderId) => {
+ const toggleProductVisibility = (orderId) => {
     setProductVisibility((prevState) => ({
       ...prevState,
-      [orderId.toString()]: !prevState[orderId.toString()], // Convertir el ID a cadena antes de usarlo como clave
+      [orderId.toString()]: !prevState[orderId.toString()],
     }));
-  };
 
-  console.log();
+    setShowDetailHeader(!showDetailHeader); // Actualiza el estado de la visibilidad del detalle
+  };
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -85,9 +86,13 @@ function Compras() {
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                   Monto de compra
                 </th>
+                {showDetailHeader ? ( // Renderiza el encabezado solo si showDetailHeader es verdadero
                 <th className="whitespace-nowrap px-48 py-2 font-medium text-gray-900">
                   Detalle
                 </th>
+                 ): <th className="whitespace-nowrap px-56 py-2 font-medium text-gray-900">
+                 
+               </th> }
               </tr>
             </thead>
 
