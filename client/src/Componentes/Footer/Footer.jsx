@@ -7,8 +7,13 @@ function Footer() {
         <div className="mb-4 md:mb-0">
           <h2 className="text-lg font-semibold mb-2">Síguenos:</h2>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gray-500">
-              Michelle Díaz
+          <a
+              href="https://www.linkedin.com/in/michelle-díaz-garduño-49a57b265/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-500"
+            >
+              Michelle Díaz Garduño
             </a>
             <a href="#" className="hover:text-gray-500">
               Maximiliano Fonseca
