@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert2";
 
 import {
   GET_PRODUCT,
@@ -16,7 +17,12 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
-  GET_ORDER
+  CUSTOMER_REGISTER,
+  GET_ORDER,
+  CREATE_REVIEW, 
+  GET_REVIEWS_PRODUCT,
+  GET_CUSTOMERS, 
+  DELETE_ORDER, 
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -59,10 +65,12 @@ export const validarUser = (input) => {
       const result = response.data;
       localStorage.setItem("token", result.token);
       console.log(result.token);
+      localStorage.setItem("user", JSON.stringify(result.user))
       dispatch({
         type: CREATE_USER,
       });
     } catch (error) {
+      alert("Email o Contraseña Incorrecta!");
       console.error("Error al Igresar", error);
     }
   };
@@ -249,9 +257,61 @@ export const refreshCart = (cart) => {
   };
 };
 
-export const getOrderProducts = (payload) => {
-  return async (dispatch) => {
-    const json = await axios.get(`/order/`, payload);
-    dispatch({ type: GET_ORDER, payload: json.data, correo: payload });
+export const registerCustomer = (step) => {
+  return {
+    type: CUSTOMER_REGISTER,
+    payload: step,
   };
 };
+
+export const getOrderProducts = (email) => {
+  return async (dispatch) => {
+    try{
+    const json = await axios.get(`/order?${email}`);
+    dispatch({ type: GET_ORDER, payload: json.data });
+  }catch(err){swal(error)}
+} 
+};
+
+export const create_new_review = (payload) => {
+  return async (dispatch) => {
+    try{
+    const response = await axios.post(`/review`, payload)
+     dispatch({ type: CREATE_REVIEW, payload: response.data })
+    }catch(error) {swal("Reseña no creada")
+  };
+}}
+
+export const getReviews = (id) => {
+  return async (dispatch) => {
+    try {
+  const response = await axios.get(`/review/${id}`)
+    dispatch({ type: GET_REVIEWS_PRODUCT, payload: response.data })
+      }catch(error) {swal(error)
+      }
+  }};
+
+  export const getCustomers = (id) => {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`/customers/`);
+        return dispatch({
+          type: GET_CUSTOMERS,
+          payload: response.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };
+  
+  export const deleteOrder = ({ id }) => {
+    return async (dispatch) => {
+      try {
+        await axios.delete(`/order/${id}`);
+        return dispatch({type:DELETE_ORDER,payload:id})
+      } catch (error) {
+        swal(`ERROR: ${error}`);
+      }
+    };
+  }

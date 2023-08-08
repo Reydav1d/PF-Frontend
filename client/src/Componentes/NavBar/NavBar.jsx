@@ -47,10 +47,10 @@ function NavBar() {
               <p>Productos</p>
             </Link>
             <Link
-              to={"/contacto"}
+              to={"/nuevaCuenta"}
               style={{ textDecoration: "none", color: "white" }}
             >
-              <p>Contacto</p>
+              <p>Registrate</p>
             </Link>
             <Link
               to={"/favoritos"}

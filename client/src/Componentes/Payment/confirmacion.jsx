@@ -11,7 +11,7 @@ const OrderDetailsPage = () => {
 
     const getOrderDetail = async (id) => {
         try {
-          const response = await axios.get(`http://localhost:3001/order/${id}`);
+          const response = await axios.get(`/order/${id}`);
           console.log(response)
           setOrderData(response.data); // Set the order details in the state
         } catch (error) {
@@ -40,9 +40,18 @@ const OrderDetailsPage = () => {
     if (orderData.order_status === "realizada") {
       statusText = "¡Gracias por tu compra!";
     } else if (orderData.order_status === "pendiente") {
-      statusText = "Casi lista tu compra!";
+      statusText = "Casi lista tu compra, pendiente de pago!";
     } else if (orderData.order_status === "cancelada") {
-      statusText = "Sentimos que cancelaste tu compra!";
+      statusText = "Lo sentimos, tu orden de compra a sido cancelada!";
+    }
+
+    let statusAmount = "";
+    if (orderData.order_status === "realizada") {
+      statusAmount = "Monto Pagado:";
+    } else if (orderData.order_status === "pendiente") {
+      statusAmount = "Monto pendiente de pago:";
+    } else if (orderData.order_status === "cancelada") {
+      statusAmount = "Monto de tu orden cancelada:";
     }
 
 return (
@@ -53,17 +62,17 @@ return (
 
     <img src={orderData.Customer.image} alt="foto.cliente" className="mt-4 h-24 w-24 rounded-full mx-auto" />
     <p>Email: {orderData.order_email}</p>
-    <p>Estatus de Orden: {orderData.order_status}</p>
+    <p className="text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData.order_status}</p>
       <h1>{statusText}</h1>
     <p>Fecha de la orden: {orderData.order_date}</p>
     <p>ID de preferencia de pago: {orderData.id}</p>
-    <p className="mt-4  text-xl">Monto pagado: {formatter.format(orderData.amount)}</p>
+    <p className="mt-4 text-xl text-gray-700">{statusAmount} {formatter.format(orderData.amount)}</p>
    
-              <div className="flex justify-end">
+              <div className="flex justify-end mt-6">
               <Link to="/Productos/page/1">
               <button 
         href="#"
-        className=" mt-4 inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+        className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
       >
         Volver a casa
       </button>

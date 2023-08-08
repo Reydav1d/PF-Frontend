@@ -15,7 +15,11 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REFRESH_CART,
+  CUSTOMER_REGISTER,
   GET_ORDER,
+  CREATE_REVIEW, 
+  GET_REVIEWS_PRODUCT,
+  GET_CUSTOMERS, 
 } from "../Actions/constantes";
 
 const initialState = {
@@ -38,7 +42,11 @@ const initialState = {
     order: "",
   },
   cart: [],
+  registro: 1,
   orderProduct: [],
+  reviews: [],
+  users: [],
+  usersCopy: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -141,14 +149,39 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         cart: payload,
       };
+    case CUSTOMER_REGISTER:
+      return {
+        ...state,
+        registro: payload
+      }
     default:
       return { ...state };
    case GET_ORDER: 
-      {
-        const order = Object.values(payload).filter((e) => e.order_email === action.correo)
-        return { orderProduct: order, };
+        return { 
+          ...state, 
+          orderProduct: payload,
+        
+      }
+      case CREATE_REVIEW:
+      return {
+        ...state,
+        reviews: payload,
+      };
+
+    case GET_REVIEWS_PRODUCT:
+      return {
+        ...state,
+        reviews: payload,
+      };
+      case GET_CUSTOMERS: {
+        return {
+          ...state,
+          users: payload,
+          usersCopy: payload
+        };
       }
   }
+  
 };
 
 export default rootReducer;
