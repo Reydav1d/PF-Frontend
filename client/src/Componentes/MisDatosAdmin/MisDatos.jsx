@@ -16,6 +16,7 @@ function misDatos() {
   console.log(LosDatos);
   return (
     <div className="absolute ml-1700 h-700 w-1400 flex items-center flex flex-col mt-20">
+      ADMIN
       <h1 className="bg-violeta-pf w-960 font-bold text-xl h-15 p-5 m-5 text-white ">
         Mis Datos
       </h1>
@@ -64,7 +65,7 @@ function misDatos() {
           </div>
         </div>
       )}
-      <Link to="/dashboardUsuario/editUser">
+      <Link to="/dashboardAdmin/editAdmin">
         <button className="bg-rojo-pf w-40 font-bold flex justify-center text-xl h-15 p-5 m-5 text-white ">
           Editar
         </button>

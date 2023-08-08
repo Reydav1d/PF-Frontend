@@ -44,6 +44,7 @@ const RegisterForm = () => {
       email: e.target.value,
     });
   }
+
   function handlePassword(e) {
     setInput({
       ...input,
