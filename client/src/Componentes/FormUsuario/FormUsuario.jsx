@@ -16,7 +16,9 @@ const RegisterForm = () => {
       },
     });
     console.log(reponse.data.result);
+    console.log(reponse.data.user);
     localStorage.setItem("token", reponse.data.result);
+    localStorage.setItem("user", JSON.stringify(result.data.user));
     window.location.href = "/";
   };
 

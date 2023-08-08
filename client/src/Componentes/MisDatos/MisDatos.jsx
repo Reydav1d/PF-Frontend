@@ -13,7 +13,7 @@ function misDatos() {
       console.error("Error al obtener los datos del usuario:", error);
     });
   }, [dispatch]);
-  console.log(LosDatos);
+
   return (
     <div className="absolute ml-1700 h-700 w-1400 flex items-center flex flex-col mt-20">
       <h1 className="bg-violeta-pf w-960 font-bold text-xl h-15 p-5 m-5 text-white ">
