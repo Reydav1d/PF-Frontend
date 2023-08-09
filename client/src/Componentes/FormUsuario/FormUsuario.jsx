@@ -4,8 +4,10 @@ import { validarUser } from "../../Redux/Actions/action";
 import { useDispatch } from "react-redux";
 //import { redireccion } from "../../config";
 import axios from "axios";
+import { useToggle } from "./toggle";
 
 const RegisterForm = () => {
+  const [isPasswordShow, toggleShowPassword] = useToggle();
   // #############  AUTH GOOGLE #################
 
   const handleGoogleResponse = async (googleData) => {
@@ -94,14 +96,25 @@ const RegisterForm = () => {
             >
               Contraseña
             </label>
-            <input
-              type="password"
-              id="password"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-              value={input.password}
-              onChange={handlePassword}
-              required
-            />
+            <div className="flex flex-col justify-between  relative w-full">
+              <input
+                type={isPasswordShow ? "text" : "password"}
+                id="password"
+                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
+                value={input.password}
+                onChange={handlePassword}
+                required
+              />
+              <div className="absolute inset-y-0 right-0 flex items-end pr-2 pb-1">
+                <button
+                  onClick={toggleShowPassword}
+                  type="button"
+                  className="text-gray-400 focus:outline-none"
+                >
+                  {isPasswordShow ? <p>👁️</p> : <p>👁️</p>}
+                </button>
+              </div>
+            </div>
           </div>
 
           <button
