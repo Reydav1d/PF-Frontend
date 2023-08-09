@@ -67,14 +67,14 @@ function Compras() {
   };
 
   return (
-    <div className="ml-1300 h-700 w-1200 flex justify-center">
-      <div className="mt-10 overflow-x-auto">
+    <div className=" absolute ml-1400 h-700 w-1000 flex justify-center">
+      <div className="mt-8 overflow-x-auto">
         {ordersProducts?.length > 0 ? (
           <table className="divide-y-4 divide-gray-300 bg-white text-sm">
             <thead className="ltr:text-left rtl:text-right ">
               <tr>
                 <th className="whitespace-nowrap px-8 py-2 font-medium text-gray-900"></th>
-                <th className="whitespace-nowrap px-16 py-2 font-medium text-gray-900 ">
+                <th className="whitespace-nowrap px-2 py-2 font-medium text-gray-900 ">
                   N. Orden
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
@@ -86,8 +86,8 @@ function Compras() {
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                   Monto de compra
                 </th>
-                {showDetailHeader ? ( // Renderiza el encabezado solo si showDetailHeader es verdadero
-                <th className="whitespace-nowrap px-48 py-2 font-medium text-gray-900">
+                {showDetailHeader ? ( 
+                   <th className="whitespace-nowrap px-48 py-2 font-medium text-gray-900">
                   Detalle
                 </th>
                  ): <th className="whitespace-nowrap px-56 py-2 font-medium text-gray-900">
@@ -115,17 +115,14 @@ function Compras() {
                   <td className="whitespace-normal break-words max-h-16 overflow-hidden font-medium text-gray-900">
                     #{r.id?.length > 2 ? r.id : "0" + r.id}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center ">
+                  <td className="font-sans whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center ">
                     {" "}
                     {r.order_date?.split("-").join("/").slice(0, 10)}{" "}
-                  </td>
-                  <td className="font-bold text-purple-700">
-                    {r.Products?.length > 2
-                      ? r.Products?.length + " productos"
-                      : r.Products?.length + " producto"}{" "}
-                    | {r.order_status}
-                  </td>
-                  <td className="block text-gray-700 flex justify-center px-4 py-8">
+                  </td>                                 
+                  <td className="font-sans font-bold text-purple-700">
+                  {r.order_status.charAt(0).toUpperCase() + r.order_status.slice(1)}                    
+                  </td>              
+                  <td className="font-sans block text-gray-700 flex justify-center px-4 py-8">
                     {formatter.format(r.amount)}
                   </td>
                   {r.order_status !== "cancelada" &&
@@ -184,13 +181,28 @@ function Compras() {
                       ) : (
                         <></>
                       )}{" "}
-                      <button
+                      {r.order_status === "realizada" ? (
+                    <td>
+                  <button
                         type="button"
-                        className="inline-block rounded bg-purple-700 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                        className="mt-4 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-3 py-1 text-center mr-2 mb-2"
                         onClick={() => toggleProductVisibility(r.id)}
                       >
                         {productVisibility[r.id] ? "Hide" : "View"}
                       </button>
+
+                    <tt className="text-gray-700">Agrega una reseña a tu compra</tt>
+                  </td>
+                  ) :(
+                    <button
+                        type="button"
+                        className="mt-4 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-3 py-1 text-center mr-2 mb-2"
+                        onClick={() => toggleProductVisibility(r.id)}
+                      >
+                        {productVisibility[r.id] ? "Hide" : "View"}
+                      </button>
+                  )}
+                    
                     </td>
                   )}
                 </tr>

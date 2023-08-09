@@ -267,9 +267,9 @@ export const registerCustomer = (step) => {
 export const getOrderProducts = (email) => {
   return async (dispatch) => {
     try{
-    const json = await axios.get(`/order?${email}`);
+    const json = await axios.get(`/order?email=${email}`);
     dispatch({ type: GET_ORDER, payload: json.data });
-  }catch(err){swal(error)}
+  }catch(err){swal(err)}
 } 
 };
 

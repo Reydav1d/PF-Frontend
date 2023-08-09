@@ -45,7 +45,10 @@ function ContenedorCartas() {
     <div className="lg:col-span-3">
       <div>
         {loading ? (
-          <h1>Cargando...</h1>
+          <div  className="ml-40 flex flex-col items-center justify-center h-screen">
+          <h1 className="mt-10 font-sans text-xl font-bold">Cargando...</h1>
+          <img className="mt-4" src="https://media.tenor.com/28DFFVtvNqYAAAAC/loading.gif" alt="cargando" />
+          </div>
         ) : (
           <div>
            {searched && losProductos.length === 0 ? (
@@ -63,7 +66,7 @@ function ContenedorCartas() {
                 ) : (
                   <div className="ml-40 flex flex-col items-center justify-center h-screen">
                   <h2 className="mt-10 font-sans text-xl font-bold">Lo sentimos, no se encontraron resultados...</h2>
-                  <img className="mt-4" src="https://media.tenor.com/GCAp1T2fAZwAAAAi/sorry-im-sorry.gif" alt="" />
+                  <img className="mt-4" src="https://media.tenor.com/GCAp1T2fAZwAAAAi/sorry-im-sorry.gif" alt="no hay productos" />
                   </div>
                   )}
             <PaginationButtons
