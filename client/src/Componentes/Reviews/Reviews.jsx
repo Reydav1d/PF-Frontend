@@ -27,7 +27,7 @@ const Reviews = ({id}) => {
   }, [LosDatos.user]);
 
 useEffect(() => {
-  const reviewed = reviews.some((review) => review.ProductId === id);
+  const reviewed = reviews.length === 0 ? false : reviews.some((review) => review.ProductId === id && review.customerUser === LosDatos.user.usuario); //usuario 
   setHasReviewed(reviewed);
 }, [reviews, id]);
 
