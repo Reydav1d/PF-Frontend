@@ -128,11 +128,17 @@ function Compras() {
                   {r.order_status !== "cancelada" &&
                     r.order_status !== "realizada" && (
                       <Link
-                        to={`/ordencompra/${r.id}`}
-                        className="text-blue-500 underline cursor-pointer hover:text-blue-600 flex justify-center px-4 py-2"
-                      >
-                        Pagar ahora
-                      </Link>
+                      to={{
+                        pathname: `/ordencompra/${r.id}`,
+                        state: {
+                          selectedQuantities: {}, // Pasa los datos relevantes como estado
+                          preferenceId: r.preferenceId, // Pasa el preferenceId de la orden
+                        },
+                      }}
+                      className="text-blue-500 underline cursor-pointer hover:text-blue-600 flex justify-center px-4 py-2"
+                    >
+                      Pagar ahora
+                    </Link>
                     )}
                   {r.Products && (
                     <td className="whitespace-nowrap px-1 py-1">

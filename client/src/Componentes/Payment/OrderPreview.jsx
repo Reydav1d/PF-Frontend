@@ -12,7 +12,7 @@ const OrderPreview = () => {
   const [orderData, setOrderData] = useState(null); // Estado para almacenar los detalles de la orden
   const [loading, setLoading] = useState(true);
   const user = localStorage.getItem("user");
-  console.log(user, "hola");
+  // console.log(user, "hola");
   const [userInfo, setUserInfo] = useState(null);
 
   const id = preferenceId;
