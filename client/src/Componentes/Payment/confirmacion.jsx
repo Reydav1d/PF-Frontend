@@ -12,7 +12,7 @@ const OrderDetailsPage = () => {
     const getOrderDetail = async (id) => {
         try {
           const response = await axios.get(`/order/${id}`);
-          console.log(response)
+
           setOrderData(response.data); // Set the order details in the state
         } catch (error) {
           console.log(error);
@@ -56,17 +56,17 @@ const OrderDetailsPage = () => {
 
 return (
   <div  className="bg-gray-50 min-h-screen">
- <div className="container_payment mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+ <div className="container_payment mx-auto max-w-screen-xl px-2 py-8 sm:px-6 sm:py-4 lg:px-2">
  <div className="block-heading text-center">
- <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Estatus del pedido</h2>
+ <h2 className="font-sans text-2xl font-bold text-gray-900 sm:text-3xl">Estatus del pedido</h2>
 
-    <img src={orderData.Customer.image} alt="foto.cliente" className="mt-4 h-24 w-24 rounded-full mx-auto" />
-    <p>Email: {orderData.order_email}</p>
-    <p className="text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData.order_status}</p>
-      <h1>{statusText}</h1>
-    <p>Fecha de la orden: {orderData.order_date}</p>
-    <p>ID de preferencia de pago: {orderData.id}</p>
-    <p className="mt-4 text-xl text-gray-700">{statusAmount} {formatter.format(orderData.amount)}</p>
+    <img src={orderData?.Customer?.image} alt="foto.cliente" className="mt-4 h-40 w-32 rounded-full mx-auto" />
+    <p className="font-sans mt-4">Email: {orderData?.order_email}</p>
+    <p className="font-sans mt-4 text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData?.order_status}</p>
+      <h1 className="font-sans font-semibold">{statusText}</h1>
+    <p className="font-sans">Fecha de la orden: {orderData?.order_date}</p>
+    <p className="font-sans mt-4">ID de preferencia de pago: {orderData?.id}</p>
+    <p className="mt-4 text-xl text-gray-700 font-sans">{statusAmount} {formatter.format(orderData?.amount)}</p>
    
               <div className="flex justify-end mt-6">
               <Link to="/Productos/page/1">

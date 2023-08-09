@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import {useNavigate } from "react-router-dom";
 
 function PaymentButton({cartItems, selectedQuantities, datos}) {
-  console.log(datos.email, "no pasan")
+  // console.log(datos.email, "no pasan")
     const [preferenceId, setPreferenceId] = useState("")
     const [paidFor, setPaidFor] = useState(false); // Nuevo estado para verificar si se realizó el pago
     const [error, setError] = useState(null);
@@ -29,17 +29,17 @@ function PaymentButton({cartItems, selectedQuantities, datos}) {
           unit_price: item.price,
           quantity: selectedQuantities[item.id]
         }));
-        console.log("aun no", datos.email)
+        // console.log("aun no", datos.email)
         const response = await axios.post("/payment", {
           CustomerUser: datos?.usuario,
           email: datos?.email,
           items: items,
         })
             const {id} = response.data;
-            console.log(response)
+            // console.log(response)
             setPaymentResponse(response.data);
 
-            console.log(id)
+            // console.log(id)
             return id;
              }catch(error) {
                 console.log(error) 

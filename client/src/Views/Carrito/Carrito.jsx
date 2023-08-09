@@ -12,7 +12,7 @@ const Carrito = () => {
   const cart = useSelector((state) => state.cart);
 
   const [totalPrice, setTotalPrice] = useState(0);
-  console.log(totalPrice);
+  // console.log(totalPrice);
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
   useEffect(() => {
