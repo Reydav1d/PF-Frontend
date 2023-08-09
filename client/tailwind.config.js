@@ -66,6 +66,11 @@ export default {
         "rojo-pf": "#FF003E",
       },
     },
+    fontFamily: {
+      'sans': [ 'Roboto', 'sans-serif'],
+      'display': ['Oswald' ],
+      'body': ['"Open Sans"']
+  },
   },
   plugins: [],
 };

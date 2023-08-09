@@ -1,6 +1,7 @@
 .fondo {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: -42px;
+  margin-bottom: 1px;
+  
 
   display: flex;
   justify-content: center;
@@ -14,7 +15,6 @@
 }
 .producto {
   border: 0.1em solid rgb(132, 0, 255);
-  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
