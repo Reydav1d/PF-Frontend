@@ -65,10 +65,11 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="h-700 flex items-center justify-center h-screen">
-      <div className="w-1/4 bg-gray-100 border border-gray-300 rounded-lg p-8 flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center bg-gray-200">
+      <div className="w-1/4 bg-white border border-gray-300 rounded-lg p-8 shadow-md">
         <form className="w-full" action="" onSubmit={handleSubmit}>
-          <h1>iniciar sesión con </h1>
+          <h1 className="text-2xl font-semibold mb-4">Iniciar sesión</h1>
+
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -105,16 +106,16 @@ const RegisterForm = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200"
+            className="bg-violet-500 text-white font-semibold px-4 py-2 rounded hover:bg-violet-600 transition-colors duration-200"
           >
-            Enviar
+            Iniciar sesión
           </button>
-          <h1>iniciar sesión con </h1>
+          <p className="mt-2 text-gray-600">O inicia sesión con</p>
           <button
             onClick={signIn}
-            className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200 ml-10"
+            className="mt-2 bg-violet-500 text-white font-semibold px-4 py-2 rounded hover:bg-violet-600 transition-colors duration-200 flex items-center"
           >
-            Google 🚀{" "}
+            <span className="mr-2">Google 🚀</span>
           </button>
         </form>
       </div>
