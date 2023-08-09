@@ -64,7 +64,7 @@ export const validarUser = (input) => {
       const response = await axios.post("/login", input);
       const result = response.data;
       localStorage.setItem("token", result.token);
-      console.log(result.token);
+      // console.log(result.token);
       localStorage.setItem("user", JSON.stringify(result.user))
       dispatch({
         type: CREATE_USER,
@@ -80,7 +80,7 @@ export const datosDelUsuario = () => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token);
+      // console.log(token);
 
       const response = await axios.post(`/auth/productos`, null, {
         headers: {
@@ -88,7 +88,7 @@ export const datosDelUsuario = () => {
         },
       });
       const result = response.data;
-      console.log(result);
+      // console.log(result);
       dispatch({
         type: DATA_USUARIO,
         payload: result,
@@ -199,7 +199,7 @@ export const getSearchAdnFilterProducts =
         typeof search === "string"
           ? (search = search.replace(/\s/g, "%20"))
           : (search = "");
-        console.log(state.filters);
+        // console.log(state.filters);
 
         const getProducts = await axios.get(
           `/filter-sorts/selection?search=${search}&category=${
