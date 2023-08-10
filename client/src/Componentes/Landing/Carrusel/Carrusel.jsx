@@ -54,3 +54,36 @@
 // };
 
 // export default Carrusel;
+import React from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { generateTechProductSlides } from "./slides";
+
+const Carrusel = () => {
+  const slides = generateTechProductSlides(5);
+
+  return (
+    <div className="bg-white p-6">
+      {" "}
+      {/* Aplicar un fondo gris oscuro y padding */}
+      <Carousel
+        className="rounded-md overflow-hidden" // Estilo de contenedor utilizando clases de Tailwind
+        showThumbs={false}
+      >
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className="flex justify-center items-center h-80" // Estilo de diapositiva utilizando clases de Tailwind
+          >
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              className="object-contain h-full w-full rounded-md" // Estilo de imagen utilizando clases de Tailwind
+            />
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  );
+};
+export default Carrusel;
