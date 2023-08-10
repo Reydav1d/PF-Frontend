@@ -45,28 +45,38 @@ function ContenedorCartas() {
     <div className="lg:col-span-3">
       <div>
         {loading ? (
-          <h1>Cargando...</h1>
+          <div  className="ml-40 flex flex-col items-center justify-center h-screen">
+          <h1 className="mt-10 font-sans text-xl font-bold">Cargando...</h1>
+          <img className="mt-4" src="https://media.tenor.com/28DFFVtvNqYAAAAC/loading.gif" alt="cargando" />
+          </div>
         ) : (
           <div>
-            {searched && losProductos.length === 0 ? (
+           {searched && losProductos.length === 0 ? (
               <h2>No se encontraron resultados...</h2>
             ) : (
               <div>
+                {Array.isArray(visiblePeople) && visiblePeople.length > 0 ? (
                 <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {visiblePeople.map((product, index) => (
+ {visiblePeople.map((product, index) => (
                     <Link key={product.id} to={`/detail/${product.id}`}>
                       <Cartas key={index} item={product} />
                     </Link>
                   ))}
                 </ul>
-              </div>
-            )}
+                ) : (
+                  <div className="ml-40 flex flex-col items-center justify-center h-screen">
+                  <h2 className="mt-10 font-sans text-xl font-bold">Lo sentimos, no se encontraron resultados...</h2>
+                  <img className="mt-4" src="https://media.tenor.com/GCAp1T2fAZwAAAAi/sorry-im-sorry.gif" alt="no hay productos" />
+                  </div>
+                  )}
             <PaginationButtons
               currentPage={currentPage}
               totalPages={totalPages}
               setCurrentPage={setCurrentPage}
-            />
-          </div>
+              />
+              </div>
+        )}
+        </div>
         )}
       </div>
     </div>

@@ -86,7 +86,7 @@ function Detail() {
   //   slidesToScroll: 1,
   // };
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="font-sans bg-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="sm:flex sm:items-center px-6 py-4">

@@ -62,8 +62,8 @@ const Register2 = ({ customerData }) => {
       validationSchema={validationSchema}
     >
       {({ errors, setFieldValue, touched, isSubmitting }) => (
-        <div className="absolute ml-1700 h-700 w-1400 flex items-center flex flex-col mt-20">
-          <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-500 max-w-md">
+        <div className="absolute ml-1300 h-700 w-1200 flex items-center flex flex-col mt-20 ">
+          <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-500 max-w-md border-2 shadow-lg hover:shadow-2xl transition delay-200 duration-300">
             <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
               Editar Usuario
             </div>
@@ -184,7 +184,7 @@ const Register2 = ({ customerData }) => {
                   <ErrorMessage
                     name="address"
                     component={() => (
-                      <p className="text-red-500 text-xm italic">
+                      <p className="text-red-500 text-xm italic ">
                         {errors.address}
                       </p>
                     )}
@@ -193,7 +193,7 @@ const Register2 = ({ customerData }) => {
                 <div className="flex flex-col my-2">
                   <label
                     htmlFor="password"
-                    className="block my-1 font-semibold"
+                    className="block my-1 font-semibold "
                   >
                     Contraseña:
                   </label>
@@ -213,7 +213,7 @@ const Register2 = ({ customerData }) => {
                   <ErrorMessage
                     name="password"
                     component={() => (
-                      <p className="text-red-500 text-xm italic">
+                      <p className="text-red-500 text-xm italic ">
                         {errors.password}
                       </p>
                     )}
@@ -221,14 +221,14 @@ const Register2 = ({ customerData }) => {
                 </div>
                 <div className="flex justify-end">
                   <Link to="/dashboardUsuario/misdatos">
-                    <button className="bg-rojo-pf pl-6 pr-6 pt-2.5 pb-2.5 text-white mt-4 mr-5">
+                    <button className="mt-4 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-6 py-3 text-center mr-2 mb-2">
                       Volver
                     </button>
                   </Link>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-rojo-pf pl-6 pr-6 pt-2 pb-2 text-white mt-4"
+                    className="mt-4 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2"
                   >
                     {isSubmitting ? "Enviando..." : <h1>Guardar</h1>}
                   </button>

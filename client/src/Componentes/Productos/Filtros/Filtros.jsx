@@ -18,16 +18,6 @@ function Filtros() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  /*   const history = useHistory();
-
-  useEffect(() => {
-    // Crea una cadena de consulta con los parámetros del estado local
-    const queryParams = new URLSearchParams(dataUrl);
-    // Actualiza la URL con los parámetros del estado local
-    history.push({ search: queryParams.toString() });
-  }, [dataUrl, history]);
- */
-
   useEffect(() => {
     dispatch(getCategories());
   }, []);
@@ -77,85 +67,21 @@ function Filtros() {
   // MANEJADOR BOTÓN APLICAR
   const handleAplicarClick = () => {
     dispatch(getSearchAdnFilterProducts({ aplicar: true }));
-    setPrice({ min: "", max: "" });
     navigate(`/productos/page/${1}`);
   };
 
-  // return (
-  //   <div className="space-y-2">
-  //     <div className="mt-4 mr-4 h-100 w-80 overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
-  //       <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
-  //         <label className="text-sm font-medium">Filtrar por categorias:</label>
-  //         <select
-  //           className="transition group-open:-rotate-180"
-  //           onChange={handlecategories}
-  //         >
-  //           <option value="Todas">Todas</option>
-  //           {categories.map((e, index) => (
-  //             <option key={index} value={e.id}>
-  //               {e.name}
-  //             </option>
-  //           ))}
-  //         </select>
-  //       </div>
+  
 
-  //       <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
-  //         <label className="text-sm font-medium">Ordenar precio por:</label>
-  //         <select
-  //           className="transition group-open:-rotate-180"
-  //           onChange={handlePriceSorts}
-  //         >
-  //           <option value="Ninguno">Ninguno</option>
-  //           <option value="asc">Menor</option>
-  //           <option value="desc">Mayor</option>
-  //         </select>
-  //       </div>
-
-  //       <div className="mt-4 mr-4 ml-4 mb-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
-  //         <label className="text-sm font-medium">Filtrar por precio:</label>
-  //         <input
-  //           type="number"
-  //           placeholder="min"
-  //           value={price.min}
-  //           onChange={handleMinPriceChange}
-  //           className="peer h-8 w-full border-none bg-transparent p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-  //         />
-  //         <input
-  //           type="number"
-  //           placeholder="max"
-  //           value={price.max}
-  //           onChange={handleMaxPriceChange}
-  //           className="peer h-8 w-full border-none bg-transparent p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-  //         />
-  //       </div>
-  //     </div>
-
-  //     <div className="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
-  //       <button
-  //         className="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-teal-400 text-white font-bold"
-  //         onClick={handlerClean}
-  //       >
-  //         Clean
-  //       </button>
-  //       <button
-  //         className="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-blue-400 text-white font-bold"
-  //         onClick={handleAplicarClick}
-  //       >
-  //         Aplicar
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
   return (
-    <div className="space-y-2">
-      <div className="mt-4 mr-4 ml-4 w-80 overflow-hidden rounded border border-gray-300">
-        <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
-          <label className="text-sm font-medium">Filtrar por categorias:</label>
+    <div className="mr-16 space-y-3 bg-gray-800">
+      <div className="mt-8 mr-10 ml-8 w-80 overflow-hidden rounded ">
+        <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300 ">
+          <label className="font-sans font-semibold text-sm text-gray-600">Filtrar por categorias:</label>
           <select
-            className="transition group-open:-rotate-180"
+            className="transition group-open:-rotate-180 font-sans text-sm text-gray-600"
             onChange={handlecategories}
           >
-            <option value="Todas">Todas</option>
+            <option className="font-sans text-sm text-gray-600" value="Todas">Todas</option>
             {categories.map((e, index) => (
               <option key={index} value={e.id}>
                 {e.name}
@@ -165,45 +91,45 @@ function Filtros() {
         </div>
 
         <div className="mt-4 mr-4 ml-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
-          <label className="text-sm font-medium">Ordenar precio por:</label>
+          <label className="font-sans font-semibold text-sm text-gray-600">Ordenar precio por:</label>
           <select
-            className="transition group-open:-rotate-180"
+          className="font-sans text-sm text-gray-600"
             onChange={handlePriceSorts}
           >
-            <option value="Ninguno">Ninguno</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
+            <option className="font-sans text-sm text-gray-600" value="Ninguno">Ninguno</option>
+            <option className="font-sans text-sm text-gray-600" value="asc">Menor</option>
+            <option className="font-sans text-sm text-gray-600" value="desc">Mayor</option>
           </select>
         </div>
 
         <div className="mt-4 mr-4 ml-4 mb-4 flex cursor-pointer items-center justify-between gap-4 bg-white p-4 text-gray-900 transition rounded border border-gray-300">
-          <label className="text-sm font-medium">Filtrar por precio:</label>
+          <label className="font-sans font-semibold text-sm text-gray-600">Filtrar por precio:</label>
           <input
             type="number"
             placeholder="min"
             value={price.min}
             onChange={handleMinPriceChange}
-            className="peer h-8 w-full border-none bg-transparent p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="h-8 w-full sm:text-sm font-sans text-sl text-gray-600"
           />
           <input
             type="number"
             placeholder="max"
             value={price.max}
             onChange={handleMaxPriceChange}
-            className="peer h-8 w-full border-none bg-transparent p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="h-8 w-full sm:text-sm font-sans text-sl text-gray-600"
           />
         </div>
       </div>
 
       <div className="mt-4 mr-4 ml-20 flex overflow-hidden">
         <button
-          className="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-teal-400 text-white font-bold"
+          className="ml-6 mr-6 inline-block px-5 py-3 block rounded border text-gray-700 hover:bg-gray-500 focus:relative bg-teal-400 text-white font-bold"
           onClick={handlerClean}
         >
           Clean
         </button>
         <button
-          className="inline-block border-e p-3 text-gray-700 hover:bg-gray-500 focus:relative bg-blue-400 text-white font-bold"
+          className="inline-block border-e px-5 py-3 block rounded border text-gray-700 hover:bg-gray-500 focus:relative bg-blue-400 text-white font-bold"
           onClick={handleAplicarClick}
         >
           Aplicar

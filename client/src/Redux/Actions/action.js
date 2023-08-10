@@ -100,7 +100,7 @@ export const validarUser = (input) => {
       const response = await axios.post("/login", input);
       const result = response.data;
       localStorage.setItem("token", result.token);
-      //console.log(result.user);
+      // console.log(result.token);
       localStorage.setItem("user", JSON.stringify(result.user));
       dispatch({
         type: CREATE_USER,
@@ -124,7 +124,7 @@ export const datosDelUsuario = () => {
         },
       });
       const result = response.data;
-      //console.log(result);
+      // console.log(result);
       dispatch({
         type: DATA_USUARIO,
         payload: result,
@@ -235,7 +235,7 @@ export const getSearchAdnFilterProducts =
         typeof search === "string"
           ? (search = search.replace(/\s/g, "%20"))
           : (search = "");
-        console.log(state.filters);
+        // console.log(state.filters);
 
         const getProducts = await axios.get(
           `/filter-sorts/selection?search=${search}&category=${
@@ -303,10 +303,10 @@ export const registerCustomer = (step) => {
 export const getOrderProducts = (email) => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`/order?${email}`);
+      const json = await axios.get(`/order?email=${email}`);
       dispatch({ type: GET_ORDER, payload: json.data });
     } catch (err) {
-      swal(error);
+      swal(err);
     }
   };
 };
