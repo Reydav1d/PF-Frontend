@@ -100,7 +100,9 @@ function Compras() {
               {ordersProducts.map((r, index) => (
                 <tr key={index}>
                   {r.order_status !== "cancelada" &&
-                  r.order_status !== "realizada" ? (
+                  r.order_status !== "realizada" ?  
+                    (" ")
+                   : (
                     <button
                       className="ml-4 mr-2 px-2 bg-purple-100 py-2 rounded-md text-white font-semibold hover:bg-purple-300 active:bg-purple-700 focus:outline-none focus:ring focus:bg-purple-400 "
                       onClick={(e) => handleDelete(e)}
@@ -109,38 +111,43 @@ function Compras() {
                       {" "}
                       🗑️
                     </button>
-                  ) : (
-                    <button></button>
-                  )}
+                  ) }
+                   {r.order_status !== "cancelada" &&
+                  r.order_status !== "realizada" ?  (
+                    " " ) : (
                   <td className="whitespace-normal break-words max-h-16 overflow-hidden font-medium text-gray-900">
                     #{r.id?.length > 2 ? r.id : "0" + r.id}
                   </td>
+                   )}
+                    {r.order_status !== "cancelada" &&
+                  r.order_status !== "realizada" ?  (
+                    " "
+                  ) : (
                   <td className="font-sans whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center ">
                     {" "}
                     {r.order_date?.split("-").join("/").slice(0, 10)}{" "}
-                  </td>                                 
+                  </td> 
+                  )} 
+                   {r.order_status !== "cancelada" &&
+                  r.order_status !== "realizada" ?  (
+                    " "
+                  ) : (                               
                   <td className="font-sans font-bold text-purple-700">
                   {r.order_status.charAt(0).toUpperCase() + r.order_status.slice(1)}                    
-                  </td>              
+                  </td> 
+                  )}   
+                   {r.order_status !== "cancelada" &&
+                  r.order_status !== "realizada" ?  (
+                    " "
+                  ) : (           
                   <td className="font-sans block text-gray-700 flex justify-center px-4 py-8">
                     {formatter.format(r.amount)}
                   </td>
-                  {r.order_status !== "cancelada" &&
-                    r.order_status !== "realizada" && (
-                      <Link
-                      to={{
-                        pathname: `/ordencompra/${r.id}`,
-                        state: {
-                          selectedQuantities: {}, // Pasa los datos relevantes como estado
-                          preferenceId: r.preferenceId, // Pasa el preferenceId de la orden
-                        },
-                      }}
-                      className="text-blue-500 underline cursor-pointer hover:text-blue-600 flex justify-center px-4 py-2"
-                    >
-                      Pagar ahora
-                    </Link>
-                    )}
-                  {r.Products && (
+                 )} 
+                 {r.order_status !== "cancelada" &&
+                  r.order_status !== "realizada" && r.Products ?  (
+                    " "
+                  ) : (                    
                     <td className="whitespace-nowrap px-1 py-1">
                       {productVisibility[r.id] ? (
                         r.Products?.map((p) => (
