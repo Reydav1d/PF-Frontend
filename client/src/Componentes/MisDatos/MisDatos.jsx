@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { datosDelUsuario } from "../../Redux/Actions/action";
 import { useDispatch, useSelector } from "react-redux";
 //import s from "./Favoritos.module.css";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function misDatos() {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ function misDatos() {
     });
   }, [dispatch]);
   // console.log(LosDatos);
-
   return (
     <div className="absolute ml-1400 h-700 w-1000 flex items-center flex flex-col mt-10">
       <h1 className="font-sans rounded border bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 w-800 font-bold text-xl h-15 p-3 m-2 text-white border-2 shadow-lg hover:shadow-2xl transition delay-200 duration-300 ">
@@ -52,25 +51,21 @@ function misDatos() {
               </h4>
               {LosDatos.user.telefono}{" "}
             </div>
-            <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
-              <h4 className="font-bold font-sans text-lg text-gray-600">
-                Contraseña:
-              </h4>
+            {/* <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
+              <h4 className="font-bold font-sans text-lg text-gray-600">Contraseña:</h4>
               {LosDatos.user.contraseña}{" "}
-            </div>
+            </div> */}
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
               <h4 className="font-bold font-sans text-lg text-gray-600">
                 Usuario:
               </h4>{" "}
-              {LosDatos.user.user}{" "}
+              {LosDatos.user.usuario}{" "}
             </div>
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
               <h4 className="font-bold font-sans text-lg text-gray-600">
                 Estado:
               </h4>{" "}
-              {LosDatos.user.user_banned === false
-                ? "Habilitado"
-                : "Deshabilitado"}
+              {LosDatos.user.user_banned === false ? "Activo" : "Suspendido"}
             </div>
           </div>
         </div>
@@ -81,6 +76,33 @@ function misDatos() {
         </button>
       </Link> */}
     </div>
+    // <div className="absolute ml-1700 h-700 w-1400 flex justify-center bg-red-400">
+    //   <h1 className="bg-green-400">Mis Datos</h1>
+    //   {LosDatos?.user && (
+    //     <div className="bg-blue-400 w-900">
+    //       <div>
+    //         <img
+    //           className="bg-cover bg-center w-40 h-40"
+    //           style={{
+    //             backgroundImage:
+    //               'url("https://as2.ftcdn.net/jpg/03/49/49/79/360_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg")',
+    //           }}
+    //           src={LosDatos.user.imagen}
+    //           alt="Imagen"
+    //         />
+    //       </div>
+    //       <div>email:{LosDatos.user.email} </div>
+    //       <div>contraseña:{LosDatos.user.contraseña} </div>
+    //       <div>nombre: {LosDatos.user.nombre}</div>
+    //       <div>usuario: {LosDatos.user.user}</div>
+    //       <div>telefono: {LosDatos.user.telefono}</div>
+    //       <div>
+    //         estado:{" "}
+    //         {LosDatos.user.estado === false ? "Habilidato" : "Deshabilitado"}
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
   );
 }
 
