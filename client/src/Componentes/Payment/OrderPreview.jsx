@@ -12,7 +12,6 @@ const OrderPreview = () => {
   const [orderData, setOrderData] = useState(null); // Estado para almacenar los detalles de la orden
   const [loading, setLoading] = useState(true);
   const user = localStorage.getItem("user");
-  // console.log(user, "hola");
   const [userInfo, setUserInfo] = useState(null);
 
   const id = preferenceId;
@@ -21,7 +20,6 @@ const OrderPreview = () => {
   const getOrderData = async () => {
     try {
       const response = await axios.get(`/order/${id}`);
-      console.log("Order Data:", response.data);
       setOrderData(response.data); // Almacena los detalles de la orden en el estado
       setLoading(false); // Marcar que los datos se han cargado
     } catch (error) {
@@ -69,6 +67,13 @@ const OrderPreview = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
+  const elToken = localStorage.getItem("token");
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="container_payment mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -82,6 +87,8 @@ const OrderPreview = () => {
             <p className="text-gray-600">Cargando detalles de la orden...</p>
           ) : orderData ? (
             <div className="products">
+               {elToken === null ? 
+                 (" ") : (
               <div className="item">
                 <img
                   src={userInfo?.imagen}
@@ -96,10 +103,8 @@ const OrderPreview = () => {
                 <p id="summary-price" className="text-gray-600">
                   Teléfono: {userInfo?.telefono}
                 </p>
-                <p id="summary-price" className="text-gray-600">
-                  Estatus de Orden: {orderData.order_status}
-                </p>
-              </div>
+              
+              </div>)  }
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mt-8">
                   Productos
@@ -152,21 +157,26 @@ const OrderPreview = () => {
                 <div className="w-screen max-w-lg space-y-4">
                   <div className="space-y-1 text-sm text-gray-700">
                     <div className="flex justify-between">
-                      <p className="mt-4 w-[200px] text-xl">Total del pedido</p>
+                      <p className="mt-4 mb-12 w-[200px] text-xl">Total del pedido</p>
                       <span className="mt-4 w-[200px] text-xl">
                         {formatter.format(orderData.amount)}
                       </span>
                     </div>
                   </div>
-
-                  <div className="flex justify-end">
+                  {elToken === null ? 
+                  <div className="mt-20">
+                    <span className="font-sans font-bold text-purple-700"> "Tienes que estar registrado para poder comprar" </span>
+                    </div> :
+                 ( <div className="flex justify-end">
                     {userInfo && (<PaymentButton
                       cartItems={orderData.Products}
                       selectedQuantities={selectedQuantities}
                       handleCheckout={renderCheckoutButton}
                       datos={userInfo}
-                    />)}
-                  </div>
+                      />)}
+                      </div>
+                    ) 
+                    }
                   <div className="flex justify-end">
                     <Link to="/carrito">
                       <button
