@@ -19,10 +19,12 @@ import {
   REFRESH_CART,
   CUSTOMER_REGISTER,
   GET_ORDER,
-  CREATE_REVIEW, 
+  CREATE_REVIEW,
   GET_REVIEWS_PRODUCT,
-  GET_CUSTOMERS, 
-  DELETE_ORDER, 
+  GET_CUSTOMERS,
+  DELETE_ORDER,
+  GET_ALL_USUARIOS,
+  SET_CURRENT_PAGE,
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -34,6 +36,41 @@ export const getAllProductos = () => {
     dispatch({
       type: GET_ALL_PRODUCTOS,
       payload: product,
+    });
+  };
+};
+
+export const getAllUsuarios = () => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`/customer`);
+    const customers = apiData.data;
+    //console.log(product);
+
+    dispatch({
+      type: GET_ALL_USUARIOS,
+      payload: customers,
+    });
+  };
+};
+
+export const setCurrentPage = (page) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: page,
+  };
+};
+
+export const baneoUsuarios = (usuarioParaDeshabilitar) => {
+  return async function (dispatch) {
+    console.log(usuarioParaDeshabilitar);
+
+    const apiData = await axios.post(`/baneo`, usuarioParaDeshabilitar);
+    const customers = apiData.data;
+
+    console.log(customers);
+    dispatch({
+      type: "USER_BANEO",
+      payload: customers,
     });
   };
 };
@@ -65,7 +102,7 @@ export const validarUser = (input) => {
       const result = response.data;
       localStorage.setItem("token", result.token);
       // console.log(result.token);
-      localStorage.setItem("user", JSON.stringify(result.user))
+      localStorage.setItem("user", JSON.stringify(result.user));
       dispatch({
         type: CREATE_USER,
       });
@@ -80,7 +117,7 @@ export const datosDelUsuario = () => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem("token");
-      // console.log(token);
+      //console.log(token);
 
       const response = await axios.post(`/auth/productos`, null, {
         headers: {
@@ -266,52 +303,58 @@ export const registerCustomer = (step) => {
 
 export const getOrderProducts = (email) => {
   return async (dispatch) => {
-    try{
-    const json = await axios.get(`/order?email=${email}`);
-    dispatch({ type: GET_ORDER, payload: json.data });
-  }catch(err){swal(err)}
-} 
+    try {
+      const json = await axios.get(`/order?email=${email}`);
+      dispatch({ type: GET_ORDER, payload: json.data });
+    } catch (err) {
+      swal(err);
+    }
+  };
 };
 
 export const create_new_review = (payload) => {
   return async (dispatch) => {
-    try{
-    const response = await axios.post(`/review`, payload)
-     dispatch({ type: CREATE_REVIEW, payload: response.data })
-    }catch(error) {swal("Reseña no creada")
+    try {
+      const response = await axios.post(`/review`, payload);
+      dispatch({ type: CREATE_REVIEW, payload: response.data });
+    } catch (error) {
+      swal("Reseña no creada");
+    }
   };
-}}
+};
 
 export const getReviews = (id) => {
   return async (dispatch) => {
     try {
-  const response = await axios.get(`/review/${id}`)
-    dispatch({ type: GET_REVIEWS_PRODUCT, payload: response.data })
-      }catch(error) {swal(error)
-      }
-  }};
-
-  export const getCustomers = (id) => {
-    return async function (dispatch) {
-      try {
-        const response = await axios.get(`/customers/`);
-        return dispatch({
-          type: GET_CUSTOMERS,
-          payload: response.data,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      const response = await axios.get(`/review/${id}`);
+      dispatch({ type: GET_REVIEWS_PRODUCT, payload: response.data });
+    } catch (error) {
+      swal(error);
+    }
   };
-  
-  export const deleteOrder = ({ id }) => {
-    return async (dispatch) => {
-      try {
-        await axios.delete(`/order/${id}`);
-        return dispatch({type:DELETE_ORDER,payload:id})
-      } catch (error) {
-        swal(`ERROR: ${error}`);
-      }
-    };
-  }
+};
+
+export const getCustomers = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/customers/`);
+      return dispatch({
+        type: GET_CUSTOMERS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteOrder = ({ id }) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/order/${id}`);
+      return dispatch({ type: DELETE_ORDER, payload: id });
+    } catch (error) {
+      swal(`ERROR: ${error}`);
+    }
+  };
+};

@@ -17,13 +17,18 @@ import {
   REFRESH_CART,
   CUSTOMER_REGISTER,
   GET_ORDER,
-  CREATE_REVIEW, 
+  CREATE_REVIEW,
   GET_REVIEWS_PRODUCT,
-  GET_CUSTOMERS, 
+  GET_CUSTOMERS,
+  GET_ALL_USUARIOS,
+  SET_CURRENT_PAGE,
 } from "../Actions/constantes";
 
 const initialState = {
   productos: [],
+  allUsers: [],
+  currentPage: 1,
+  usersPerPage: 6,
   searchFilterResults: [],
   loading: false,
   searched: false,
@@ -57,12 +62,24 @@ const rootReducer = (state = initialState, { type, payload }) => {
         productos: payload,
         loading: false,
       };
+    case GET_ALL_USUARIOS:
+      return {
+        ...state,
+        allUsers: payload,
+      };
+
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
 
     case GET_PRODUCT:
       return {
         ...state,
         product: payload,
       };
+
     case DATA_USUARIO:
       return {
         ...state,
@@ -152,17 +169,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case CUSTOMER_REGISTER:
       return {
         ...state,
-        registro: payload
-      }
+        registro: payload,
+      };
     default:
       return { ...state };
-   case GET_ORDER: 
-        return { 
-          ...state, 
-          orderProduct: payload,
-        
-      }
-      case CREATE_REVIEW:
+    case GET_ORDER:
+      return {
+        ...state,
+        orderProduct: payload,
+      };
+    case CREATE_REVIEW:
       return {
         ...state,
         reviews: payload,
@@ -173,15 +189,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         reviews: payload,
       };
-      case GET_CUSTOMERS: {
-        return {
-          ...state,
-          users: payload,
-          usersCopy: payload
-        };
-      }
+    case GET_CUSTOMERS: {
+      return {
+        ...state,
+        users: payload,
+        usersCopy: payload,
+      };
+    }
   }
-  
 };
 
 export default rootReducer;
