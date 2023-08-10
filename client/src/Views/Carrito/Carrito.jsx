@@ -12,7 +12,7 @@ const Carrito = () => {
   const cart = useSelector((state) => state.cart);
 
   const [totalPrice, setTotalPrice] = useState(0);
-  console.log(totalPrice);
+  // console.log(totalPrice);
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Carrito = () => {
   const handleCheckout = async (customerData) => {
     try {
       //destructura los datos del usuario
-      const {user, email} = customerData
+      const {usuario, email} = customerData
 
       // Crea un array con la información de los productos del carrito
       const items = cart.map((product) => ({
@@ -87,7 +87,7 @@ const Carrito = () => {
 
        // Envía la información del carrito al servidor para crear la orden de compra
        const response = await axios.post("/order", {
-        CustomerUser: user,
+        CustomerUser: usuario,
         email: email,
         items: items,
       });
