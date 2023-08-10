@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { datosDelUsuario } from "../../Redux/Actions/action";
 import { useDispatch, useSelector } from "react-redux";
 //import s from "./Favoritos.module.css";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 function misDatos() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function misDatos() {
       <h1 className="bg-violeta-pf w-960 font-bold text-xl h-15 p-5 m-5 text-white ">
         Mis Datos
       </h1>
-      {LosDatos?.user && (
+      {LosDatos.user && (
         <div className="bg-gray-200 w-960 flex justify-evenly pt-8 pb-8">
           <div>
             <img
@@ -35,25 +35,25 @@ function misDatos() {
               <h4 className="font-bold text-lg text-rojo-pf shadow-sm">
                 Nombre:
               </h4>{" "}
-              {LosDatos.user.nombre}
+              {LosDatos.user.name}
             </div>
           </div>
           <div className="bg-white w-600 flex flex-col justify-between p-5">
             <div className="flex justify-between p-4  ">
               <h4 className="font-bold  text-lg text-rojo-pf">Email:</h4>
-              {LosDatos.user.email}{" "}
+              {LosDatos.user.email}
             </div>
             <div className="flex justify-between p-4 ">
               <h4 className="font-bold  text-lg text-rojo-pf">Telefono:</h4>
-              {LosDatos.user.telefono}{" "}
+              {LosDatos.user.telefono}
             </div>
-            <div className="flex justify-between p-4 ">
-              <h4 className="font-bold  text-lg text-rojo-pf">Contraseña:</h4>
-              {LosDatos.user.contraseña}{" "}
-            </div>
+            {/* <div className="flex justify-between p-4 ">
+              <h4 className="font-bold  text-lg text-rojo-pf">Direccion:</h4>
+              {LosDatos.user.password}
+            </div> */}
             <div className="flex justify-between p-4 ">
               <h4 className="font-bold  text-lg text-rojo-pf">usuario:</h4>{" "}
-              {LosDatos.user.user}{" "}
+              {LosDatos.user.usuario}
             </div>
             <div className="flex justify-between p-4">
               <h4 className="font-bold  text-lg text-rojo-pf">Estado:</h4>{" "}
@@ -64,39 +64,12 @@ function misDatos() {
           </div>
         </div>
       )}
-      <Link to="/dashboardUsuario/editUser">
+      {/* <Link to="/dashboardUsuario/editUser">
         <button className="bg-rojo-pf w-40 font-bold flex justify-center text-xl h-15 p-5 m-5 text-white ">
           Editar
         </button>
-      </Link>
+      </Link> */}
     </div>
-    // <div className="absolute ml-1700 h-700 w-1400 flex justify-center bg-red-400">
-    //   <h1 className="bg-green-400">Mis Datos</h1>
-    //   {LosDatos?.user && (
-    //     <div className="bg-blue-400 w-900">
-    //       <div>
-    //         <img
-    //           className="bg-cover bg-center w-40 h-40"
-    //           style={{
-    //             backgroundImage:
-    //               'url("https://as2.ftcdn.net/jpg/03/49/49/79/360_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg")',
-    //           }}
-    //           src={LosDatos.user.imagen}
-    //           alt="Imagen"
-    //         />
-    //       </div>
-    //       <div>email:{LosDatos.user.email} </div>
-    //       <div>contraseña:{LosDatos.user.contraseña} </div>
-    //       <div>nombre: {LosDatos.user.nombre}</div>
-    //       <div>usuario: {LosDatos.user.user}</div>
-    //       <div>telefono: {LosDatos.user.telefono}</div>
-    //       <div>
-    //         estado:{" "}
-    //         {LosDatos.user.estado === false ? "Habilidato" : "Deshabilitado"}
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
   );
 }
 

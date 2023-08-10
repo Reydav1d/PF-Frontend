@@ -21,11 +21,14 @@ import {
   GET_REVIEWS_PRODUCT,
   GET_CUSTOMERS,
   GET_ALL_USUARIOS,
+  SET_CURRENT_PAGE,
 } from "../Actions/constantes";
 
 const initialState = {
   productos: [],
   allUsers: [],
+  currentPage: 1,
+  usersPerPage: 6,
   searchFilterResults: [],
   loading: false,
   searched: false,
@@ -65,11 +68,18 @@ const rootReducer = (state = initialState, { type, payload }) => {
         allUsers: payload,
       };
 
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+
     case GET_PRODUCT:
       return {
         ...state,
         product: payload,
       };
+
     case DATA_USUARIO:
       return {
         ...state,

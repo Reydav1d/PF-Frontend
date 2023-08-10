@@ -24,6 +24,7 @@ import {
   GET_CUSTOMERS,
   DELETE_ORDER,
   GET_ALL_USUARIOS,
+  SET_CURRENT_PAGE,
 } from "./constantes";
 
 export const getAllProductos = () => {
@@ -47,6 +48,27 @@ export const getAllUsuarios = () => {
 
     dispatch({
       type: GET_ALL_USUARIOS,
+      payload: customers,
+    });
+  };
+};
+
+export const setCurrentPage = (page) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: page,
+  };
+};
+
+export const baneoUsuarios = (usuarioParaDeshabilitar) => {
+  return async function (dispatch) {
+    console.log(usuarioParaDeshabilitar);
+    const apiData = await axios.post(`/baneo`, usuarioParaDeshabilitar);
+    const customers = apiData.data;
+
+    console.log(customers);
+    dispatch({
+      type: "USER_BANEO",
       payload: customers,
     });
   };
@@ -78,7 +100,7 @@ export const validarUser = (input) => {
       const response = await axios.post("/login", input);
       const result = response.data;
       localStorage.setItem("token", result.token);
-      console.log(result.user);
+      //console.log(result.user);
       localStorage.setItem("user", JSON.stringify(result.user));
       dispatch({
         type: CREATE_USER,
@@ -94,7 +116,7 @@ export const datosDelUsuario = () => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token);
+      //console.log(token);
 
       const response = await axios.post(`/auth/productos`, null, {
         headers: {
@@ -102,7 +124,7 @@ export const datosDelUsuario = () => {
         },
       });
       const result = response.data;
-      console.log(result);
+      //console.log(result);
       dispatch({
         type: DATA_USUARIO,
         payload: result,

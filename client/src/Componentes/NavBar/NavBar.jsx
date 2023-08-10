@@ -9,11 +9,14 @@ import SearchBar from "../../Componentes/SearchBar/SearchBar";
 function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     window.location.href = "/";
   };
 
   const elToken = localStorage.getItem("token");
-
+  const user = localStorage.getItem("user");
+  const usuario = JSON.parse(user);
+  console.log(usuario);
   return (
     <div className={s.fondo}>
       <SearchBar />
@@ -78,9 +81,16 @@ function NavBar() {
           <div className={s.cuenta}>
             {elToken === null ? (
               ""
+            ) : usuario.email === "henry@gmail.com" ? (
+              <Link
+                to={"/dashboardAdmin/misdatosAdmin"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Mi Cuenta
+              </Link>
             ) : (
               <Link
-                to={"/dashboardUsuario"}
+                to={"/dashboardUsuario/misdatos"}
                 style={{ textDecoration: "none", color: "white" }}
               >
                 Mi Cuenta
@@ -97,7 +107,6 @@ function NavBar() {
             ) : (
               <button onClick={handleLogout}>Cerrar Sesión</button>
             )}
-
           </div>
         </div>
       </div>

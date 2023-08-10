@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { validarUser } from "../../Redux/Actions/action";
 import { useDispatch } from "react-redux";
@@ -6,6 +6,16 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 
 const RegisterForm = () => {
+  const user = localStorage.getItem("user");
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      setUserInfo(JSON.parse(user));
+    }
+  }, [user]);
+  //console.log(userInfo);
+
   // #############  AUTH GOOGLE #################
 
   const handleGoogleResponse = async (googleData) => {
@@ -18,8 +28,11 @@ const RegisterForm = () => {
     console.log(reponse.data.result);
     console.log(reponse.data.user);
     localStorage.setItem("token", reponse.data.result);
-    localStorage.setItem("user", JSON.stringify(result.data.user));
-    window.location.href = "/";
+    localStorage.setItem("user", JSON.stringify(reponse.data.user));
+    const user = localStorage.getItem("user");
+    const usuario = JSON.parse(user);
+    //console.log(usuario.user_banned);
+    window.location.href = usuario?.user_banned === true ? "/userBaneado" : "/";
   };
 
   const handleGoogleResponseError = (errorFromGoogle) => {
@@ -60,7 +73,12 @@ const RegisterForm = () => {
     try {
       await dispatch(validarUser(input));
       // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
-      window.location.href = "/";
+      // window.location.href = "/";
+      const user = localStorage.getItem("user");
+      const usuario = JSON.parse(user);
+      //console.log(usuario.user_banned);
+
+      window.location.href = usuario?.estado === true ? "/userBaneado" : "/";
     } catch (error) {
       console.error("Error al Ingresar", error);
     }

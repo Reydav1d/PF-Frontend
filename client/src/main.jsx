@@ -7,7 +7,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { googleCredential } from "./config";
 //import { HashRouter } from "react-router-dom";
 import axios from "axios";
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { BrowserRouter } from "react-router-dom";
 
