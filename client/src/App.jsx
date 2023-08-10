@@ -26,12 +26,14 @@ import Usuarios from "./Componentes/Usuarios/Usuarios";
 import Ventas from "./Componentes/Ventas/Ventas";
 import Publicaciones from "./Componentes/Publicaciones/Publicaciones";
 import Reviews from "./Componentes/Reviews/Reviews";
+import UserBaneado from "./Views/Ususario Baneado/UserBaneado";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
+        <Route path="/userBaneado" element={<UserBaneado />} />
         <Route path="/Productos/page/:page" element={<Home />} />
         <Route path="/formUsuario" element={<FormUsuario />} />
         <Route path="/nuevaCuenta" element={<Registro />} />
