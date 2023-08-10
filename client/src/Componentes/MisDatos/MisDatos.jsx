@@ -65,7 +65,7 @@ function misDatos() {
               <h4 className="font-bold font-sans text-lg text-gray-600">
                 Estado:
               </h4>{" "}
-              {LosDatos.user.user_banned === false ? "Activo" : "Suspendido"}
+              {LosDatos.user.estado === false ? "Activo" : "Suspendido"}
             </div>
           </div>
         </div>
