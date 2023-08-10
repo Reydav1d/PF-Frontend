@@ -9,7 +9,7 @@ import Info from "../../Componentes/Landing/Info/Info";
 function Landing() {
   return (
     <div>
-       {/* <Carrusel />  */}
+      {/* <Carrusel />  */}
       <Productos />
       <Baner />
       <Reseñas />

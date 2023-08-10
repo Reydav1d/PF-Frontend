@@ -63,6 +63,7 @@ export const setCurrentPage = (page) => {
 export const baneoUsuarios = (usuarioParaDeshabilitar) => {
   return async function (dispatch) {
     console.log(usuarioParaDeshabilitar);
+
     const apiData = await axios.post(`/baneo`, usuarioParaDeshabilitar);
     const customers = apiData.data;
 

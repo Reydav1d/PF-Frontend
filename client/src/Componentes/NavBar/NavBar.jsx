@@ -15,8 +15,9 @@ function NavBar() {
 
   const elToken = localStorage.getItem("token");
   const user = localStorage.getItem("user");
-  const usuario = JSON.parse(user);
-  console.log(usuario);
+  console.log(user);
+  // const usuario = JSON.parse(user);
+
   return (
     <div className={s.fondo}>
       <SearchBar />
@@ -79,7 +80,7 @@ function NavBar() {
             )}
           </div>
           <div className={s.cuenta}>
-            {elToken === null ? (
+            {/* {elToken === null ? (
               ""
             ) : usuario.email === "henry@gmail.com" ? (
               <Link
@@ -88,6 +89,16 @@ function NavBar() {
               >
                 Mi Cuenta
               </Link>
+            ) : (
+              <Link
+                to={"/dashboardUsuario/misdatos"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Mi Cuenta
+              </Link>
+            )} */}
+            {elToken === null ? (
+              ""
             ) : (
               <Link
                 to={"/dashboardUsuario/misdatos"}

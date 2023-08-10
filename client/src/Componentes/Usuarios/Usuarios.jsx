@@ -39,6 +39,7 @@ function usuario() {
     const usuarioParaDeshabilitar = {
       email: email,
     };
+    console.log(usuarioParaDeshabilitar);
     dispatch(baneoUsuarios(usuarioParaDeshabilitar));
 
     window.location.href = "/dashboardAdmin/usuarios";

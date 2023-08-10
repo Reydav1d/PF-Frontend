@@ -14,6 +14,7 @@ function misDatos() {
     });
   }, [dispatch]);
   // console.log(LosDatos);
+
   return (
     <div className="absolute ml-1400 h-700 w-1000 flex items-center flex flex-col mt-10">
       <h1 className="font-sans rounded border bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 w-800 font-bold text-xl h-15 p-3 m-2 text-white border-2 shadow-lg hover:shadow-2xl transition delay-200 duration-300 ">
@@ -74,11 +75,11 @@ function misDatos() {
           </div>
         </div>
       )}
-      <Link to="/dashboardUsuario/editUser">
+      {/* <Link to="/dashboardUsuario/editUser">
         <button className="mt-4 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2">
           Editar
         </button>
-      </Link>
+      </Link> */}
     </div>
   );
 }
