@@ -62,9 +62,9 @@ return (
 
     <img src={orderData?.Customer?.image} alt="foto.cliente" className="mt-4 h-40 w-32 rounded-full mx-auto" />
     <p className="font-sans mt-4">Email: {orderData?.order_email}</p>
-    <p className="font-sans mt-4 text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData?.order_status}</p>
+    <p className="font-sans mt-4 text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData?.order_status.charAt(0).toUpperCase() + orderData?.order_status.slice(1)}</p>
       <h1 className="font-sans font-semibold">{statusText}</h1>
-    <p className="font-sans">Fecha de la orden: {orderData?.order_date}</p>
+    <p className="font-sans">Fecha de la orden: {orderData?.order_date.split("-").join("/").slice(0, 10)}</p>
     <p className="font-sans mt-4">ID de preferencia de pago: {orderData?.id}</p>
     <p className="mt-4 text-xl text-gray-700 font-sans">{statusAmount} {formatter.format(orderData?.amount)}</p>
    
