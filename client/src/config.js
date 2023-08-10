@@ -6,3 +6,8 @@ export const googleCredential = {
 export const redireccion = {
   url: import.meta.env.VITE_REACT_APP_API_URL,
 };
+
+export const urlsDeploy = {
+  urlBack: import.meta.env.VITE_REACT_APP_URL_BACK,
+  urlFront: import.meta.env.VITE_REACT_APP_URL_FRONT,
+}
