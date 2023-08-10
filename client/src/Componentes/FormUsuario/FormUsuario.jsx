@@ -5,9 +5,12 @@ import { useDispatch } from "react-redux";
 //import { redireccion } from "../../config";
 import axios from "axios";
 import { useToggle } from "./toggle";
+import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const RegisterForm = () => {
   const [isPasswordShow, toggleShowPassword] = useToggle();
+  const navigate = useNavigate();
   // #############  AUTH GOOGLE #################
 
   const handleGoogleResponse = async (googleData) => {
@@ -60,9 +63,15 @@ const RegisterForm = () => {
     try {
       await dispatch(validarUser(input));
       // Si la validación es exitosa, establecer isAuthenticated a true para redireccionar
-      window.location.href = "/";
+      navigate("/");
     } catch (error) {
       console.error("Error al Ingresar", error);
+      //Mensaje de error
+      Swal.fire({
+        icon: "error",
+        title: "Email o contraseña equivocados",
+        text: "Ingresa un correo y una contraseña existentes",
+      });
     }
   };
 
@@ -130,6 +139,12 @@ const RegisterForm = () => {
           >
             <span className="mr-2">Google 🚀</span>
           </button>
+          <div className="mt-4 text-gray-700 font-medium text-xs text-center">
+            ¿Aún no tienes una cuenta?{" "}
+            <Link to="/nuevaCuenta" className="text-violet-500 font-semibold">
+              Regístrate aquí
+            </Link>
+          </div>
         </form>
       </div>
     </div>
