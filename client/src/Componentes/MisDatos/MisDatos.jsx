@@ -34,17 +34,21 @@ function misDatos() {
             <div className="rounded bg-white flex justify-between p-3 mt-5 mt-5">
               <h4 className="font-bold font-sans text-lg text-gray-600">
                 Nombre:
-              </h4 >{" "}
+              </h4>{" "}
               {LosDatos.user.nombre}
             </div>
           </div>
           <div className="rounded bg-white w-500 flex flex-col justify-between p-5">
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
-              <h4 className="font-bold font-sans text-lg text-gray-600">Email:</h4>
+              <h4 className="font-bold font-sans text-lg text-gray-600">
+                Email:
+              </h4>
               {LosDatos.user.email}{" "}
             </div>
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
-              <h4 className="font-bold font-sans text-lg text-gray-600">Telefono:</h4>
+              <h4 className="font-bold font-sans text-lg text-gray-600">
+                Telefono:
+              </h4>
               {LosDatos.user.telefono}{" "}
             </div>
             {/* <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
@@ -52,14 +56,16 @@ function misDatos() {
               {LosDatos.user.contraseña}{" "}
             </div> */}
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
-              <h4 className="font-bold font-sans text-lg text-gray-600">Usuario:</h4>{" "}
+              <h4 className="font-bold font-sans text-lg text-gray-600">
+                Usuario:
+              </h4>{" "}
               {LosDatos.user.usuario}{" "}
             </div>
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
-              <h4 className="font-bold font-sans text-lg text-gray-600">Estado:</h4>{" "}
-              {LosDatos.user.user_banned === false
-                ? "Activo"
-                : "Suspendido"}
+              <h4 className="font-bold font-sans text-lg text-gray-600">
+                Estado:
+              </h4>{" "}
+              {LosDatos.user.user_banned === false ? "Activo" : "Suspendido"}
             </div>
           </div>
         </div>

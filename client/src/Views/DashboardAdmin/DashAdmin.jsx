@@ -8,12 +8,12 @@ function DashboardAdmin() {
     <div>
       <div className="bg-gray-500 w-200 h-700 flex items-center justify-center">
         <div>
-          <div className="text-white mb-7">
+          {/* <div className="text-white mb-7">
             <Link to="/dashboardAdmin/publicaciones">PUBLICACIONES</Link>
           </div>
           <div className="text-white  mb-7">
             <Link to="/dashboardAdmin/ventas">VENTAS</Link>
-          </div>
+          </div> */}
           <div className="text-white  mb-7">
             <Link to="/dashboardAdmin/usuarios">USUARIOS</Link>
           </div>

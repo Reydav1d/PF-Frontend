@@ -33,7 +33,7 @@ function NavBar() {
           <div className={s.buscador}>buscador</div>
           <div className={s.carrito}>
             <Link to={"/carrito"}>
-              <img src={Carrito} alt="carrito" style={{ width: "60px"}} />
+              <img src={Carrito} alt="carrito" style={{ width: "60px" }} />
             </Link>
           </div>
         </div>
@@ -68,7 +68,7 @@ function NavBar() {
                 <p className={s.registrar}>Vender</p>
               </Link>
               <Link
-                to={"/dashboardUsuario"}
+                to={"/dashboardUsuario/misdatos"}
                 style={{ textDecoration: "none", color: "white" }}
               >
                 <p>Mi Cuenta</p>
