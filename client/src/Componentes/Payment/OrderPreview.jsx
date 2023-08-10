@@ -103,9 +103,7 @@ const OrderPreview = () => {
                 <p id="summary-price" className="text-gray-600">
                   Teléfono: {userInfo?.telefono}
                 </p>
-                <p id="summary-price" className="text-gray-600">
-                  Estatus de Orden: {orderData.order_status}
-                </p>
+              
               </div>)  }
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mt-8">
