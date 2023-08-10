@@ -47,28 +47,28 @@ function misDatos() {
               <h4 className="font-bold font-sans text-lg text-gray-600">Telefono:</h4>
               {LosDatos.user.telefono}{" "}
             </div>
-            <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
+            {/* <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
               <h4 className="font-bold font-sans text-lg text-gray-600">Contraseña:</h4>
               {LosDatos.user.contraseña}{" "}
-            </div>
+            </div> */}
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
               <h4 className="font-bold font-sans text-lg text-gray-600">Usuario:</h4>{" "}
-              {LosDatos.user.user}{" "}
+              {LosDatos.user.usuario}{" "}
             </div>
             <div className="mb-4 rounded-lg border flex justify-between p-2 bg-slate-50">
               <h4 className="font-bold font-sans text-lg text-gray-600">Estado:</h4>{" "}
               {LosDatos.user.user_banned === false
-                ? "Habilitado"
-                : "Deshabilitado"}
+                ? "Activo"
+                : "Suspendido"}
             </div>
           </div>
         </div>
       )}
-      <Link to="/dashboardUsuario/editUser">
+      {/* <Link to="/dashboardUsuario/editUser">
         <button className="mt-4 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2">
           Editar
         </button>
-      </Link>
+      </Link> */}
     </div>
     // <div className="absolute ml-1700 h-700 w-1400 flex justify-center bg-red-400">
     //   <h1 className="bg-green-400">Mis Datos</h1>
