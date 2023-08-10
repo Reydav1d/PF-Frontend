@@ -30,7 +30,6 @@ const OrderDetailsPage = () => {
 
   // Determine the appropriate text based on the order status
 
-<<<<<<< HEAD
   if (!orderData) {
     return <div>Cargando...</div>;
   }
@@ -61,25 +60,14 @@ const OrderDetailsPage = () => {
             Estatus del pedido
           </h2>
 
-          <img
-            src={orderData?.Customer?.image}
-            alt="foto.cliente"
-            className="mt-4 h-40 w-32 rounded-full mx-auto"
-          />
-          <p className="font-sans mt-4">Email: {orderData?.order_email}</p>
-          <p className="font-sans mt-4 text-purple-600 text-2xl font-bold mt-2">
-            Estatus de Orden: {orderData?.order_status}
-          </p>
-          <h1 className="font-sans font-semibold">{statusText}</h1>
-          <p className="font-sans">
-            Fecha de la orden: {orderData?.order_date}
-          </p>
-          <p className="font-sans mt-4">
-            ID de preferencia de pago: {orderData?.id}
-          </p>
-          <p className="mt-4 text-xl text-gray-700 font-sans">
-            {statusAmount} {formatter.format(orderData?.amount)}
-          </p>
+      <img src={orderData?.Customer?.image} alt="foto.cliente" className="mt-4 h-40 w-32 rounded-full mx-auto" />
+      <p className="font-sans mt-4">Email: {orderData?.order_email}</p>
+      <p className="font-sans mt-4 text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData?.order_status.charAt(0).toUpperCase() + orderData?.order_status.slice(1)}</p>
+        <h1 className="font-sans font-semibold">{statusText}</h1>
+      <p className="font-sans">Fecha de la orden: {orderData?.order_date.split("-").join("/").slice(0, 10)}</p>
+      <p className="font-sans mt-4">ID de preferencia de pago: {orderData?.id}</p>
+      <p className="mt-4 text-xl text-gray-700 font-sans">{statusAmount} {formatter.format(orderData?.amount)}</p>
+
 
           <div className="flex justify-end mt-6">
             <Link to="/Productos/page/1">
@@ -91,26 +79,7 @@ const OrderDetailsPage = () => {
               </button>
             </Link>
           </div>
-        </div>
-=======
-    <img src={orderData?.Customer?.image} alt="foto.cliente" className="mt-4 h-40 w-32 rounded-full mx-auto" />
-    <p className="font-sans mt-4">Email: {orderData?.order_email}</p>
-    <p className="font-sans mt-4 text-purple-600 text-2xl font-bold mt-2">Estatus de Orden: {orderData?.order_status.charAt(0).toUpperCase() + orderData?.order_status.slice(1)}</p>
-      <h1 className="font-sans font-semibold">{statusText}</h1>
-    <p className="font-sans">Fecha de la orden: {orderData?.order_date.split("-").join("/").slice(0, 10)}</p>
-    <p className="font-sans mt-4">ID de preferencia de pago: {orderData?.id}</p>
-    <p className="mt-4 text-xl text-gray-700 font-sans">{statusAmount} {formatter.format(orderData?.amount)}</p>
-   
-              <div className="flex justify-end mt-6">
-              <Link to="/Productos/page/1">
-              <button 
-        href="#"
-        className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
-      >
-        Volver a casa
-      </button>
-      </Link>
->>>>>>> bc9e6438b3dd7657dcf3607d5a90d27fb5f02403
+        </div>             
       </div>
     </div>
   );
